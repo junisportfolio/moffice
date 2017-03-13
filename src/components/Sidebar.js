@@ -4,11 +4,18 @@ import {
 	Route,
 	Link
 } from 'react-router-dom';
+import Navigation from '../Sitemap';
 
 
 const Sidebar = () => (
 	<aside className="main-sidebar">
 		<section className="sidebar">
+
+			<Navigation/>
+
+			{/*
+
+
 			<ul className="sidebar-menu">
 				<li className="treeview">
 					<Link refresh="true" to="#">
@@ -55,11 +62,34 @@ const Sidebar = () => (
 				<li> <Link refresh="true" to="customer"><i className="fa fa-envelope"></i> <span>고객지원</span></Link></li>
 				<li> <Link refresh="true" to="mypage"><i className="fa fa-book"></i> <span>마이페이지</span></Link></li>
 
+				*/}
+
+
+				{/*
+				<CustomTag activeOnlyWhenExact={true} to="/" label="Home"/>
+				<CustomTag to="/about" label="About"/>
+
+
 			</ul>
+				 */}
+
 		</section>
 	</aside>
 
 )
+/*
+
+const CustomTag = ({ label, to, activeOnlyWhenExact }) => (
+	<Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
+		<li className={match ? 'active' : ''}>
+			<Link to={to} className={match ? 'active ' : ''}>{label}</Link>
+			<ul>
+				<CustomTag to="/about" label="About"/>
+			</ul>
+		</li>
+	)}/>
+)
+*/
 
 export default Sidebar;
 

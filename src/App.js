@@ -4,10 +4,9 @@ import {Route, Switch, Link, Miss} from 'react-router-dom';
 import {
 	Home,
 	Member, Channel, Board, Chatting, Filter,
-	Broadcast, Broadcast_code,
+	Broad_tool, Broad_code,
 	Cash, Coin, Exchange, Product, Promotion,
 	Customer,
-	Mypage,
 	NoMatch
 } from './containers';
 
@@ -17,8 +16,6 @@ import {
 	Sidebar,
 	PageHeader
 } from './components';
-
-import About from './containers/temp/About';
 
 
 class App extends Component {
@@ -41,8 +38,8 @@ class App extends Component {
 							<Route path="/filter" component={Filter}/>
 
 							{/* 방송국 */}
-							<Route path="/broadcast" component={Broadcast}/>
-							<Route path="/broadcast_code" component={Broadcast_code}/>
+							<Route path="/broad_tool" component={Broad_tool}/>
+							<Route path="/broad_code" component={Broad_code}/>
 
 							{/* 비즈니스 */}
 							<Route path="/promotion" component={Promotion}/>
@@ -53,9 +50,6 @@ class App extends Component {
 
 							{/* 고객지원 */}
 							<Route path="/customer" component={Customer}/>
-
-							{/* 마이페이지 */}
-							<Route path="/mypage" component={Mypage}/>
 
 							<Route component={NoMatch}/>
 						</Switch>
