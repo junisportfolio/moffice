@@ -1,0 +1,46 @@
+.skin-black {
+  .main-header {
+    height: 50px;
+    background-color: #222;
+
+    > .logo{
+      background-color: #222;
+      color: #fff;
+    }
+
+    > .navbar{
+
+      > .sidebar-toggle{
+        top: 0;
+
+        color: #333;
+        border: none;
+      }
+
+      > .navbar-custom-menu{
+        top: 0;
+        border: none;
+
+        .dropdown-toggle{
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+.main-sidebar, .left-side{
+
+}
+
+.navbar-custom-menu > .navbar-nav > li > .dropdown-menu{
+  right: 0;
+  border-top: none;
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer{
+  background-color: #222;
+
+  .btn-default{
+    background-color: #fff;
+  }
+}
