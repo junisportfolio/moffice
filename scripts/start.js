@@ -28,13 +28,22 @@ var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
 var isInteractive = process.stdout.isTTY;
 
+var user = process.argv.filter(arg => arg.indexOf('/mocobee/office/scripts') > 0).map(arg => arg.split('/')[2]);
+var getUserPort = function() {
+  if(user == 'yjcho') return 4001;
+  if(user == 'ihpark') return 4002;
+
+  return 4000;
+}
+
+
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
 // Tools like Cloud9 rely on this.
-var DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+var DEFAULT_PORT = parseInt(process.env.PORT, 10) || getUserPort();
 var compiler;
 var handleCompile;
 
