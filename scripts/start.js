@@ -28,7 +28,7 @@ var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
 var isInteractive = process.stdout.isTTY;
 
-var user = process.argv.filter(arg => arg.indexOf('/mocobee/office/scripts') > 0).map(arg => arg.split('/')[2]);
+var user = require('../config/user');
 var getUserPort = function() {
   if(user == 'yjcho') return 4001;
   if(user == 'ihpark') return 4002;
@@ -284,7 +284,7 @@ function runDevServer(host, port, protocol) {
     if (isInteractive) {
       clearConsole();
     }
-    console.log(chalk.cyan('Starting the development server...'));
+    console.log(chalk.cyan('Hello', user + ', Now we starting the development server port', getUserPort() + '...'));
     console.log();
 
     openBrowser(protocol + '://' + host + ':' + port + '/');

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const user = process.argv.filter(arg => arg.indexOf('/mocobee/office/server') > 0).map(arg => arg.split('/')[2]);
+const user = require('../config/user');
 const getUserPort = function() {
 	if(user == 'yjcho') return 5001;
 	if(user == 'ihpark') return 5002;
@@ -16,5 +16,5 @@ app.get('*', (req, res, next) => {
 });
 
 app.listen(getUserPort(), function () {
-  console.log('Welcome ', user[0], '!! Example app listening on port ', getUserPort(), '!');
+  console.log('Welcome', user + '!! Example app listening on port', getUserPort() + '!!');
 });

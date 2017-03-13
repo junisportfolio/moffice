@@ -61,6 +61,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "scripts": {
+    "live": "node scripts/start.js --live",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
