@@ -1,13 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const user = require('../config/user');
-const getUserPort = function() {
-	if(user == 'yjcho') return 5001;
-	if(user == 'ihpark') return 5002;
-
-	return 5000;
-}
+const { user, port } = require('../config/users');
+const chalk = require('chalk');
 
 app.use('/', express.static(path.resolve(__dirname, '../build')));
 app.get('*', (req, res, next) => {
@@ -15,6 +10,6 @@ app.get('*', (req, res, next) => {
 	res.sendFile(path.resolve(__dirname, '../build/index.html'));
 });
 
-app.listen(getUserPort(), function () {
-  console.log('Welcome', user + '!! Example app listening on port', getUserPort() + '!!');
+app.listen(port, function () {
+  console.log('Welcome', chalk.cyan(user) + '!! Example app listening on port', chalk.magenta(port) + '!!');
 });

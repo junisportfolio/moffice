@@ -20,6 +20,9 @@ import {
 
 class App extends Component {
 	render() {
+    console.log("Call variable " + "%cprocess.env.api%c" + " and you will get String value %c" + JSON.stringify(process.env.api), "color: red", "color: black;", "color: red");
+    console.log("Call variable " + "%cprocess.env.img%c" + " and you will get String value %c" + JSON.stringify(process.env.img), "color: red", "color: black;", "color: red");
+
 		return (
 			<div className="wrapper">
 				<Header/>

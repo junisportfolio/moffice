@@ -28,14 +28,7 @@ var useYarn = fs.existsSync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
 var isInteractive = process.stdout.isTTY;
 
-var user = require('../config/user');
-var getUserPort = function() {
-  if(user == 'yjcho') return 4001;
-  if(user == 'ihpark') return 4002;
-
-  return 4000;
-}
-
+var users = require('../config/users');
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
@@ -43,7 +36,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Tools like Cloud9 rely on this.
-var DEFAULT_PORT = parseInt(process.env.PORT, 10) || getUserPort();
+var DEFAULT_PORT = parseInt(process.env.PORT, 10) || users.port;
 var compiler;
 var handleCompile;
 
@@ -282,9 +275,9 @@ function runDevServer(host, port, protocol) {
     }
 
     if (isInteractive) {
-      clearConsole();
+      // clearConsole();
     }
-    console.log(chalk.cyan('Hello', user + ', Now we starting the development server port', getUserPort() + '...'));
+    console.log(chalk.cyan('Hello', users.user + ', Now we starting the development server port', users.port + '...'));
     console.log();
 
     openBrowser(protocol + '://' + host + ':' + port + '/');

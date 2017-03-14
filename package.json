@@ -48,6 +48,7 @@
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
     "jest": "18.1.0",
+    "json-beautify": "^1.0.1",
     "json-loader": "0.5.4",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
@@ -65,7 +66,9 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "node": "node server"
+    "node": "node server",
+    "gulp": "./node_modules/.bin/gulp",
+    "gulp-flush": "rm -r public/ && ./node_modules/.bin/gulp"
   },
   "jest": {
     "collectCoverageFrom": [

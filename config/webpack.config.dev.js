@@ -1,5 +1,6 @@
 'use strict';
 
+var chalk = require('chalk');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,8 +9,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
-
-
+var beautify = require("json-beautify");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -210,7 +210,10 @@ var config = {
   }
 };
 
-console.log(JSON.stringify(config));
+console.log(chalk.cyan('Check for generated JSON from webpack config !!'));
+console.log(beautify(config, null, 2, 100));
+console.log(chalk.magenta('These texts will be flushed when webpack server finished ready to run.'));
+console.log();
 
 module.exports = config;
 
