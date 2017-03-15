@@ -12,8 +12,8 @@ process.argv.filter(arg => arg.indexOf('/mocobee/office') > 0).map((arg => arg.s
 })));
 
 var isEnvLive = process.argv.filter(arg => arg.indexOf("--live") == 0).length === 1;
-var api = isEnvLive ? "'https://privateapi.mocobee.com:30000'" : "'http://privateapi." + user + "-mocobee.com:30000'";
-var img = isEnvLive ? "'http://image.mocobee.com'" : "'http://image." + user + "-mocobee.com'";
+var api = isEnvLive ? "https://privateapi.mocobee.com:30000" : "http://privateapi." + user + "-mocobee.com:30000";
+var img = isEnvLive ? "http://image.mocobee.com" : "http://image." + user + "-mocobee.com";
 var port = function() {
   var incrementToken = 0;
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Link} from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 
 const menuJson = [
 	{
@@ -78,17 +78,18 @@ const menuJson = [
 	}
 ];
 
-
 class Navigation extends Component {
 	constructor() {
 		super();
+
 		this.state = {
 			display: true
+
 		}
 
 		this.menuJson = menuJson;
 		this.menuMarkup = [];
-
+		window.ddd = menuJson;
 	}
 
 	generateMenuMarkups() {
@@ -98,15 +99,16 @@ class Navigation extends Component {
 		this.menuJson.map((depth1, i) => {
 			if (depth1.children) {
 				let children = [];
-				depth1.children.map((depth2, j) => {
-					children.push(that.generateMenuEntity(depth2));
+
+				depth1.children.map((depth2, i) => {
+					children.push(that.generateMenuEntity(depth2, i));
+
 					return false;
 				});
-				this.menuMarkup.push(that.generateMenuEntity(depth1, children));
 
+				this.menuMarkup.push(that.generateMenuEntity(depth1, i, children));
 			} else {
-				this.menuMarkup.push(that.generateMenuEntity(depth1));
-
+				this.menuMarkup.push(that.generateMenuEntity(depth1, i));
 			}
 
 			return false;
@@ -120,9 +122,10 @@ class Navigation extends Component {
 		return temp;
 	}
 
-	generateMenuEntity(object, j, children) {
+	generateMenuEntity(object, i , children) {
 		if (children) {
 			return <MenuEntity
+				key={i}
 				name={object.name}
 				id={object.id}
 				children={object.children}
@@ -132,6 +135,7 @@ class Navigation extends Component {
 			</MenuEntity>;
 		} else {
 			return <MenuEntity
+				key={object.name+i}
 				name={object.name}
 				id={object.id}
 				children={object.children}
@@ -201,6 +205,7 @@ class MenuEntity extends Component {
 		}
 	}
 }
+
 
 const CustomTag = ({activeOnlyWhenExact, to, label, kids, menuIcon, classNaming}) => (
 	<Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
