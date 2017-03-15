@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Route, Switch, Link, Miss} from 'react-router-dom';
-
 import {
 	Home,
 	Member, Channel, Board, Chatting, Filter,
@@ -17,12 +16,8 @@ import {
 	PageHeader
 } from './components';
 
-
 class App extends Component {
 	render() {
-    console.log("Call variable " + "%cprocess.env.api%c" + " and you will get String value %c" + JSON.stringify(process.env.api), "color: red", "color: black;", "color: red");
-    console.log("Call variable " + "%cprocess.env.img%c" + " and you will get String value %c" + JSON.stringify(process.env.img), "color: red", "color: black;", "color: red");
-
 		return (
 			<div className="wrapper">
 				<Header/>
@@ -63,6 +58,5 @@ class App extends Component {
 		);
 	}
 }
-
 
 export default App;

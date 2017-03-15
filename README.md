@@ -1,7 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+해당 프로젝트는 [Create React App](https://github.com/facebookincubator/create-react-app) 어플리케이션을 사용하여 부트스트랩 되었습니다.
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+아래에는 통상적인 처리들을 어떻게 처리할 수 있는지에 대한 정보가 나와있습니다.<br>
+최신 버젼에 대한 가이드 정보는 [이 링크](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md)에서 얻을 수 있습니다.
 
 ## Table of Contents
 
@@ -109,20 +109,35 @@ We are always open to [your feedback](https://github.com/facebookincubator/creat
 After creation, your project should look like this:
 
 ```
-my-app/
-  README.md
-  node_modules/
-  package.json
-  public/
-    index.html
-    favicon.ico
-  src/
-    App.css
-    App.js
-    App.test.js
-    index.css
+moffice/
+  config/
+    jest/
+      cssTransform.js
+      fileTransform.js
+    env.js
+    paths.js
+    polyfills.js
+    users.js
+    webpack.config.dev.js
+    webpack.config.prod.js
+  publishing/
+  scripts/
+    build.js
+    start.js
+    test.js
+  server/
     index.js
-    logo.svg
+  src/
+    components/
+    containers/
+    App.js
+    index.js
+    Sitemap.js
+  .gitignore
+  gulpfile.js
+  index.html
+  package.json
+  README.md
 ```
 
 For the project to build, **these files must exist with exact filenames**:
