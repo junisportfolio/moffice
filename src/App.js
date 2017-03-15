@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {Route, Switch, Link, Miss} from 'react-router-dom';
-=======
-import {Route, Switch, Link, Miss} from 'react-router-dom';1
+import { Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
->>>>>>> 29b0ce9cc4ecda1cdabeaba5b32d346d5dbc8f85
 import {
 	Home,
 	Member, Channel, Board, Chatting, Filter,
@@ -22,14 +18,13 @@ import {
 } from './components';
 
 class App extends Component {
-
 	constructor(){
 		super()
 		this.state = {
 			auth: true,
 			loginUserId: null,
 			loginUserLevel: null,
-			__api__: "http://privateapi.yjcho-mocobee.com:30000"
+			__api__: process.env.api
 		}
 	}
 
@@ -110,43 +105,6 @@ class App extends Component {
 	}
 
 	render() {
-<<<<<<< HEAD
-		return (
-			<div className="wrapper">
-				<Header/>
-				<Sidebar/>
-				<div className="content-wrapper">
-
-					<section className="content">
-
-						<Switch>
-							{/* 커뮤니티 */}
-							<Route exact path="/" component={Home}/>
-							<Route path="/member" component={Member}/>
-							<Route path="/channel" component={Channel}/>
-							<Route path="/board" component={Board}/>
-							<Route path="/chatting" component={Chatting}/>
-							<Route path="/filter" component={Filter}/>
-
-							{/* 방송국 */}
-							<Route path="/broad_tool" component={Broad_tool}/>
-							<Route path="/broad_code" component={Broad_code}/>
-
-							{/* 비즈니스 */}
-							<Route path="/promotion" component={Promotion}/>
-							<Route path="/coin" component={Coin}/>
-							<Route path="/exchange" component={Exchange}/>
-							<Route path="/product" component={Product}/>
-							<Route path="/cash" component={Cash}/>
-
-							{/* 고객지원 */}
-							<Route path="/customer" component={Customer}/>
-
-							<Route component={NoMatch}/>
-						</Switch>
-
-					</section>
-=======
 		let header = "";
 		let sidebar = "";
 		if(this.state.auth){
@@ -184,13 +142,9 @@ class App extends Component {
 
 						</section>
 					</div>
->>>>>>> 29b0ce9cc4ecda1cdabeaba5b32d346d5dbc8f85
 				</div>
 			);
 		}
-
-
-
 	}
 }
 

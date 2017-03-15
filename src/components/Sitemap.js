@@ -78,18 +78,21 @@ const menuJson = [
 	}
 ];
 
+const childrenIdentifier = {
+	value: 0
+};
+
 class Navigation extends Component {
 	constructor() {
 		super();
 
 		this.state = {
 			display: true
-
 		}
 
 		this.menuJson = menuJson;
 		this.menuMarkup = [];
-		window.ddd = menuJson;
+		this.menu = this.generateMenuMarkups();
 	}
 
 	generateMenuMarkups() {
@@ -100,8 +103,8 @@ class Navigation extends Component {
 			if (depth1.children) {
 				let children = [];
 
-				depth1.children.map((depth2, i) => {
-					children.push(that.generateMenuEntity(depth2, i));
+				depth1.children.map((depth2, j) => {
+					children.push(that.generateMenuEntity(depth2, j));
 
 					return false;
 				});
@@ -114,38 +117,33 @@ class Navigation extends Component {
 			return false;
 		});
 
-		let temp =
-			<ul className="sidebar-menu">
-				{this.menuMarkup}
-			</ul>
-
-		return temp;
+		return <ul key="sidebar-wrap" className="sidebar-menu">
+      {this.menuMarkup}
+		</ul>;
 	}
 
-	generateMenuEntity(object, i , children) {
+	generateMenuEntity(object, idx , children) {
+
 		if (children) {
 			return <MenuEntity
-				key={i}
+				key={childrenIdentifier.value++}
 				name={object.name}
 				id={object.id}
-				children={object.children}
+				children={children}
 				icon={object.icon}
-			>
-				{children}
-			</MenuEntity>;
+			/>;
 		} else {
 			return <MenuEntity
-				key={object.name+i}
+				key={childrenIdentifier.value++}
 				name={object.name}
 				id={object.id}
-				children={object.children}
 				icon={object.icon}
 			/>;
 		}
 	}
 
 	render() {
-		return this.generateMenuMarkups();
+		return this.menu;
 	}
 }
 
@@ -164,12 +162,12 @@ class MenuEntity extends Component {
 
 	render() {
 		let childrenDisplay = (this.state.hiddenChildren) ? {display: "none"} : {display: "block"};
-		let children = (this.props.children) ? <ul className="treeview-menu">{this.props.children}</ul> : "";
+		let children = (this.props.children) ? <ul key={childrenIdentifier.value++} className="treeview-menu">{this.props.children}</ul> : "";
 		let parentBracket = (this.state.isParent) ? (this.state.hiddenChildren) ?
-				<i className="fa fa-plus-circle" aria-hidden="true"></i> :
-				<i className="fa fa-minus-circle" aria-hidden="true"></i> : "";
-		let menuIcon = (this.props.icon) ? <i className={"fa " + this.props.icon} aria-hidden="true"></i> :
-			<i className={"fa " + "fa-circle-o"} aria-hidden="true"></i>;
+				<i key={childrenIdentifier.value++} className="fa fa-plus-circle" aria-hidden="true"></i> :
+				<i key={childrenIdentifier.value++} className="fa fa-minus-circle" aria-hidden="true"></i> : "";
+		let menuIcon = (this.props.icon) ? <i key={childrenIdentifier.value++} className={"fa " + this.props.icon} aria-hidden="true"></i> :
+			<i key={childrenIdentifier.value++} className={"fa " + "fa-circle-o"} aria-hidden="true"></i>;
 		let onClickFunction = function () {
 			this.setState({hiddenChildren: !this.state.hiddenChildren});
 		};
@@ -177,6 +175,7 @@ class MenuEntity extends Component {
 		if (this.props.children) {
 			return (
 				<CustomTag
+					key={childrenIdentifier.value++}
 					activeOnlyWhenExact={true}
 					to={this.props.id}
 					label={this.props.name}
@@ -188,9 +187,10 @@ class MenuEntity extends Component {
 		} else {
 			return (
 				<CustomTag
+					key={childrenIdentifier.value++}
+					activeOnlyWhenExact={false}
 					to={this.props.id}
 					label={this.props.name}
-					kids={children}
 					menuIcon={menuIcon}
 					classNaming=""
 				/>
@@ -208,11 +208,11 @@ class MenuEntity extends Component {
 
 
 const CustomTag = ({activeOnlyWhenExact, to, label, kids, menuIcon, classNaming}) => (
-	<Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
-		<li className={match ? `${classNaming} active` : classNaming}>
-			<Link to={to}>
+	<Route key={childrenIdentifier.value++} path={to} exact={activeOnlyWhenExact} children={({match}) => (
+		<li key={childrenIdentifier.value++} className={match ? '${classNaming} active' : classNaming}>
+			<Link key={childrenIdentifier.value++} to={to}>
 				{menuIcon}
-				<span>{label}</span>
+				<span key={childrenIdentifier.value++}>{label}</span>
 			</Link>
 			{kids}
 		</li>

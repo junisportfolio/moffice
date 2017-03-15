@@ -4,7 +4,7 @@ import {
 	Route,
 	Link
 } from 'react-router-dom';
-import Navigation from '../Sitemap';
+import Navigation from './Sitemap';
 
 
 const Sidebar = () => (
