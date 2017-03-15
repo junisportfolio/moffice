@@ -135,7 +135,7 @@ class Navigation extends Component {
 			</MenuEntity>;
 		} else {
 			return <MenuEntity
-				key={i}
+				key={object.name+i}
 				name={object.name}
 				id={object.id}
 				children={object.children}
@@ -207,17 +207,17 @@ class MenuEntity extends Component {
 }
 
 
-	const CustomTag = ({activeOnlyWhenExact, to, label, kids, menuIcon, classNaming}) => (
-		<Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
-			<li className={match ? `${classNaming} active` : classNaming}>
-				<Link to={to}>
-					{menuIcon}
-					<span>{label}</span>
-				</Link>
-				{kids}
-			</li>
-		)}/>
-	)
+const CustomTag = ({activeOnlyWhenExact, to, label, kids, menuIcon, classNaming}) => (
+	<Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
+		<li className={match ? `${classNaming} active` : classNaming}>
+			<Link to={to}>
+				{menuIcon}
+				<span>{label}</span>
+			</Link>
+			{kids}
+		</li>
+	)}/>
+)
 
 
 

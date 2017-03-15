@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var __$ = {
   api: "",
   img: "",
@@ -62,4 +63,14 @@ var __$ = {
       error: that.error
     });
   }
-};
+=======
+"use strict";
+
+
+
+$(function(){
+
+
+
+});
+>>>>>>> 29b0ce9cc4ecda1cdabeaba5b32d346d5dbc8f85
