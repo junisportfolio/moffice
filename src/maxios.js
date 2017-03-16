@@ -23,7 +23,6 @@ class maxios {
       "DELETE 요청: maxios.delete(url, successCallback);\n\n" +
       "모든 요청 메소드에 공통적으로 successCallback 인자를 통해 maxios.console 객체를 전달하면 기본 출력 메소드를 호출할 수 있습니다.\n" +
       "maxios 사용법을 알고 싶으시면 개발중인 소스에서 언제든지 maxios.help()를 호출해주세요.\n" +
-      "%c해당 자동 호출되는 안내 메세지는 다음번 커밋때 제거됩니다. 해당 라이브러리에 대한 추후 버젼에 대한 정보는 여전히 [maxios.help();]로 확인 가능합니다.\n" +
       "%c이 메세지가 보인 화면에서는 웹브라우져를 통해 maxios 객체에 접근할 수 있습니다. 이 메세지가 라이브 환경에서 보여선 안됩니다.";
     console.log(message, "color: red", "background: red; color: white");
   }
