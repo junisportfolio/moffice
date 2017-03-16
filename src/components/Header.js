@@ -6,8 +6,10 @@ import {
 	Link
 } from 'react-router-dom';
 
+import maxios from '../maxios';
 
-
+maxios.get('/private/v1/auth', maxios.console);
+maxios.help();
 
 const Header = () => (
 	<header className="main-header">
