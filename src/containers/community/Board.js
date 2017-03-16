@@ -13,10 +13,10 @@ class Board extends React.Component {
 		}
 	}
 
-	render(){
+	render() {
 
-		return(
-			<div>
+		return (
+			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
 					pageTitleName={this.state.pageTitleName}
@@ -24,17 +24,74 @@ class Board extends React.Component {
 				/>
 				<div className="row">
 					<div className="col-md-6">
-						<div className="box box-primary">
+						<div className="box box-solid box-primary">
 							<div className="box-header with-border">
-								<h3 className="box-title">Quick Example</h3>
+								<h3 className="box-title"><b>리스트</b></h3>
 							</div>
 							<div className="box-body">
-								<ul>
-									<li>aaa</li>
-									<li>bbb</li>
-									<li>ccc</li>
-									<li>ddd</li>
-									<li>eee</li>
+								<ul className="nav nav-pills nav-stacked">
+									<li className="active list-item-1 has-right">
+										<a href="#">
+											<span className="title">
+												asdsdasd
+											</span>
+											<span className="text">
+												가나다라알아란랑
+											</span>
+											<span className="right">
+												aj123jb21e
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Sent
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Drafts
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Sent
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Drafts
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Sent
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Drafts
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Sent
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											Drafts
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div className="box-footer">
+								<ul className="pagination">
+									<li><a href="#">1</a></li>
+									<li className="active"><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
 								</ul>
 							</div>
 
@@ -42,9 +99,9 @@ class Board extends React.Component {
 					</div>
 
 					<div className="col-md-6">
-						<div className="box box-info">
+						<div className="box box-solid box-success">
 							<div className="box-header with-border">
-								<h3 className="box-title">Quick Example</h3>
+								<h3 className="box-title"><b>홍길동</b>님의 정보</h3>
 							</div>
 							<div className="box-body">
 								<div className="form-group">
@@ -56,7 +113,7 @@ class Board extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
 		)
 	}
 }

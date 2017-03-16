@@ -18,7 +18,7 @@ const Login = () => {
 							<span className="glyphicon glyphicon-lock form-control-feedback"></span>
 						</div>
 						<div className="form-group">
-							<button type="submit" className="btn btn-primary btn-block btn-flat">로 그 인</button>
+							<button type="submit" className="btn btn-primary btn-block btn-flat">Login</button>
 						</div>
 					</form>
 

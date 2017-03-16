@@ -2,9 +2,9 @@ import React from 'react';
 
 
 const Home = () => (
-	<div>
+	<section className="content">
 		<h2>Home</h2>
-	</div>
+	</section>
 )
 
 export default Home;

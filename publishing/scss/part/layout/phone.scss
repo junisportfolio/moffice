@@ -1,17 +1,6 @@
 .skin-black {
   .wrapper, .main-sidebar, .left-side {
     background-color: #222;
-    &.login-page{
-      background-color: pink;
-      position: fixed;
-      width: 100%;
-      min-height: 100%;
-
-      .login-box{
-        display: block;
-
-      }
-    }
   }
 
   .sidebar-menu > li > a{
@@ -54,6 +43,7 @@
       }
     }
   }
+
 }
 
 .main-sidebar, .left-side {
@@ -76,3 +66,7 @@
 .skin-black .main-header > .navbar .sidebar-toggle:hover{
   background: #222;
 }
+
+
+
+

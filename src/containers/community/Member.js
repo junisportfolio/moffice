@@ -16,7 +16,7 @@ class Member extends React.Component {
 	render(){
 
 		return(
-			<div>
+			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
 					pageTitleName={this.state.pageTitleName}
@@ -25,7 +25,7 @@ class Member extends React.Component {
 
 
 
-			</div>
+			</section>
 		)
 	}
 }

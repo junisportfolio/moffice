@@ -107,56 +107,49 @@ class App extends Component {
 	}
 
 	render() {
-		let header = "";
-		let sidebar = "";
-		if (!this.state.auth) {
+		if (this.state.auth) {
 			return (
 				<div className="wrapper">
 					<Header/>
 					<Sidebar/>
 					<div className="content-wrapper">
-						<section className="content">
-							<Switch>
-								{/* 커뮤니티 */}
-								<Route exact path="/" component={Home}/>
-								<Route path="/member" component={Member}/>
-								<Route path="/channel" component={Channel}/>
-								<Route path="/board" component={Board}/>
-								<Route path="/chatting" component={Chatting}/>
-								<Route path="/filter" component={Filter}/>
+						<Switch>
+							{/* 커뮤니티 */}
+							<Route exact path="/" component={Home}/>
+							<Route path="/member" component={Member}/>
+							<Route path="/channel" component={Channel}/>
+							<Route path="/board" component={Board}/>
+							<Route path="/chatting" component={Chatting}/>
+							<Route path="/filter" component={Filter}/>
 
-								{/* 방송국 */}
-								<Route path="/broad_tool" component={Broad_tool}/>
-								<Route path="/broad_code" component={Broad_code}/>
+							{/* 방송국 */}
+							<Route path="/broad_tool" component={Broad_tool}/>
+							<Route path="/broad_code" component={Broad_code}/>
 
-								{/* 비즈니스 */}
-								<Route path="/promotion" component={Promotion}/>
-								<Route path="/coin" component={Coin}/>
-								<Route path="/exchange" component={Exchange}/>
-								<Route path="/product" component={Product}/>
-								<Route path="/cash" component={Cash}/>
+							{/* 비즈니스 */}
+							<Route path="/promotion" component={Promotion}/>
+							<Route path="/coin" component={Coin}/>
+							<Route path="/exchange" component={Exchange}/>
+							<Route path="/product" component={Product}/>
+							<Route path="/cash" component={Cash}/>
 
-								{/* 고객지원 */}
-								<Route path="/customer" component={Customer}/>
+							{/* 고객지원 */}
+							<Route path="/customer" component={Customer}/>
 
-								<Route component={NoMatch}/>
-							</Switch>
+							<Route component={NoMatch}/>
+						</Switch>
 
-						</section>
 					</div>
 				</div>
 			);
 		} else {
 
 			return (
-
-					<Switch>
-						{/* 로그인 */}
-						<Route path="/login" component={Login}/>
-
-						<Route path="/" component={Login}/>
-					</Switch>
-
+				<Switch>
+					{/* 로그인 */}
+					<Route path="/login" component={Login}/>
+					<Route path="/" component={Login}/>
+				</Switch>
 			);
 		}
 	}

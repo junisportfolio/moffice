@@ -16,14 +16,14 @@ class Broad_code extends React.Component {
 	render(){
 
 		return(
-			<div>
+			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
 					pageTitleName={this.state.pageTitleName}
 					pageTitleNameSmall={this.state.pageTitleNameSmall}
 				/>
 				<h2>Broad_code</h2>
-			</div>
+			</section>
 		)
 	}
 }

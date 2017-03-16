@@ -16,14 +16,14 @@ class Promotion extends React.Component {
 	render(){
 
 		return(
-			<div>
+			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
 					pageTitleName={this.state.pageTitleName}
 					pageTitleNameSmall={this.state.pageTitleNameSmall}
 				/>
 				<h2>Promotion</h2>
-			</div>
+			</section>
 		)
 	}
 }

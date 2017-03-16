@@ -16,14 +16,14 @@ class Product extends React.Component {
 	render(){
 
 		return(
-			<div>
+			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
 					pageTitleName={this.state.pageTitleName}
 					pageTitleNameSmall={this.state.pageTitleNameSmall}
 				/>
 				<h2>Product</h2>
-			</div>
+			</section>
 		)
 	}
 }
