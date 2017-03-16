@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 
 import {
 	Home,
+	Login,
 	Member, Channel, Board, Chatting, Filter,
 	Broad_tool, Broad_code,
 	Cash, Coin, Exchange, Product, Promotion,
@@ -18,7 +19,7 @@ import {
 } from './components';
 
 class App extends Component {
-	constructor(){
+	constructor() {
 		super()
 		this.state = {
 			auth: true,
@@ -33,6 +34,7 @@ class App extends Component {
 		this.UserLevelCheck()
 
 	}
+
 	componentDidUpdate() {
 		// console.log(`loginId : ${this.state.loginId}, userData : ${JSON.stringify(this.state.userData)}`);
 	}
@@ -81,7 +83,7 @@ class App extends Component {
 			});
 	}
 
-	UserInfo(LoginId){
+	UserInfo(LoginId) {
 		let that = this;
 		var axiosCustom = axios.create({
 			baseURL: this.state.__api__,
@@ -107,7 +109,7 @@ class App extends Component {
 	render() {
 		let header = "";
 		let sidebar = "";
-		if(this.state.auth){
+		if (!this.state.auth) {
 			return (
 				<div className="wrapper">
 					<Header/>
@@ -143,6 +145,18 @@ class App extends Component {
 						</section>
 					</div>
 				</div>
+			);
+		} else {
+
+			return (
+
+					<Switch>
+						{/* 로그인 */}
+						<Route path="/login" component={Login}/>
+
+						<Route path="/" component={Login}/>
+					</Switch>
+
 			);
 		}
 	}

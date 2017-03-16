@@ -1,5 +1,7 @@
 /* home */
 import Home from './home/Home';
+/* login */
+import Login from './login/Login';
 /* community */
 import Member from './community/Member';
 import Channel from './community/Channel';
@@ -25,6 +27,7 @@ import NoMatch from './NoMatch';
 
 export {
 	Home,
+	Login,
 	Member, Channel, Board, Chatting, Filter,
 	Broad_tool, Broad_code,
 	Cash, Coin, Exchange, Product, Promotion,
