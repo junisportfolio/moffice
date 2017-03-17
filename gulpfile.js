@@ -22,6 +22,7 @@ var paths = {
 	scssWatch: src + '/scss/**/**/**/*.scss',
 	img: src + '/images/**/**/**/*.*',
 	fonts: src + '/fonts/**/**/**/*.*',
+  ico: src + '/**/*.ico',
 	html: src + '/**/*.html'
 };
 
@@ -30,6 +31,7 @@ var paths = {
 gulp.task('server', function () {
 	return gulp.src(dist + '/')
 		.pipe(webserver());
+		.pipe(webserver(Math.floor(Math.random() * (6999 - 6001 + 1)) + 6001));
 });
 
 // 결과물 폴더 청소(삭제)
@@ -78,6 +80,12 @@ gulp.task('compress-html', function () {
 		.pipe(gulp.dest(dist + '/'));
 });
 
+// ico 파일복사
+gulp.task('copy-icons', function () {
+  return gulp.src(paths.ico)
+    .pipe(gulp.dest(dist + '/'));
+});
+
 // 파일 변경 감지 및 브라우저 재시작
 gulp.task('watch', function () {
 	livereload.listen();
@@ -97,6 +105,7 @@ gulp.task('default', [
 	'copy-fonts',
 	'compile-sass',
 	'compress-html',
+  'copy-icons',
 	'watch'
 ]);
 

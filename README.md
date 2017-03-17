@@ -132,7 +132,7 @@ moffice/
     containers/
     App.js
     index.js
-    Sitemap.js
+    Navigation.js
   .gitignore
   gulpfile.js
   index.html

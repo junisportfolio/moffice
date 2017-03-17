@@ -19,11 +19,12 @@ import Product from './business/Product';
 import Promotion from './business/Promotion';
 /* customer */
 import Customer from './customer/Customer';
-
 /* NoMatch */
 import NoMatch from './NoMatch';
 
+function get(container) {
 
+}
 
 export {
 	Home,
