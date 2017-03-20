@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {
 	BrowserRouter as Router,
 	Route,
@@ -42,9 +41,7 @@ const Header = () => (
 				</ul>
 			</div>
 		</nav>
-
 	</header>
-
 )
 
 const ListItemLink = ({ to, text, ...rest }) => (
@@ -54,4 +51,5 @@ const ListItemLink = ({ to, text, ...rest }) => (
 		</li>
 	)}/>
 )
+
 export default Header;

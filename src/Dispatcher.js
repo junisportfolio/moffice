@@ -40,10 +40,10 @@ class Dispatcher extends Component {
     Sitemap.structure.map(parent => {
       if(parent.children) {
         parent.children.map(children => {
-          this.routes.push(<Route key={children.id} path={"/" + children.id} component={this.index} />);
+          this.routes.push(<Route key={children.id} path={"/" + children.id} component={children.content} />);
         });
       } else {
-        this.routes.push(<Route key={parent.id} path={"/" + parent.id} component={this.index} />);
+        this.routes.push(<Route key={parent.id} path={"/" + parent.id} component={parent.content} />);
       }
     });
   }
@@ -51,7 +51,7 @@ class Dispatcher extends Component {
   render() {
     let innerSwitch = "";
 
-    if(this.state.auth.validate) {
+    if(!this.state.auth.validate) {
       window.document.body.className = "skin-black";
 
       innerSwitch =

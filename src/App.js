@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import Dispatcher from './Dispatcher';
 import Sitemap from './Sitemap';
 import {
-	Home,
-	Login,
-	NoMatch
+  Home,
+  Login,
+  NoMatch
 } from './containers';
 import maxios from './maxios';
 
 class App extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
     let that = this;
 
@@ -19,7 +19,7 @@ class App extends Component {
       auth: {
         validate: false,
         user: null
-			}
+      }
     };
 
     maxios.get({
@@ -47,19 +47,13 @@ class App extends Component {
         });
       }
     });
-    }
+  }
 
-    render() {
-      if(this.state.isLoading) {
-        return (
-          <div></div>
-      );
-    } else {
-      return (
-        <Dispatcher sitemap={Sitemap} index={Home} security={Login} notfound={NoMatch} auth={this.state.auth} />
-      );
-    }
-	}
+  render() {
+    return (
+      <Dispatcher sitemap={Sitemap} index={Home} security={Login} notfound={NoMatch} />
+    );
+  }
 }
 
 export default App;

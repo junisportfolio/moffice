@@ -1,3 +1,13 @@
+import {
+  Home,
+  Login,
+  Member, Channel, Board, Chatting, Filter,
+  Board_tool, Board_code,
+  Cash, Coin, Exchange, Product, Promotion,
+  Customer,
+  NoMatch
+} from './containers';
+
 class Sitemap {
   constructor() {
     console.log("%cSitemap constructor has called.", "color: red; font-size: 30px");
@@ -11,23 +21,28 @@ class Sitemap {
           {
             id: "member",
             name: "회원 관리",
-            icon: ""
+            icon: "",
+            content: Member
           }, {
             id: "channel",
             name: "채널 관리",
-            icon: ""
+            icon: "",
+            content: Channel
           }, {
             id: "board",
             name: "게시판 관리",
-            icon: ""
+            icon: "",
+            content: Board
           }, {
             id: "chatting",
             name: "채팅방 관리",
-            icon: "fa-comments"
+            icon: "fa-comments",
+            content: Chatting
           }, {
             id: "filter",
             name: "필터링 단어 관리",
-            icon: ""
+            icon: "",
+            content: Filter
           }
         ]
       }, {
@@ -38,11 +53,13 @@ class Sitemap {
           {
             id: "broad_tool",
             name: "방송 관리",
-            icon: ""
+            icon: "",
+            content: Board_tool
           }, {
             id: "broad_code",
             name: "방송 코드 관리",
-            icon: ""
+            icon: "",
+            content: Board_code
           }
         ]
       }, {
@@ -53,29 +70,35 @@ class Sitemap {
           {
             id: "promotion",
             name: "프로모션 관리",
-            icon: ""
+            icon: "",
+            content: Promotion
           }, {
             id: "coin",
             name: "꿀 이력 관리",
-            icon: ""
+            icon: "",
+            content: Coin
           }, {
             id: "exchange",
             name: "환전 관리",
-            icon: ""
+            icon: "",
+            content: Exchange
           }, {
             id: "product",
             name: "상품 관리",
-            icon: ""
+            icon: "",
+            content: Product
           }, {
             id: "cash",
             name: "결제 관리",
-            icon: ""
+            icon: "",
+            content: Cash
           }
         ]
       }, {
         id: "customer",
         name: "고객지원 관리",
-        icon: "fa-question"
+        icon: "fa-question",
+        content: Customer
       }
     ];
   }
