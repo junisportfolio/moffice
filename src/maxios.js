@@ -6,11 +6,15 @@ class maxios {
       baseURL: process.env.api,
       withCredentials: true
     });
+
+    if(process.env.NODE_ENV === 'development') {
+      this.help();
+    }
   }
 
   help() {
     window.maxios = this;
-
+    
     const message = "Maxios\nCustom plugin, for Handling ajax calls, for Moffice application. It based on axios library.\n" +
       "\n" +
       "Getting started by typing [import maxios from '../maxios';] into your source.\n" +
@@ -33,7 +37,11 @@ class maxios {
 
   error(errorObject) {
     let data = errorObject.response;
-    console.log("%c" + data.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", data.statusText, data.data)
+    if(data) {
+      console.log("%c" + data.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", data.statusText, data.data)
+    } else {
+      console.log(errorObject);
+    }
   }
 
   get(object) {

@@ -13,10 +13,6 @@ import '../public/css/desktop.css';
 import '../public/css/lgdesktop.css';
 import maxios from './maxios';
 
-(function() {
-  maxios.help();
-})();
-
 const history = createBrowserHistory();
 
 ReactDOM.render(

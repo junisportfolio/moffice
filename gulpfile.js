@@ -31,7 +31,6 @@ var paths = {
 gulp.task('server', function () {
 	return gulp.src(dist + '/')
 		.pipe(webserver());
-		.pipe(webserver(Math.floor(Math.random() * (6999 - 6001 + 1)) + 6001));
 });
 
 // 결과물 폴더 청소(삭제)
