@@ -23,7 +23,10 @@ class Board extends React.Component {
 					pageTitleNameSmall={this.state.pageTitleNameSmall}
 				/>
 				<div className="row">
-					<div className="col-md-6">
+
+					<div className="col-md-4">
+
+
 						<div className="box box-primary">
 							<div className="box-header with-border">
 								<h3 className="box-title"><b>리스트</b></h3>
@@ -33,118 +36,100 @@ class Board extends React.Component {
 									<li className="active list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												강호동
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
+												홍길동
 											</span>
 										</a>
 									</li>
 									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
+												홍길동
 											</span>
 										</a>
 									</li>
 									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												홍진경
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
 												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
 											</span>
 										</a>
 									</li>
 									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
 												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
 											</span>
 										</a>
 									</li>
 									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
 												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
 											</span>
 										</a>
 									</li>
 									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
 											</span>
 											<span className="right">
-												aj123jb21e
+												홍길동가나다라마나암낭만안아ㅏㅇ낭
 											</span>
 										</a>
 									</li>
-									<li className="list-item-1">
+									<li className="list-item-1 has-right">
 										<a href="#">
 											<span className="title">
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
+											</span>
+											<span className="right">
 												홍길동
 											</span>
-											<span className="text">
-												가나다라알아란랑
+										</a>
+									</li>
+									<li className="list-item-1 has-right">
+										<a href="#">
+											<span className="title">
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
+											</span>
+											<span className="right">
+												홍길동
+											</span>
+										</a>
+									</li>
+									<li className="list-item-1 has-right">
+										<a href="#">
+											<span className="title">
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
+											</span>
+											<span className="right">
+												홍길동
+											</span>
+										</a>
+									</li>
+									<li className="list-item-1 has-right">
+										<a href="#">
+											<span className="title">
+												rkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnfrkskdkedksdjfksjdfkjshfdkjnsdkfjhksjdfnkjsdnfkjndsjkfnksjdnf
+											</span>
+											<span className="right">
+												홍길동
 											</span>
 										</a>
 									</li>
@@ -163,531 +148,212 @@ class Board extends React.Component {
 						</div>
 
 
-						<div className="box box-warning">
-							<div className="box-header with-border">
+					</div>
+					<div className="col-md-8">
 
-								<ul className="nav nav-tabs">
-									<li className="active"><a href="#">문의</a></li>
-									<li><a href="#">신고</a></li>
-									<li><a href="#">제휴</a></li>
-								</ul>
-
-								{/*<h3 className="box-title"><b>리스트</b></h3>*/}
-							</div>
-							<div className="box-body">
-								<ul className="nav nav-stacked">
-									<li className="active list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												강호동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍진경
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<div className="box-footer">
-								<ul className="pagination">
-									<li><a href="#">1</a></li>
-									<li className="active"><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-								</ul>
-							</div>
-
-						</div>
-
-
-						<div className="box box-warning">
-							<div className="box-header with-border">
-
-								<ul className="nav nav-tabs nav-justified">
-									<li className="active"><a href="#">문의</a></li>
-									<li><a href="#">신고</a></li>
-									<li><a href="#">제휴</a></li>
-								</ul>
-								{/*
-
-								 <ul className="nav nav-tabs">
-								 <li className="active"><a href="#">문의</a></li>
-								 <li><a href="#">신고</a></li>
-								 <li><a href="#">제휴</a></li>
-								 </ul>
-								 */}
-
-								{/*<h3 className="box-title"><b>리스트</b></h3>*/}
-							</div>
-							<div className="box-body">
-								<div className="form-group">
-
-									<div className="input-group input-group-sm">
-										<input type="text" className="form-control"/>
-										<span className="input-group-btn">
-                      <button type="button" className="btn btn-primary btn-flat">검색</button>
-                    </span>
-									</div>
+						<div className="col-lg-6">
+							<div className="box box-success">
+								<div className="box-header with-border">
+									<h3 className="box-title">
+										댓글
+									</h3>
 
 								</div>
-								<ul className="nav nav-stacked">
-									<li className="active list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												강호동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍진경
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1 has-right">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-											<span className="right">
-												aj123jb21e
-											</span>
-										</a>
-									</li>
-									<li className="list-item-1">
-										<a href="#">
-											<span className="title">
-												홍길동
-											</span>
-											<span className="text">
-												가나다라알아란랑
-											</span>
-										</a>
-									</li>
-								</ul>
+								<div className="box-body">
+
+
+									<table className="table-board">
+										<colgroup>
+											<col width={'20%'}/>
+											<col width={'30%'}/>
+											<col width={'20%'}/>
+											<col width={'30%'}/>
+										</colgroup>
+										<thead>
+										<tr>
+											<th>게시글 제목</th>
+											<td colSpan="3" className="text-left">adkjwkf lwkdlkwldk l wl dklwkdl kawl kd lawkd lkaw ldk awk
+												dlkalwkd lawk dlk awlkd lakw dlkaw ldk lakwfadkjwkf lwkdlkwldk l wl dklwkdl kawl kd lawkd lkaw
+												ldk awk dlkalwkd lawk dlk awlkd lakw dlkaw ldk lakwf
+											</td>
+										</tr>
+										<tr>
+											<th>작성자</th>
+											<td>홍길동</td>
+											<th>등록일</th>
+											<td>2017.02.15</td>
+										</tr>
+										<tr>
+											<th>조회수</th>
+											<td>test4</td>
+											<th>추천</th>
+											<td>232</td>
+										</tr>
+										</thead>
+										<tbody>
+										<tr>
+											<td colSpan="4" className="content-area">
+												<p>asdmnasbdmjnsajn</p>
+												<p>asdmnasbdmjnsajn</p>
+												<img src="http://placehold.it/350x150" alt=""/>
+												<p>asdmnasbdmjnsajn</p>
+											</td>
+										</tr>
+										</tbody>
+
+									</table>
+								</div>
+
 							</div>
-							<div className="box-footer">
-								<ul className="pagination">
-									<li><a href="#">1</a></li>
-									<li className="active"><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-								</ul>
-							</div>
+
 
 						</div>
+						<div className="col-lg-6">
+							<div className="box box-primary">
+								<div className="box-header with-border">
+									<h3 className="box-title">
+										댓글
+									</h3>
 
+								</div>
+								<div className="box-body">
 
-					</div>
+									<ul className="list-group comment-list">
+										<li className="list-group-item">
 
-					<div className="col-md-6">
-						<div className="box box-success">
-							<div className="box-header with-border">
-								<h3 className="box-title"><b>홍길동</b>님의 정보</h3>
-							</div>
-							<div className="box-body border-style">
-
-								<form className="form-horizontal">
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="id">아이디:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												react
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="name">이름:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												홍길동
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="nick">닉네임:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												마젠다
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-
-											<label className="control-label">
-												junishop@gmail.com
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="grade">등급:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												3
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="id">아이디:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												react
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="name">이름:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												홍길동
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="nick">닉네임:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												마젠다
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-
-											<label className="control-label">
-												junishop@gmail.com
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-
-											<label className="control-label">
-												junishop@gmail.com
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="grade">등급:</label>
-										<div className="col-xs-8">
-											<label className="control-label">
-												3
-											</label>
-										</div>
-									</div>
-									<div className="form-group">
-										<div className="col-sm-offset-4 col-xs-8">
-											<button type="button" className="btn btn-warning">수정</button>
-											{/*
-											 <button type="button" className="btn btn-default">수정</button>
-											 <button type="button" className="btn btn-primary">수정</button>
-											 <button type="button" className="btn btn-success">수정</button>
-											 <button type="button" className="btn btn-info">수정</button>
-											 <button type="button" className="btn btn-danger">수정</button>
-											 */}
-
-										</div>
-									</div>
-								</form>
-
-							</div>
-
-						</div>
-
-
-						<div className="box box-danger">
-							<div className="box-header with-border">
-								<h3 className="box-title"><b>홍길동</b>님의 정보</h3>
-							</div>
-							<div className="box-body border-style">
-
-								<form className="form-horizontal">
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="id">아이디:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="id" value="react" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="name">이름:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="name" value="홍길동" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="nick">닉네임:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="nick" value="마젠다" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-											<input type="email" className="form-control" id="email" value="junishop@gmail.com"
-														 placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="grade">등급:</label>
-										<div className="col-xs-8">
-											<input type="email" className="form-control" id="grade" value="3" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="id">아이디:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="id" value="react" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="name">이름:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="name" value="홍길동" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="nick">닉네임:</label>
-										<div className="col-xs-8">
-											<input type="text" className="form-control" id="nick" value="마젠다" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-											<input type="email" className="form-control" id="email" value="junishop@gmail.com"
-														 placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="email">이메일:</label>
-										<div className="col-xs-8">
-											<input type="email" className="form-control" id="email" value="junishop@gmail.com"
-														 placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<label className="control-label col-xs-4" for="grade">등급:</label>
-										<div className="col-xs-8">
-											<input type="email" className="form-control" id="grade" value="3" placeholder=""/>
-										</div>
-									</div>
-									<div className="form-group">
-										<div className="col-sm-offset-4 col-xs-8">
-											<div className="checkbox">
-												<label><input type="checkbox"/> 체크박스</label>
+											<div className="writer">
+							<span className="icon">
+								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
+							</span>
+												<span className="name">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
+							</span>
+												<span className="date">
+								등록일 :
+								<span className="data">2017-02-01</span>
+							</span>
+												<span className="location">
+								등록IP :
+								<span className="data">59.10.126.8</span>
+							</span>
 											</div>
-										</div>
-									</div>
-									<div className="form-group">
-										<div className="col-sm-offset-4 col-xs-8">
-											<button type="submit" className="btn btn-success">완료</button>
-										</div>
-									</div>
-								</form>
+											<div className="controler">
+												<button className="btn btn-warning">R</button>
+												<button className="btn btn-danger">D</button>
+
+											</div>
+											<hr/>
+											<textarea name="" id="" rows="5" className="comment-area"
+																value={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab, accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/> nulla officiis omnis ratione sed similique.'}>
+
+						</textarea>
+										</li>
+										<li className="list-group-item">
+
+											<div className="writer">
+							<span className="icon">
+								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
+							</span>
+												<span className="name">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
+							</span>
+												<span className="date">
+								등록일 :
+								<span className="data">2017-02-01</span>
+							</span>
+												<span className="location">
+								등록IP :
+								<span className="data">59.10.126.8</span>
+							</span>
+											</div>
+											<div className="controler">
+												<button className="btn btn-warning">R</button>
+												<button className="btn btn-danger">D</button>
+
+											</div>
+											<hr/>
+											<div className="comment-area">
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur
+												dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab,
+												accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/>
+												nulla officiis omnis ratione sed similique.
+											</div>
+
+										</li>
+										<li className="list-group-item">
+
+											<div className="writer">
+							<span className="icon">
+								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
+							</span>
+												<span className="name">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
+							</span>
+												<span className="date">
+								등록일 :
+								<span className="data">2017-02-01</span>
+							</span>
+												<span className="location">
+								등록IP :
+								<span className="data">59.10.126.8</span>
+							</span>
+											</div>
+											<div className="controler">
+												<button className="btn btn-warning">R</button>
+												<button className="btn btn-danger">D</button>
+
+											</div>
+											<hr/>
+											<div className="comment-area">
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur
+												dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab,
+												accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/>
+												nulla officiis omnis ratione sed similique.
+											</div>
+
+										</li>
+										<li className="list-group-item">
+
+											<div className="writer">
+							<span className="icon">
+								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
+							</span>
+												<span className="name">
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
+							</span>
+												<span className="date">
+								등록일 :
+								<span className="data">2017-02-01</span>
+							</span>
+												<span className="location">
+								등록IP :
+								<span className="data">59.10.126.8</span>
+							</span>
+											</div>
+											<div className="controler">
+												<button className="btn btn-warning">R</button>
+												<button className="btn btn-danger">D</button>
+
+											</div>
+											<hr/>
+											<div className="comment-area">
+												Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur
+												dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab,
+												accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/>
+												nulla officiis omnis ratione sed similique.
+											</div>
+
+										</li>
+									</ul>
+
+								</div>
 
 							</div>
-
 						</div>
+
 					</div>
+
+
 				</div>
 			</section>
 		)

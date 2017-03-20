@@ -7,11 +7,14 @@
       position: absolute;
       right: 0;
       top: 0;
-      min-width: 100px;
+      max-width: 90px;
       height: 100%;
       font-size: 12px;
       line-height: 40px;
-      vertical-align: middle;
+      text-align: right;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
   a{
@@ -32,6 +35,135 @@
   .text{
     font-size: 12px;
 
+
+  }
+}
+
+
+.comment-list{
+  li{
+    .writer{
+      >span{/*
+        display: inline-block;
+        padding: 0 5px;
+        line-height: 25px;
+        font-weight: normal;*/
+
+        height: 30px;
+        line-height: 30px;
+      }
+      .icon{
+        float: left;
+        img{
+          width: 18px;
+        }
+
+      }
+      .name{
+        display: block;
+        padding-left: 30px;
+        padding-right: 100px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .date,
+      .location{
+        font-size: 10px;
+
+
+      }
+      .location{
+
+      }
+
+      .data{
+        display: inline-block;
+        padding: 0 10px 0 5px;
+
+      }
+
+    }
+    .controler{
+      position: absolute;
+      right: 10px;
+      top: 12px;
+
+      .btn{
+        height: 30px;
+        line-height: 20px;
+        padding: 0 10px;
+        margin: 0 3px;
+      }
+    }
+    .comment-area{
+      width: 100%;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+  }
+}
+
+.list-user{
+  padding: 2px;
+  margin: 0;
+  &.primary{
+    li{
+      span.name{
+        background-color: #337ab7;
+      }
+    }
+  }
+  &.success{
+    li{
+      span.name{
+        background-color: #5cb85c;
+      }
+    }
+  }
+  &.info{
+    li{
+      span.name{
+        background-color: #5bc0de;
+      }
+    }
+  }
+  &.warning{
+    li{
+      span.name{
+        background-color: #f0ad4e;
+      }
+    }
+  }
+  &.danger{
+    li{
+      span.name{
+        background-color: #d9534f;
+      }
+    }
+  }
+
+  li{
+    display: inline-block;
+    font-size: 13px;
+    margin: 0 2px;
+    border-radius: 3px;
+    color: #f2f2f2;
+    font-weight: bold;
+
+    span{
+      height: 34px;
+    }
+    span.name{
+      background-color: #999;
+
+    }
+    .btn{
+      padding: 0;
+      line-height: 1.4;
+      height: auto !important;
+    }
 
   }
 }

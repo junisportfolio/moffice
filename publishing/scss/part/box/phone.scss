@@ -1,30 +1,57 @@
-.border-style{
-  .form-group{
+div.box{
+
+
+  .form-group,
+  .input-group{
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;
     line-height: 34px;
     padding: 3px 0 4px;
-    border-top: 1px solid #eee;
 
-    &:first-child{
-      border-top: none;
+    .form-control{
+      height: 34px !important;
     }
 
-    label{
-      margin: 0;
-      padding: 0;
+    select{
+      border-radius: 0 !important;
     }
-    .checkbox{
-      position: relative;
-      padding: 0 0 0 20px;
 
-      input[type="checkbox"]{
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        margin-top: -6px;
+    .btn{
+      height: 34px !important;
+    }
+
+  }
+
+
+  .border-style{
+    .form-group,
+    .input-group{
+      border-top: 1px solid #eee;
+
+      &:first-child{
+        border-top: none;
+      }
+
+      label{
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        word-break: break-all;
+        
+      }
+      .checkbox{
+        position: relative;
+        padding: 0 0 0 20px;
+
+        input[type="checkbox"]{
+          position: absolute;
+          left: 15px;
+          top: 50%;
+          margin-top: -6px;
+        }
       }
     }
   }
+
 }
