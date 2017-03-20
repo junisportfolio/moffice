@@ -1,15 +1,9 @@
 import React from 'react';
-
 import {
 	BrowserRouter as Router,
 	Route,
 	Link
 } from 'react-router-dom';
-
-import maxios from '../maxios';
-
-maxios.get('/private/v1/auth', maxios.console);
-maxios.help();
 
 const Header = () => (
 	<header className="main-header">
@@ -47,9 +41,7 @@ const Header = () => (
 				</ul>
 			</div>
 		</nav>
-
 	</header>
-
 )
 
 const ListItemLink = ({ to, text, ...rest }) => (
@@ -59,4 +51,5 @@ const ListItemLink = ({ to, text, ...rest }) => (
 		</li>
 	)}/>
 )
+
 export default Header;

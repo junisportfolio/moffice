@@ -9,8 +9,8 @@ import Board from './community/Board';
 import Chatting from './community/Chatting';
 import Filter from './community/Filter';
 /* broadcast */
-import Broad_tool from './broadcast/Broad_tool';
-import Broad_code from './broadcast/Broad_code';
+import Board_tool from './broadcast/Broad_tool';
+import Board_code from './broadcast/Broad_code';
 /* business */
 import Cash from './business/Cash';
 import Coin from './business/Coin';
@@ -19,17 +19,18 @@ import Product from './business/Product';
 import Promotion from './business/Promotion';
 /* customer */
 import Customer from './customer/Customer';
-
 /* NoMatch */
 import NoMatch from './NoMatch';
 
+function get(container) {
 
+}
 
 export {
 	Home,
 	Login,
 	Member, Channel, Board, Chatting, Filter,
-	Broad_tool, Broad_code,
+	Board_tool, Board_code,
 	Cash, Coin, Exchange, Product, Promotion,
 	Customer,
 	NoMatch

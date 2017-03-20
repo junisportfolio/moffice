@@ -6,11 +6,15 @@ class maxios {
       baseURL: process.env.api,
       withCredentials: true
     });
+
+    if(process.env.NODE_ENV === 'development') {
+      this.help();
+    }
   }
 
   help() {
     window.maxios = this;
-
+    
     const message = "Maxios\nCustom plugin, for Handling ajax calls, for Moffice application. It based on axios library.\n" +
       "\n" +
       "Getting started by typing [import maxios from '../maxios';] into your source.\n" +
@@ -23,9 +27,8 @@ class maxios {
       "DELETE 요청: maxios.delete(url, successCallback);\n\n" +
       "모든 요청 메소드에 공통적으로 successCallback 인자를 통해 maxios.console 객체를 전달하면 기본 출력 메소드를 호출할 수 있습니다.\n" +
       "maxios 사용법을 알고 싶으시면 개발중인 소스에서 언제든지 maxios.help()를 호출해주세요.\n" +
-      "%c해당 자동 호출되는 안내 메세지는 다음번 커밋때 제거됩니다. 해당 라이브러리에 대한 추후 버젼에 대한 정보는 여전히 [maxios.help();]로 확인 가능합니다.\n" +
       "%c이 메세지가 보인 화면에서는 웹브라우져를 통해 maxios 객체에 접근할 수 있습니다. 이 메세지가 라이브 환경에서 보여선 안됩니다.";
-    console.log(message, "color: red", "background: red; color: white");
+    console.log(message, "background: red; color: white");
   }
 
   console(data) {
@@ -34,38 +37,46 @@ class maxios {
 
   error(errorObject) {
     let data = errorObject.response;
-    console.log("%c" + data.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", data.statusText, data.data)
-  }
-
-  get(url, query, success) {
-    if(typeof success === "undefined") {
-      if(typeof query === "function") {
-        success = query;
-        query = undefined;
-      } else {
-        success = this.console;
-      }
+    if(data) {
+      console.log("%c" + data.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", data.statusText, data.data)
+    } else {
+      console.log(errorObject);
     }
-
-    let queries = (query) ? {params: query} : {};
-
-    this.axios.get(url, queries).then(success).catch(this.error);
   }
 
-  post(url, data, success) {
-    this.axios.post(url, {
-      data: data
-    }).then(success).catch(this.error);
+  get(object) {
+    let url = object.url;
+    let query = (object.query) ? {params: object.query} : {};
+    let success = (object.success) ? object.success : this.console;
+    let error = (object.error) ? object.error : this.error;
+
+    this.axios.get(url, query).then(success).catch(error);
   }
 
-  put(url, data, success) {
-    this.axios.put(url, {
-      data: data
-    }).then(success).catch(this.error);
+  post(object) {
+    let url = object.url;
+    let data = (object.data) ? {data: object.data}: {};
+    let success = (object.success) ? object.success : this.console;
+    let error = (object.error) ? object.error : this.error;
+
+    this.axios.post(url, data).then(success).catch(error);
   }
 
-  delete(url, success) {
-    this.axios.delete(url).then(success).catch(this.error);
+  put(object) {
+    let url = object.url;
+    let data = (object.data) ? {data: object.data}: {};
+    let success = (object.success) ? object.success : this.console;
+    let error = (object.error) ? object.error : this.error;
+
+    this.axios.put(url, data).then(success).catch(error);
+  }
+
+  delete(object) {
+    let url = object.url;
+    let success = (object.success) ? object.success : this.console;
+    let error = (object.error) ? object.error : this.error;
+
+    this.axios.delete(url).then(success).catch(error);
   }
 }
 
