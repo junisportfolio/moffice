@@ -17,7 +17,8 @@ class App extends Component {
 
 		let auth = {
 			validate: false,
-			user: null
+			user: null,
+			userinfo: null
 		};
 
 		(function ($) {
@@ -32,6 +33,8 @@ class App extends Component {
 					if (obj.result === "ok") {
 						auth.validate = true;
 						auth.user = obj.user;
+						console.log(auth.user.id);
+
 					}
 				},
 				error: function (err) {
@@ -39,18 +42,48 @@ class App extends Component {
 					auth.user = null;
 				}
 			});
+
+			$.ajax({
+				url: process.env.api + "/private/v1/users/" + auth.user.id,
+				method: "get",
+				async: false,
+				xhrFields: {
+					withCredentials: true
+				},
+				success: function (obj) {
+					if (obj.result === "ok") {
+						auth.validate = true;
+						auth.userinfo = obj.users[0];
+						console.log(auth.userinfo);
+
+					}
+				},
+				error: function (err) {
+					auth.validate = false;
+					auth.user = null;
+				}
+			});
+
+
 		})(jQuery);
+
+
 
 		this.state = {
 			auth: auth
 		};
 	}
 
+
+
+
 	render() {
 		if (this.state.auth.validate) {
 			return (
 				<div className="wrapper">
-					<Header />
+					<Header
+						userinfo={this.state.auth.userinfo}
+					/>
 					<Sidebar />
 					<div className="content-wrapper">
 						<Dispatcher/>

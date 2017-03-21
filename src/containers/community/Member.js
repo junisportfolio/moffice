@@ -53,6 +53,7 @@ class Member extends React.Component {
 										type="text"
 										className=""
 										placeholder="검색어를 입력하세요"
+										value=""
 									/>
 									<InputGroupBtn>
 										<Button
