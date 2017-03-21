@@ -18,7 +18,7 @@ const history = createBrowserHistory();
 ReactDOM.render(
 	<Router history={history}>
 		<div>
-			<Route path="/" component={App} />
+			<App/>
 		</div>
 	</Router>,
   document.getElementById('wrap')
