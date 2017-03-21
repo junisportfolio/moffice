@@ -24,7 +24,6 @@ class Filter extends React.Component {
 				/>
 
 				<div className="row">
-
 					<div className="col-md-8">
 						<div className="box box-primary">
 							<div className="box-header with-border">
