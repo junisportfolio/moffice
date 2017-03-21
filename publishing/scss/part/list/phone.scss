@@ -1,9 +1,9 @@
-.list-item-1{
-  &.has-right{
-    a{
+.list-item-1 {
+  &.has-right {
+    a {
       padding-right: 100px;
     }
-    .right{
+    .right {
       position: absolute;
       right: 0;
       top: 0;
@@ -17,49 +17,48 @@
       text-overflow: ellipsis;
     }
   }
-  a{
+  a {
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    span{
+    span {
       padding: 0 5px;
     }
   }
-  .title{
+  .title {
     font-size: 15px;
     font-weight: bold;
 
   }
-  .text{
+  .text {
     font-size: 12px;
-
 
   }
 }
 
-
-.comment-list{
-  li{
-    .writer{
-      >span{/*
-        display: inline-block;
-        padding: 0 5px;
-        line-height: 25px;
-        font-weight: normal;*/
+.comment-list {
+  li {
+    .writer {
+      > span {
+        /*
+                display: inline-block;
+                padding: 0 5px;
+                line-height: 25px;
+                font-weight: normal;*/
 
         height: 30px;
         line-height: 30px;
       }
-      .icon{
+      .icon {
         float: left;
-        img{
+        img {
           width: 18px;
         }
 
       }
-      .name{
+      .name {
         display: block;
         padding-left: 30px;
         padding-right: 100px;
@@ -68,35 +67,34 @@
         text-overflow: ellipsis;
       }
       .date,
-      .location{
+      .location {
         font-size: 10px;
 
+      }
+      .location {
 
       }
-      .location{
 
-      }
-
-      .data{
+      .data {
         display: inline-block;
         padding: 0 10px 0 5px;
 
       }
 
     }
-    .controler{
+    .controler {
       position: absolute;
       right: 10px;
       top: 12px;
 
-      .btn{
+      .btn {
         height: 30px;
         line-height: 20px;
         padding: 0 10px;
         margin: 0 3px;
       }
     }
-    .comment-area{
+    .comment-area {
       width: 100%;
       font-size: 12px;
       line-height: 1.4;
@@ -105,46 +103,46 @@
   }
 }
 
-.list-user{
+.list-user {
   padding: 2px;
   margin: 0;
-  &.primary{
-    li{
-      span.name{
+  &.primary {
+    li {
+      span.name {
         background-color: #337ab7;
       }
     }
   }
-  &.success{
-    li{
-      span.name{
+  &.success {
+    li {
+      span.name {
         background-color: #5cb85c;
       }
     }
   }
-  &.info{
-    li{
-      span.name{
+  &.info {
+    li {
+      span.name {
         background-color: #5bc0de;
       }
     }
   }
-  &.warning{
-    li{
-      span.name{
+  &.warning {
+    li {
+      span.name {
         background-color: #f0ad4e;
       }
     }
   }
-  &.danger{
-    li{
-      span.name{
+  &.danger {
+    li {
+      span.name {
         background-color: #d9534f;
       }
     }
   }
 
-  li{
+  li {
     display: inline-block;
     font-size: 13px;
     margin: 0 2px;
@@ -152,18 +150,34 @@
     color: #f2f2f2;
     font-weight: bold;
 
-    span{
+    span {
       height: 34px;
     }
-    span.name{
+    span.name {
       background-color: #999;
 
     }
-    .btn{
+    .btn {
       padding: 0;
       line-height: 1.4;
       height: auto !important;
     }
 
+  }
+}
+
+.trans-content {
+  &:after {
+    clear: both;
+    display: block;
+    content: '';
+  }
+  padding: 0 15px 0 0;
+  background-image: url(../images/arrow.png);
+  background-position: 50% 50%;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  .btn{
+    cursor: default;
   }
 }

@@ -27,6 +27,7 @@ class App extends Component {
       success: response => {
         let data = response.data;
 
+
         if(data.result === "ok") {
           that.setState({
             isLoading: false,
