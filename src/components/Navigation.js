@@ -17,38 +17,40 @@ class Navigation extends Component {
 	generateMenuMarkups() {
 		let that = this;
 
-		Sitemap.structure.map((depth1, i) => {
+		Sitemap.structure.map(depth1 => {
 			if (depth1.children) {
 				let children = [];
 
-				depth1.children.map((depth2, j) => {
-					children.push(that.generateMenuEntity(depth2, j));
+				depth1.children.map(depth2 => {
+					children.push(that.generateMenuEntity(depth2));
 
 					return false;
 				});
 
-				this.menus.push(that.generateMenuEntity(depth1, i, children));
+				this.menus.push(that.generateMenuEntity(depth1, children));
 			} else {
-				this.menus.push(that.generateMenuEntity(depth1, i));
+				this.menus.push(that.generateMenuEntity(depth1));
 			}
 		});
 	}
 
-	generateMenuEntity(object, idx , children) {
+	generateMenuEntity(obj, children) {
 		if (children) {
 			return <MenuEntity
 				key={childrenIdentifier.value++}
-				name={object.name}
-				id={object.id}
+				name={obj.name}
+				id={obj.id}
+				path={obj.path}
 				children={children}
-				icon={object.icon}
+				icon={obj.icon}
 			/>;
 		} else {
-			return <MenuEntity
+      return <MenuEntity
 				key={childrenIdentifier.value++}
-				name={object.name}
-				id={object.id}
-				icon={object.icon}
+				name={obj.name}
+				id={obj.id}
+				path={obj.path}
+				icon={obj.icon}
 			/>;
 		}
 	}
@@ -72,9 +74,6 @@ class MenuEntity extends Component {
 		};
 	}
 
-	componentDidMount() {
-	}
-
 	render() {
 		let children = (this.props.children) ? <ul className="treeview-menu">{this.props.children}</ul> : "";
 		let parentBracket = (this.state.isParent) ? (this.state.hiddenChildren) ?
@@ -89,8 +88,8 @@ class MenuEntity extends Component {
 		if (this.props.children) {
 			return (
 				<CustomTag
-					activeOnlyWhenExact={true}
-					to={"#" + this.props.id}
+					activeOnlyWhenExact={false}
+					to={this.props.path}
 					label={this.props.name}
 					kids={children}
 					menuIcon={menuIcon}
@@ -100,8 +99,8 @@ class MenuEntity extends Component {
 		} else {
 			return (
 				<CustomTag
-					activeOnlyWhenExact={false}
-					to={this.props.id}
+					activeOnlyWhenExact={true}
+					to={this.props.path}
 					label={this.props.name}
 					menuIcon={menuIcon}
 					classNaming=""

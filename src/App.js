@@ -1,60 +1,77 @@
 import React, {Component} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import { Header, Sidebar } from './components';
 import Dispatcher from './Dispatcher';
-import Sitemap from './Sitemap';
+import jQuery from 'jquery';
 import {
-  Home,
-  Login,
-  NoMatch
+	Home,
+	Member,
+	Login,
+	NoMatch
 } from './containers';
 import maxios from './maxios';
 
 class App extends Component {
-  constructor() {
-    super();
+	constructor() {
+		super();
 
-    let that = this;
+		let auth = {
+			validate: false,
+			user: null
+		};
 
-    this.state = {
-      isLoading: true,
-      auth: {
-        validate: false,
-        user: null
-      }
-    };
+		(function ($) {
+			$.ajax({
+				url: process.env.api + "/private/v1/auth",
+				method: "get",
+				async: false,
+				xhrFields: {
+					withCredentials: true
+				},
+				success: function (obj) {
+					if (obj.result === "ok") {
+						auth.validate = true;
+						auth.user = obj.user;
+					}
+				},
+				error: function (err) {
+					auth.validate = false;
+					auth.user = null;
+				}
+			});
+		})(jQuery);
 
-    maxios.get({
-      url: "/private/v1/auth",
-      success: response => {
-        let data = response.data;
+		this.state = {
+			auth: auth
+		};
+	}
 
+	render() {
+		if (this.state.auth.validate) {
+			return (
+				<div className="wrapper">
+					<Header />
+					<Sidebar />
+					<div className="content-wrapper">
+						<Dispatcher/>
+					</div>
+				</div>
+			);
+		} else {
+			window.document.body.className = "skin-black sidebar-collapse";
 
-        if(data.result === "ok") {
-          that.setState({
-            isLoading: false,
-            auth: {
-              validate: true,
-              user: data.user
-            }
-          });
-        }
-      },
-      error: response => {
-        that.setState({
-          isLoading: false,
-          auth: {
-            validate: false,
-            user: null
-          }
-        });
-      }
-    });
-  }
-
-  render() {
-    return (
-      <Dispatcher sitemap={Sitemap} index={Home} security={Login} notfound={NoMatch} />
-    );
-  }
+			return (
+				<div className="wrapper">
+					<div className="content-wrapper">
+						<Switch>
+							<Route exact path="/" component={Login}/>
+							<Route component={Login}/>
+						</Switch>
+					</div>
+				</div>
+			);
+		}
+	}
 }
 
 export default App;
