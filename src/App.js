@@ -17,8 +17,7 @@ class App extends Component {
 
 		let auth = {
 			validate: false,
-			user: null,
-			userinfo: null
+			user: null
 		};
 
 		(function ($) {
@@ -33,8 +32,6 @@ class App extends Component {
 					if (obj.result === "ok") {
 						auth.validate = true;
 						auth.user = obj.user;
-						console.log(auth.user.id);
-
 					}
 				},
 				error: function (err) {
@@ -42,6 +39,7 @@ class App extends Component {
 					auth.user = null;
 				}
 			});
+
 
 			$.ajax({
 				url: process.env.api + "/private/v1/users/" + auth.user.id,
@@ -54,8 +52,6 @@ class App extends Component {
 					if (obj.result === "ok") {
 						auth.validate = true;
 						auth.userinfo = obj.users[0];
-						console.log(auth.userinfo);
-
 					}
 				},
 				error: function (err) {
@@ -63,19 +59,12 @@ class App extends Component {
 					auth.user = null;
 				}
 			});
-
-
 		})(jQuery);
-
-
 
 		this.state = {
 			auth: auth
 		};
 	}
-
-
-
 
 	render() {
 		if (this.state.auth.validate) {

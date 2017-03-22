@@ -22,10 +22,6 @@ import Customer from './customer/Customer';
 /* NoMatch */
 import NoMatch from './NoMatch';
 
-function get(container) {
-
-}
-
 export {
 	Home,
 	Login,

@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 import PageHeader from '../../components/PageHeader';
 import {
 	BoxTitle,
@@ -18,14 +19,79 @@ class Member extends React.Component {
 			pageTitle: "회원관리",
 			pageTitleName: "회원",
 			pageTitleNameSmall: "관리",
-			board: ''
-
-
+			board: '',
+			page: 1,
+			limit: 10,
+			list: ''
 		}
 	}
 
-	render(){
 
+	componentDidMount() {
+		this.getUserList();
+
+	}
+	componentDidUpdate() {
+
+	}
+
+	// Content viewer
+	getUserList() {
+		let that = this;
+		let formData = {};
+		formData.page = that.state.page;
+		formData.limit = that.state.limit;
+
+		$.ajax({
+			method: "GET",
+			url: process.env.api + "/private/v1/users",
+			data: formData,
+			cache: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function (returnData) {
+				if (returnData.result == "ok") {
+					that.setState({
+						list: returnData.users,
+						total_count: returnData.total_count,
+						user_info: returnData.users[0].user_id
+					});
+					that.getUserData(that.state.user_info);
+					// console.log(`@@@@@@@@@@@@@@${JSON.stringify(that.state.list)}`);
+					// that.getListContentStyleUser(that.state.user_info);
+				}
+			}
+		});
+	}
+
+	// Content viewer
+	getUserData(user_id) {
+		let that = this;
+		let formData = {};
+		formData.user_id = user_id;
+
+		$.ajax({
+			method: "GET",
+			url: process.env.api + "/private/v1/users/" + user_id,
+			data: formData,
+			cache: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			success: function (returnData) {
+				if (returnData.result == "ok") {
+					that.setState({
+						data: returnData.users[0],
+						user_id: returnData.users[0].user_id
+					});
+				}
+			}
+		});
+	}
+
+
+	render(){
 		return(
 			<section className="content">
 				<PageHeader
@@ -65,7 +131,7 @@ class Member extends React.Component {
 								</InputGroup>
 
 								<ListDefault
-									list={this.state.board}
+									list={this.state.list}
 								/>
 
 							</div>

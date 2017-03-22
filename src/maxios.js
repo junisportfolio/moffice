@@ -4,10 +4,8 @@ class maxios {
   constructor() {
     this.axios = axios.create({
       baseURL: process.env.api,
-      withCredentials: true
+      withCredentials: false
     });
-
-    this.help();
   }
 
   help() {
@@ -25,7 +23,6 @@ class maxios {
         "dataObject는 JSON 타입으로 전달해주세요.\n\n" +
         "DELETE 요청: maxios.delete(url, successCallback);\n\n" +
         "모든 요청 메소드에 공통적으로 successCallback 인자를 통해 maxios.console 객체를 전달하면 기본 출력 메소드를 호출할 수 있습니다.\n" +
-        "maxios 사용법을 알고 싶으시면 개발중인 소스에서 언제든지 maxios.help()를 호출해주세요.\n" +
         "%c이 메세지가 보인 화면에서는 웹브라우져를 통해 maxios 객체에 접근할 수 있습니다. 이 메세지가 라이브 환경에서 보여선 안됩니다.";
       console.log(message, "background: red; color: white");
     }
