@@ -44,6 +44,13 @@ class jasync {
   }
 
   error(errorObject) {
+    if(errorObject.status === 401) {
+      alert(errorObject.responseJSON.message || errorObject.responseTEXT.message);
+      window.location.href = "/";
+    } else if(errorObject.status >= 500) {
+      alert(errorObject.status + "에러가 발생했습니다. 서버 관리자에게 문의해주세요.");
+    }
+
     console.log("%c" + errorObject.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", errorObject.statusText, errorObject.responseJSON || errorObject.responseText);
   }
 
