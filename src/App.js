@@ -2,14 +2,10 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import { Header, Sidebar } from './components';
 import Dispatcher from './Dispatcher';
-import jQuery from 'jquery';
 import {
-	Home,
-	Member,
-	Login,
-	NoMatch
+	Login
 } from './containers';
-import maxios from './maxios';
+import jasync from './jasync';
 
 class App extends Component {
 	constructor() {
@@ -20,46 +16,21 @@ class App extends Component {
 			user: null
 		};
 
-		(function ($) {
-			$.ajax({
-				url: process.env.api + "/private/v1/auth",
-				method: "get",
-				async: false,
-				xhrFields: {
-					withCredentials: true
-				},
-				success: function (obj) {
-					if (obj.result === "ok") {
-						auth.validate = true;
-						auth.user = obj.user;
-					}
-				},
-				error: function (err) {
-					auth.validate = false;
-					auth.user = null;
-				}
-			});
+		jasync.sync.get({
+			url: "/private/v1/auth",
+			success: obj => {
+				if (obj.result === "ok") {
+					auth.validate = true;
+					auth.user = obj.user;
 
-
-			$.ajax({
-				url: process.env.api + "/private/v1/users/" + auth.user.id,
-				method: "get",
-				async: false,
-				xhrFields: {
-					withCredentials: true
-				},
-				success: function (obj) {
-					if (obj.result === "ok") {
-						auth.validate = true;
-						auth.userinfo = obj.users[0];
-					}
-				},
-				error: function (err) {
-					auth.validate = false;
-					auth.user = null;
+					localStorage.setItem("user_id", obj.user.id);
 				}
-			});
-		})(jQuery);
+			},
+			error: () => {
+				auth.validate = false;
+				auth.user = null;
+			}
+		});
 
 		this.state = {
 			auth: auth
@@ -70,9 +41,7 @@ class App extends Component {
 		if (this.state.auth.validate) {
 			return (
 				<div className="wrapper">
-					<Header
-						userinfo={this.state.auth.userinfo}
-					/>
+					<Header />
 					<Sidebar />
 					<div className="content-wrapper">
 						<Dispatcher/>

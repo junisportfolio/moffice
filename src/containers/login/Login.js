@@ -8,7 +8,14 @@ class Login extends Component {
 
     jasync.post({
       url: "/private/v1/auth/login",
-      data: formData
+      data: formData,
+      success: data => {
+        window.location.reload();
+      },
+      error: err => {
+        alert("로그인 중 문제가 발생했습니다.");
+        console.log(err);
+      }
     });
   }
 
