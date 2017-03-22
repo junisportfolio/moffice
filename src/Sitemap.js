@@ -1,19 +1,12 @@
 import {
-  Home,
-  Login,
   Member, Channel, Board, Chatting, Filter,
   Board_tool, Board_code,
   Cash, Coin, Exchange, Product, Promotion,
-  Customer,
-  NoMatch
+  Customer
 } from './containers';
 
 class Sitemap {
   constructor() {
-    if(process.env.NODE_ENV === 'development') {
-      console.log("%cSitemap constructor has called.", "color: red; font-size: 30px");
-    }
-
     this.structure = [
       {
         id: "community",

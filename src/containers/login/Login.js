@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import maxios from '../../maxios';
+import jasync from '../../jasync';
 
 class Login extends Component {
-  constructor() {
-    super();
-  }
-
   login() {
-  	let formData = {};
-  	document.getElementById("login-form").querySelectorAll("input").forEach(input => formData[input.name] = input.value);
-		console.log(formData);
+    let formData = {};
+    document.getElementById("login-form").querySelectorAll("input").forEach(input => formData[input.name] = input.value);
 
-		maxios.post({
-			url: "/private/v1/auth/login",
-			data: formData
-		});
+    jasync.post({
+      url: "/private/v1/auth/login",
+      data: formData
+    });
   }
 
   render() {

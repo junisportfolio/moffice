@@ -31,6 +31,8 @@ class Navigation extends Component {
 			} else {
 				this.menus.push(that.generateMenuEntity(depth1));
 			}
+
+			return true;
 		});
 	}
 
@@ -76,15 +78,9 @@ class MenuEntity extends Component {
 
 	render() {
 		let children = (this.props.children) ? <ul className="treeview-menu">{this.props.children}</ul> : "";
-		let parentBracket = (this.state.isParent) ? (this.state.hiddenChildren) ?
-				<i className="fa fa-plus-circle" aria-hidden="true"></i> :
-				<i className="fa fa-minus-circle" aria-hidden="true"></i> : "";
 		let menuIcon = (this.props.icon) ? <i className={"fa " + this.props.icon} aria-hidden="true"></i> :
-			<i className={"fa " + "fa-circle-o"} aria-hidden="true"></i>;
-		let onClickFunction = function () {
-			this.setState({hiddenChildren: !this.state.hiddenChildren});
-		};
-
+			<i className={"fa fa-circle-o"} aria-hidden="true"></i>;
+		
 		if (this.props.children) {
 			return (
 				<CustomTag
@@ -112,7 +108,7 @@ class MenuEntity extends Component {
 
 const CustomTag = ({activeOnlyWhenExact, to, label, kids, menuIcon, classNaming}) => (
 	<Route path={to} exact={activeOnlyWhenExact} children={({match}) => (
-		<li className={match ? '${classNaming} active' : classNaming}>
+		<li className={match ? `${classNaming} active` : classNaming}>
 			<Link to={to}>
 				{menuIcon}
 				<span>{label}</span>

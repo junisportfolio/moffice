@@ -3,8 +3,6 @@ import {Route, Switch} from 'react-router-dom';
 import Sitemap from './Sitemap';
 import {
   Home,
-  Member,
-  Login,
   NoMatch
 } from './containers';
 
@@ -21,10 +19,14 @@ class Dispatcher extends Component {
       if(parent.children) {
         parent.children.map(children => {
           this.routes.push(<Route key={children.id} path={children.path} component={children.content} />);
+
+          return true;
         });
       } else {
         this.routes.push(<Route key={parent.id} path={parent.path} component={parent.content} />);
       }
+
+      return true;
     });
   }
 

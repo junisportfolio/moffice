@@ -2,53 +2,42 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import { Header, Sidebar } from './components';
 import Dispatcher from './Dispatcher';
-import jQuery from 'jquery';
 import {
-	Home,
-	Member,
-	Login,
-	NoMatch
+  Login
 } from './containers';
-import maxios from './maxios';
+import jasync from './jasync';
 
 class App extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		let auth = {
-			validate: false,
-			user: null
-		};
+    let auth = {
+      validate: false,
+      user: null
+    };
 
-		(function ($) {
-			$.ajax({
-				url: process.env.api + "/private/v1/auth",
-				method: "get",
-				async: false,
-				xhrFields: {
-					withCredentials: true
-				},
-				success: function (obj) {
-					if (obj.result === "ok") {
-						auth.validate = true;
-						auth.user = obj.user;
-					}
-				},
-				error: function (err) {
-					auth.validate = false;
-					auth.user = null;
-				}
-			});
-		})(jQuery);
+    jasync.sync.get({
+      url: "/private/v1/auth",
+      success: obj => {
+        if (obj.result === "ok") {
+          auth.validate = true;
+          auth.user = obj.user;
+        }
+      },
+      error: () => {
+        auth.validate = false;
+        auth.user = null;
+      }
+    });
 
-		this.state = {
-			auth: auth
-		};
-	}
+    this.state = {
+      auth: auth
+    };
+  }
 
-	render() {
-		if (this.state.auth.validate) {
-			return (
+  render() {
+    if (this.state.auth.validate) {
+      return (
 				<div className="wrapper">
 					<Header />
 					<Sidebar />
@@ -56,11 +45,11 @@ class App extends Component {
 						<Dispatcher/>
 					</div>
 				</div>
-			);
-		} else {
-			window.document.body.className = "skin-black sidebar-collapse";
+      );
+    } else {
+      window.document.body.className = "skin-black sidebar-collapse";
 
-			return (
+      return (
 				<div className="wrapper">
 					<div className="content-wrapper">
 						<Switch>
@@ -69,9 +58,9 @@ class App extends Component {
 						</Switch>
 					</div>
 				</div>
-			);
-		}
-	}
+      );
+    }
+  }
 }
 
 export default App;
