@@ -29,8 +29,8 @@ class jasync {
         "인자로 넘겨주는 obj에 대하여\n" +
         "Object {\n" +
         "  url: \"/private/v1/auth\", // 필수입니다. (없으면 에러)\n" +
-        "  query: \"a=12345&b=23456\", // GET방식 요청에 필요합니다. (?는 제외)\n" +
         "  data: formData, // POST방식과 PUT방식 요청에 필요합니다.\n" +
+        "  (data: data,) // GET방식의 경우도 JSON 타입으로 넘겨줍니다.\n" +
         "  success: callbackMethod, // 모든 요청에 대해 200 status의 callback method를 지정해줍니다. (기본값은 responseData 콘솔 출력)\n" +
         "  error: callbackMethod // 모든 요청에 대해 모든 에러 요청의 callback method를 지정해줍니다. (기본값은 errorData 콘솔 출력)\n" +
         "}\n" +
@@ -50,10 +50,19 @@ class jasync {
   get(obj) {
     if(!obj || !obj.url) throw new Error("params.url 값은 필수입니다.");
     let that = this;
+    let query = "";
+
+    if(obj.data) {
+      for(let key in obj.data) {
+        let par = key + "=" + obj.data[key];
+
+        query += ((query) ? "&" : "") + par;
+      }
+    }
 
     $.ajax({
       method: "GET",
-      url: that.api + obj.url + (obj.query ? "?" + obj.query : ""),
+      url: that.api + obj.url + (query ? "?" + query : ""),
       cache: false,
       async: obj.async,
       xhrFields: {

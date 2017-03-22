@@ -14,7 +14,6 @@ class Dispatcher extends Component {
   }
 
   parseRoutes() {
-    window.sitemap = Sitemap;
     Sitemap.structure.map(parent => {
       if(parent.children) {
         parent.children.map(children => {
