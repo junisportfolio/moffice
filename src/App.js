@@ -22,6 +22,8 @@ class App extends Component {
         if (obj.result === "ok") {
           auth.validate = true;
           auth.user = obj.user;
+
+          localStorage.setItem("user_id", obj.user.id);
         }
       },
       error: () => {

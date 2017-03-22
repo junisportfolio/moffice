@@ -80,7 +80,7 @@ class MenuEntity extends Component {
 		let children = (this.props.children) ? <ul className="treeview-menu">{this.props.children}</ul> : "";
 		let menuIcon = (this.props.icon) ? <i className={"fa " + this.props.icon} aria-hidden="true"></i> :
 			<i className={"fa fa-circle-o"} aria-hidden="true"></i>;
-		
+
 		if (this.props.children) {
 			return (
 				<CustomTag
