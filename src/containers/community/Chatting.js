@@ -142,7 +142,7 @@ class ChattingItemInfo extends Component {
 							</div>
 						</div>
 						<div className="form-group">
-							<label className="control-label col-xs-4" for="id">채팅방 생성:</label>
+							<label className="control-label col-xs-4" for="id">채팅방 생성일:</label>
 							<div className="col-xs-8">
 								<label className="control-label">
                   {info? info.broadcast_chat_registration_date : ""}

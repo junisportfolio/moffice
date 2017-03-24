@@ -1,5 +1,7 @@
 /* PART */
 import BoxTitle from './BoxTitle';
+import ChannelNav from './ChannelNav';
+import TypeNav from './TypeNav';
 import Button from './Button';
 import Input from './Input';
 import Label from './Label';
@@ -14,6 +16,8 @@ import Pagination from './Pagination';
 
 export {
 	BoxTitle,
+	ChannelNav,
+	TypeNav,
 	Button, Label,
 	Input, InputGroup, InputGroupBtn,
 	ListDefault,
