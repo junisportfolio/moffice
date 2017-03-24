@@ -11,6 +11,10 @@ process.argv.filter(arg => arg.indexOf('/mocobee/moffice') > 0).map((arg => arg.
   }
 })));
 
+if(process.argv.filter(arg => arg.indexOf("--beta") == 0).length === 1) {
+  user = "beta";
+}
+
 var isEnvLive = process.argv.filter(arg => arg.indexOf("--live") == 0).length === 1;
 var api = isEnvLive ? "https://privateapi.mocobee.com:30000" : "http://privateapi." + user + "-mocobee.com:30000";
 var img = isEnvLive ? "http://image.mocobee.com" : "http://image." + user + "-mocobee.com";
@@ -22,6 +26,7 @@ var port = function() {
   if(user === "jcchoi") incrementToken = 3;
   if(user === "swpark") incrementToken = 4;
   if(user === "smchun") incrementToken = 5;
+
   if(isEnvLive) incrementToken = 0;
 
   if(env === "server") {

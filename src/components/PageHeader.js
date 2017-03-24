@@ -1,16 +1,10 @@
 import React from 'react';
 import {
-	Router,
 	Link,
 } from 'react-router-dom';
 
 
 class PageHeader extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 

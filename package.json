@@ -66,6 +66,7 @@
   },
   "scripts": {
     "live": "node scripts/start.js --live",
+    "beta": "node scripts/start.js --beta",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",

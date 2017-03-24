@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-	Route,
 	Link
 } from 'react-router-dom';
 import jasync from '../jasync';
@@ -58,12 +57,12 @@ class Header extends Component {
 						<ul className="nav navbar-nav">
 							<li className="dropdown user user-menu">
 								<Link to="#" className="dropdown-toggle" data-toggle="dropdown">
-									<img src="../images/adminlte/user2-160x160.jpg" className="user-image" alt="User Image"/>
+									<img src="../images/adminlte/user2-160x160.jpg" className="user-image" alt="User Portrait"/>
 									<span className="hidden-xs">{this.state.user.name}</span>
 								</Link>
 								<ul className="dropdown-menu">
 									<li className="user-header">
-										<img src="../images/adminlte/user2-160x160.jpg" className="img-circle" alt="User Image"/>
+										<img src="../images/adminlte/user2-160x160.jpg" className="img-circle" alt="User Portrait"/>
 										<p>
 											{this.state.user.name}
 											<small>{this.state.user.level}</small>
