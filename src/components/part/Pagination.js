@@ -37,7 +37,6 @@ class Pagination extends Component {
 					let index = i+1;
 					if(i >= (currentPage*pageLimit) ){
 						if(i < (currentPage+1)*pageLimit){
-							console.log(`@@ ${i} limit: ${limit}, totalPage: ${totalPage}, totalCount: ${totalCount}, page: ${page}, currentPage ${currentPage}`)
 
 							if(index == page) {
 								return (

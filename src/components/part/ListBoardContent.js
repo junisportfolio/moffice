@@ -8,7 +8,7 @@ export default class ListBoardContent extends React.Component {
 			<li className="list-item-1 has-right" >
 				<a onClick={this.props.handleSelect}>
 					<span className="title">
-						{this.props.user_name}
+						{this.props.broadcast_chat_name}
 					</span>
 					<span className="right">
 						{this.props.user_nickname}

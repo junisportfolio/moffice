@@ -12,18 +12,12 @@ class ListBoard extends Component {
 	render() {
 
 		let list_content = "";
-		if (typeof this.props.board === "object") {
-			list_content = this.props.board.map(
+		if (typeof this.props.list === "object") {
+			list_content = this.props.list.map(
 				(list) => <ListBoardContent
-					community_id={list.community_id}
-					user_id={list.user_id}
+					broadcast_chat_name={list.broadcast_chat_name}
 					user_nickname={list.user_nickname}
-					user_name={list.user_name}
-					user_email={list.user_email}
-					community_user_level={list.user_email}
-					user_status={list.user_status}
-					user_registration_date={this.state.data.user_registration_date}
-					handleSelect={() => this.handleSelect(list.user_id)}
+					handleSelect={() => this.props.handleSelect(list.broadcast_chat_id)}
 				/>
 			)
 		}
@@ -32,26 +26,6 @@ class ListBoard extends Component {
 			<ul className="nav nav-stacked">
 				{list_content}
 
-				<li className="list-item-1 has-right" >
-					<a>
-					<span className="title">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, mollitia.
-					</span>
-						<span className="right">
-						Name
-					</span>
-					</a>
-				</li>
-				<li className="list-item-1 has-right" >
-					<a>
-					<span className="title">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dignissimos dolores ea ex incidunt optio provident quisquam quo tempore ullam?
-					</span>
-						<span className="right">
-						Name
-					</span>
-					</a>
-				</li>
 			</ul>
 		);
 	}

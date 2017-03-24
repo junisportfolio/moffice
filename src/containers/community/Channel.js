@@ -319,7 +319,6 @@ class Channel extends React.Component {
 							</div>
 
 							<ChannelContent
-
 								data_community_id={this.state.data_community_id}
 								data_community_users_idx={this.state.data_community_users_idx}
 								data_community_user_status={this.state.data_community_user_status}
@@ -335,7 +334,6 @@ class Channel extends React.Component {
 								data_user_join_type={this.state.data_user_join_type}
 								data_user_status={this.state.data_user_status}
 							/>
-
 
 						</div>
 

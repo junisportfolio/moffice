@@ -27,7 +27,6 @@ export default class ListDefaultContent extends React.Component {
 			}
 
 
-
 		return (
 			<li className="list-item-1 has-right" onClick={this.props.handleSelect}>
 				<a>
