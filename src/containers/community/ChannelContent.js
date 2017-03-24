@@ -5,6 +5,9 @@ class ChannelContent extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+
+		}
 
 	}
 
@@ -14,10 +17,10 @@ class ChannelContent extends Component {
 			<div className="box-body border-style">
 				<form className="form-horizontal">
 					<div className="form-group">
-						<label className="control-label col-xs-4" for="grade">Channel 번호:</label>
+						<label className="control-label col-xs-4" for="grade">Channel 유저 번호:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								95
+								{this.props.data_community_users_idx}
 							</label>
 						</div>
 					</div>
@@ -27,7 +30,7 @@ class ChannelContent extends Component {
 
 							<div className="input-group input-group-sm">
 								<label className="control-label">
-									1
+									{this.props.data_community_user_status}
 								</label>
 								<span className="input-group-btn">
 													<button type="button" className="btn btn-warning btn-flat">수정</button>
@@ -41,7 +44,7 @@ class ChannelContent extends Component {
 						<div className="col-xs-8">
 
 							<div className="input-group input-group-sm">
-								<select className="form-control" value="1">
+								<select className="form-control" value={this.props.data_community_user_status}>
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
@@ -59,7 +62,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="grade">Channel 레벨:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								3
+								{this.props.data_community_user_level}
 							</label>
 						</div>
 					</div>
@@ -67,7 +70,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="id">Channel 가입:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								2017-02-22 17:32:54
+								{this.props.data_community_user_registration_date}
 							</label>
 						</div>
 					</div>
@@ -76,7 +79,7 @@ class ChannelContent extends Component {
 						<div className="col-xs-8">
 
 							<div className="input-group input-group-sm">
-								<img src="http://placehold.it/50x50" alt="" width={50} height={50}/>
+								<img src={this.props.data_community_user_profile_image} alt="" width={50} height={50}/>
 								<span className="input-group-btn">
 													<button type="button" className="btn btn-warning btn-flat">수정</button>
 												</span>
@@ -89,7 +92,7 @@ class ChannelContent extends Component {
 						<div className="col-xs-8">
 
 							<div className="input-group input-group-sm">
-								<input type="file" className="form-control"/>
+								<input type="file" name="data_community_user_profile_image" className="form-control"/>
 
 								<span className="input-group-btn">
 													<button type="button" className="btn btn-success btn-flat">변경</button>
@@ -103,7 +106,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="name">닉네임:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								마젠다다
+								{this.props.data_user_nickname}
 							</label>
 						</div>
 					</div>
@@ -111,7 +114,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="nick">이름:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								조용준
+								{this.props.data_user_name}
 							</label>
 						</div>
 					</div>
@@ -119,7 +122,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="grade">이메일:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								juni84@daum.net
+								{this.props.data_user_email}
 							</label>
 						</div>
 					</div>
@@ -128,7 +131,7 @@ class ChannelContent extends Component {
 						<div className="col-xs-8">
 
 							<label className="control-label">
-								2017-02-15 15:48:01
+								{this.props.data_user_registration_date}
 							</label>
 						</div>
 					</div>
@@ -136,7 +139,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="email">최종 로그인:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								2017-03-20 13:05:10
+								{this.props.data_user_last_login_date}
 							</label>
 						</div>
 					</div>
@@ -144,7 +147,7 @@ class ChannelContent extends Component {
 						<label className="control-label col-xs-4" for="nick">유저 상태:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								3
+								{this.props.data_user_status}
 							</label>
 						</div>
 					</div>

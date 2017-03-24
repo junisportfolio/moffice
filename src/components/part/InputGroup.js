@@ -2,9 +2,9 @@ import React from 'react';
 
 const InputGroup = ({children}) => {
 	return (
-		<span className="input-group input-group-sm">
+		<div className="input-group input-group-sm">
 			{children}
-		</span>
+		</div>
 	);
 };
 
