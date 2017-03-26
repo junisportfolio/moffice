@@ -3,219 +3,268 @@ import jasync from '../../jasync';
 import PageHeader from '../../components/PageHeader';
 import {Router, Route, Switch, Link} from 'react-router-dom';
 import {
-	BoxTitle,
-	ChannelNav,
-	TypeNav,
-	Button, Label,
-	Input, InputGroup, InputGroupBtn,
-	ListDefault,
-	Pagination
+  BoxTitle,
+  ChannelNav,
+  TypeNav,
+  Button, Label,
+  Input, InputGroup, InputGroupBtn,
+  ListDefault,
+  Pagination
 } from '../../components/part/';
 import ChannelContent from './ChannelContent';
 
 class Channel extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			pageTitle: "채널관리",
-			pageTitleName: "채널",
-			pageTitleNameSmall: "관리",
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageTitle: "채널관리",
+      pageTitleName: "채널",
+      pageTitleNameSmall: "관리",
 
-			keyword: '',
-			keyword_option: 'user_name',
+      keyword: '',
+      keyword_option: 'user_name',
 
-			community: '',
-			channel_index: 0,
-			channel_id: '',
-
-
-			list_type: 'users',
-			list_type_index: 0,
-			list_type_content: [
-				{id: 'users', name: 'ALL'},
-				{id: 'bj', name: 'BJ'}
-			],
-
-			limit: 10,
-			list_page: 1,
-			list_Tcount: '',
-			list_Tpage: '',
-			list: '',
-
-			data: '',
-			user_info: '',
-
-			data_community_id: '',
-			data_community_users_idx: '',
-			data_community_user_status: '',
-			data_community_user_level: '',
-			data_community_user_registration_date: '',
-			data_community_user_profile_image: '',
-			data_user_id: '',
-			data_user_nickname: '',
-			data_user_email: '',
-			data_user_name: '',
-			data_user_registration_date: '',
-			data_user_last_login_date: '',
-			data_user_join_type: '',
-			data_user_status: '',
+      community: '',
+      channel_index: 0,
+      channel_id: '',
 
 
-		}
+      list_type: 'users',
+      list_type_index: 0,
+      list_type_content: [
+        {id: 'users', name: 'ALL'},
+        {id: 'bj', name: 'BJ'}
+      ],
 
-		this.handleSearch = this.handleSearch.bind(this);
-		this.handleChannel = this.handleChannel.bind(this);
-		this.handleType = this.handleType.bind(this);
-		this.handleSelect = this.handleSelect.bind(this);
-		this.handlePagination = this.handlePagination.bind(this);
-	}
+      limit: 10,
+      list_page: 1,
+      list_Tcount: '',
+      list_Tpage: '',
+      list: '',
 
-	handleChannel(index, id) {
-		this.setState({
-			channel_index: index,
-			channel_id: id,
-			list_type: 'users',
-			list_page: 1,
-		}, () => {
-			this.getUserList();
-		});
-	}
+      data: '',
+      user_info: '',
 
-	handleType(index, id) {
-		this.setState({
-			list_type_index: index,
-			list_type: id,
-			list_page: 1,
-		}, () => {
-			this.getUserList();
-		});
-	}
-
-	handleSelect(user_id) {
-		this.setState({
-			user_info: user_id
-		}, () => {
-			this.getUserData(this.state.user_info);
-		});
-	}
-
-	handleChange(e) {
-		let nextState = {};
-		nextState[e.target.name] = e.target.value;
-		this.setState(nextState);
-	}
-
-	handleSearch(keyword, option) {
-		jasync.get({
-			url: "/private/v1/users",
-			data: {
-				page: this.state.list_page,
-				limit: this.state.limit,
-				'search_type[]': option,
-				'search_value[]': keyword
-			},
-			success: data => {
-				this.setState({
-					list: data.users,
-					total_count: data.total_count,
-					user_info: data.users[0].user_id
-				});
-
-				this.getUserData(this.state.user_info);
-			}
-		});
-	}
-
-	handlePagination(index) {
-		this.setState({
-			list_page: index
-		}, () => {
-			this.getUserList();
-		});
-	}
-
-	getChannelList() {
-		jasync.get({
-			url: "/private/v1/community",
-			success: data => {
-				this.setState({
-					community: data.community,
-					channel_id: data.community[0].community_id
-				}, () => this.getUserList());
-			}
-		});
-	}
-
-	getUserList() {
-		jasync.get({
-			url: "/private/v1/community/" + this.state.channel_id + "/" + this.state.list_type,
-			data: {
-				page: this.state.list_page,
-				limit: this.state.limit
-			},
-			success: data => {
-				this.setState({
-					list: data.users,
-
-					list_Tcount: data.total_count,
-					list_Tpage: data.total_page,
-					list_page: +data.page,
-
-					total_count: data.total_count,
-					user_info: data.users[0].user_id
-				},() => {
-					this.getUserData(data.users[0].user_id);
-				});
-			}
-		});
-	}
-
-	getUserData(user_id) {
-		console.log(this.state.user_info)
-		jasync.get({
-			url: "/private/v1/community/" + this.state.channel_id + "/users/" + user_id,
-			success: data => {
-				let info = data.users;
-				this.setState({
-
-					data_community_id: info.community_id,
-					data_community_users_idx: info.community_users_idx,
-					data_community_user_status: info.community_user_status,
-					data_community_user_level: info.community_user_level,
-					data_community_user_registration_date: info.community_user_registration_date,
-					data_community_user_profile_image: info.community_user_profile_image,
-					data_user_id: info.user_id,
-					data_user_nickname: info.user_nickname,
-					data_user_email: info.user_email,
-					data_user_name: info.user_name,
-					data_user_registration_date: info.user_registration_date,
-					data_user_last_login_date: info.user_last_login_date,
-					data_user_join_type: info.user_join_type,
-					data_user_status: info.user_status
-				});
-				console.log(this.state.data_user_name);
-			}
-		});
-	}
+      data_community_id: '',
+      data_community_users_idx: '',
+      data_community_user_status: '',
+      data_community_user_level: '',
+      data_community_user_registration_date: '',
+      data_community_user_profile_image: '',
+      data_user_id: '',
+      data_user_nickname: '',
+      data_user_email: '',
+      data_user_name: '',
+      data_user_registration_date: '',
+      data_user_last_login_date: '',
+      data_user_join_type: '',
+      data_user_status: '',
 
 
-	componentWillMount() {
 
-	}
+    }
 
-	componentDidMount() {
-		this.getChannelList();
-	}
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChannel = this.handleChannel.bind(this);
+    this.handleType = this.handleType.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
+  }
 
-	componentDidUpdate() {
+  handleChannel(index, id) {
+    this.setState({
+      channel_index: index,
+      channel_id: id,
+      list_type: 'users',
+      list_page: 1,
+    }, () => {
+      this.getUserList();
+    });
+  }
 
-	}
+  handleType(index, id) {
+    this.setState({
+      list_type_index: index,
+      list_type: id,
+      list_page: 1,
+    }, () => {
+      this.getUserList();
+    });
+  }
+
+  handleSelect(user_id) {
+    this.setState({
+      user_info: user_id
+    }, () => {
+      this.getUserData(this.state.user_info);
+    });
+  }
+
+  handleChange(e) {
+    let nextState = {};
+    nextState[e.target.name] = e.target.value;
+    this.setState(nextState);
+  }
+
+  handleSearch(keyword, option) {
+    jasync.get({
+      url: "/private/v1/users",
+      data: {
+        page: this.state.list_page,
+        limit: this.state.limit,
+        'search_type[]': option,
+        'search_value[]': keyword
+      },
+      success: data => {
+        this.setState({
+          list: data.users,
+          total_count: data.total_count,
+          user_info: data.users[0].user_id
+        });
+
+        this.getUserData(this.state.user_info);
+      }
+    });
+  }
+
+  handlePagination(index) {
+    this.setState({
+      list_page: index
+    }, () => {
+      this.getUserList();
+    });
+  }
+
+  getChannelList() {
+    jasync.get({
+      url: "/private/v1/community",
+      success: data => {
+        this.setState({
+          community: data.community,
+          channel_id: data.community[0].community_id
+        }, () => this.getUserList());
+      }
+    });
+  }
+
+  getUserList() {
+    jasync.get({
+      url: "/private/v1/community/" + this.state.channel_id + "/" + this.state.list_type,
+      data: {
+        page: this.state.list_page,
+        limit: this.state.limit
+      },
+      success: data => {
+        this.setState({
+          list: data.users,
+
+          list_Tcount: data.total_count,
+          list_Tpage: data.total_page,
+          list_page: +data.page,
+
+          total_count: data.total_count,
+          user_info: data.users[0].user_id
+        },() => {
+          this.getUserData(data.users[0].user_id);
+        });
+      }
+    });
+  }
+
+  getUserData(user_id) {
+    console.log(this.state.user_info)
+    jasync.get({
+      url: "/private/v1/community/" + this.state.channel_id + "/users/" + user_id,
+      success: data => {
+        let info = data.users;
+        this.setState({
+
+          data_community_id: info.community_id,
+          data_community_users_idx: info.community_users_idx,
+          data_community_user_status: info.community_user_status,
+          data_community_user_level: info.community_user_level,
+          data_community_user_registration_date: info.community_user_registration_date,
+          data_community_user_profile_image: info.community_user_profile_image,
+          data_user_id: info.user_id,
+          data_user_nickname: info.user_nickname,
+          data_user_email: info.user_email,
+          data_user_name: info.user_name,
+          data_user_registration_date: info.user_registration_date,
+          data_user_last_login_date: info.user_last_login_date,
+          data_user_join_type: info.user_join_type,
+          data_user_status: info.user_status
+        });
+        console.log(this.state.data_user_name);
+      }
+    });
+  }
+
+  changeProfile() {
+    let community_id = this.props.arg_community_id;
+    let user_id = this.props.arg_user_id;
+    let owner = this.props.owner;
+    let that = this;
+    let formData = new FormData();
+    if(document.getElementById("user_profile_image").files[0]) {
+      formData.append("profile_image", document.getElementById("user_profile_image").files[0]);
+    }
+
+    if(document.getElementById("user_profile_image").files[0]) {
+      jasync.post({
+        url: `/private/v1/community/${community_id}/profile_image/${user_id}`,
+        data: formData,
+        success: sss => {
+          if(sss.result === "ok") {
+            alert(sss.message);
+
+            that.setState({edit_mode: false});
+            owner.getUserData(user_id);
+          }
+        }
+      });
+    } else {
+      alert("등록할 이미지가 없습니다.");
+    }
+  }
+
+  grantBJ(community_id, user_id) {
+    jasync.post({
+      url: `/private/v1/community/${community_id}/bj`,
+      data: {
+        user_id: user_id
+      },
+      success: sss => {
+        if(sss.result === "ok") {
+          alert(`${community_id} 채널의 BJ로 등록되었습니다.`);
+        }
+      },
+      error: err => {
+        if(err.responseJSON.result === "err") {
+          alert(err.responseJSON.message);
+        }
+      }
+    })
+  }
 
 
-	render() {
 
-		return (
+  componentWillMount() {
+
+  }
+
+  componentDidMount() {
+    this.getChannelList();
+  }
+
+  componentDidUpdate() {
+
+  }
+
+
+  render() {
+
+    return (
 			<section className="content">
 				<PageHeader
 					pageTitle={this.state.pageTitle}
@@ -253,7 +302,7 @@ class Channel extends React.Component {
 							</div>
 							<div className="box-body">
 
-								{/*
+                {/*
 								 <div className=" col-xs-4 col-sm-3 col-lg-2 form-group">
 								 <select name="keyword_option"
 								 className="form-control"
@@ -312,7 +361,7 @@ class Channel extends React.Component {
 
 								<BoxTitle
 									className="box-title"
-									mainTitle="홍길동"
+									mainTitle={this.state.data_user_name}
 									subTitle="님의 정보"
 								/>
 
@@ -333,6 +382,9 @@ class Channel extends React.Component {
 								data_user_last_login_date={this.state.data_user_last_login_date}
 								data_user_join_type={this.state.data_user_join_type}
 								data_user_status={this.state.data_user_status}
+								func_grant_bj={this.grantBJ}
+								func_change_profile={this.changeProfile}
+								owner={this}
 							/>
 
 						</div>
@@ -342,8 +394,8 @@ class Channel extends React.Component {
 				</div>
 
 			</section>
-		)
-	}
+    )
+  }
 }
 
 

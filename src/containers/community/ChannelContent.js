@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import EditableInputGroup from '../../components/part/EditableInputGroup';
 
 class ChannelContent extends Component {
 
@@ -9,6 +9,21 @@ class ChannelContent extends Component {
 
 		}
 
+	}
+
+	parseStatus(status) {
+		switch(status){
+			case 0:
+				return "삭제";
+			case 1:
+				return "정상";
+			case 2:
+				return "대기";
+			case 9:
+				return "탈퇴";
+			default:
+				return status;
+		}
 	}
 
 	render() {
@@ -30,16 +45,16 @@ class ChannelContent extends Component {
 
 							<div className="input-group input-group-sm">
 								<label className="control-label">
-									{this.props.data_community_user_status}
+									{this.parseStatus(this.props.data_community_user_status)}
 								</label>
-								<span className="input-group-btn">
-													<button type="button" className="btn btn-warning btn-flat">수정</button>
-											</span>
+								{/*<span className="input-group-btn">
+										<button type="button" className="btn btn-warning btn-flat">수정</button>
+								</span>*/}
 							</div>
 						</div>
 
 					</div>
-					<div className="form-group">
+					{/*<div className="form-group">
 						<label className="control-label col-xs-4" for="grade">Channel 상태:</label>
 						<div className="col-xs-8">
 
@@ -57,7 +72,7 @@ class ChannelContent extends Component {
 							</div>
 						</div>
 
-					</div>
+					</div>*/}
 					<div className="form-group">
 						<label className="control-label col-xs-4" for="grade">Channel 레벨:</label>
 						<div className="col-xs-8">
@@ -74,34 +89,16 @@ class ChannelContent extends Component {
 							</label>
 						</div>
 					</div>
-					<div className="form-group">
-						<label className="control-label col-xs-4" for="id">Channel 프사:</label>
-						<div className="col-xs-8">
-
-							<div className="input-group input-group-sm">
-								<img src={this.props.data_community_user_profile_image} alt="" width={50} height={50}/>
-								<span className="input-group-btn">
-													<button type="button" className="btn btn-warning btn-flat">수정</button>
-												</span>
-							</div>
-
-						</div>
-					</div>
-					<div className="form-group">
-						<label className="control-label col-xs-4" for="id">Channel 프사:</label>
-						<div className="col-xs-8">
-
-							<div className="input-group input-group-sm">
-								<input type="file" name="data_community_user_profile_image" className="form-control"/>
-
-								<span className="input-group-btn">
-													<button type="button" className="btn btn-success btn-flat">변경</button>
-													<button type="button" className="btn btn-danger btn-flat">취소</button>
-												</span>
-							</div>
-
-						</div>
-					</div>
+					<EditableInputGroup
+						field_name="Channel 프사:"
+						arg_community_id={this.props.data_community_id}
+						arg_user_id={this.props.data_user_id}
+						input={<input id="user_profile_image" type="file" name="data_community_user_profile_image" className="form-control"/>}
+						func={this.props.func_change_profile}
+						owner={this.props.owner}
+					>
+						<img src={process.env.img + this.props.data_community_user_profile_image} alt="" width={50} height={50}/>
+					</EditableInputGroup>
 					<div className="form-group">
 						<label className="control-label col-xs-4" for="name">닉네임:</label>
 						<div className="col-xs-8">
@@ -154,7 +151,7 @@ class ChannelContent extends Component {
 					<div className="form-group">
 						<label className="control-label col-xs-4" for="nick">BJ 등록:</label>
 						<div className="col-xs-8">
-							<button className="btn btn-success">등록</button>
+							<button className="btn btn-success" onClick={() => this.props.func_grant_bj(this.props.data_community_id, this.props.data_user_id)}>등록</button>
 						</div>
 					</div>
 				</form>

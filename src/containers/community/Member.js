@@ -26,7 +26,7 @@ class Member extends React.Component {
 			search_keyword: '',
 			editMode: false,
 
-			limit: 4,
+			limit: 10,
 			list: '',
 			list_Tcount: '',
 			list_Tpage: '',
