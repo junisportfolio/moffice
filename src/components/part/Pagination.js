@@ -28,7 +28,7 @@ class Pagination extends Component {
 
     let pagination = "";
     pagination = loop2.map( // [<< ][ 8 ][ 9 ][ 10 ][ 11][ >>] 페이지 완성
-      num => <li className={(num + 1 === page) ? "active" : ""}>
+      num => <li key={"pagination" + num} className={(num + 1 === page) ? "active" : ""}>
 				<a onClick={()=>this.props.handlePagination(num + 1)}>
           {num + 1}
 				</a>

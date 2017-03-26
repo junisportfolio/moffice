@@ -211,7 +211,7 @@ class Channel extends React.Component {
     }
 
     if(document.getElementById("user_profile_image").files[0]) {
-      jasync.post({
+      jasync.multipart.post({
         url: `/private/v1/community/${community_id}/profile_image/${user_id}`,
         data: formData,
         success: sss => {
