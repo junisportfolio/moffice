@@ -8,7 +8,11 @@ class jasync {
       post: obj => this.spost(obj),
       put: obj => this.sput(obj),
       delete: obj => this.sdelete(obj)
-    }
+    };
+    this.multipart = {
+      post: obj => this.mpost(obj),
+      put: obj => this.mput(obj)
+    };
 
     this.help();
   }
@@ -91,8 +95,8 @@ class jasync {
       data: obj.data,
       cache: false,
       async: obj.async,
-      contentType: false,
-      processData: false,
+      contentType: obj.contentType,
+      processData: obj.processData,
       xhrFields: {
         withCredentials: true
       },
@@ -111,6 +115,8 @@ class jasync {
       data: obj.data,
       cache: false,
       async: obj.async,
+      contentType: obj.contentType,
+      processData: obj.processData,
       xhrFields: {
         withCredentials: true
       },
@@ -158,6 +164,22 @@ class jasync {
     obj.async = false;
 
     this.delete(obj);
+  }
+
+  mpost(obj) {
+    obj.async = false;
+    obj.contentType = false;
+    obj.processData = false;
+
+    this.post(obj);
+  }
+
+  mput(obj) {
+    obj.async = false;
+    obj.contentType = false;
+    obj.processData = false;
+
+    this.put(obj);
   }
 }
 
