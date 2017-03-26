@@ -12,8 +12,6 @@ class ListFiltering extends Component {
       list = this.props.list.map(filter => (<ListFilteringContent key={"filtering" + this.props.inc.number++} filter={filter} fnc_remove={this.props.fnc_remove} />));
     }
 
-    console.log(list);
-
     return (
       <ul className="list-group">
         {list}

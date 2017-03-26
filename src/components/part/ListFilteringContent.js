@@ -10,8 +10,6 @@ class ListFilteringContent extends Component {
   }
 
   render() {
-  	console.log(this);
-
   	if(this.state.validate) {
       return (
 				<li className="list-group-item">
