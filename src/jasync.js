@@ -52,6 +52,7 @@ class jasync {
     }
 
     console.log("%c" + errorObject.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", errorObject.statusText, errorObject.responseJSON || errorObject.responseText);
+    console.log("errorObject.responseJSON 또는 errorObject.responseText로부터 위의 값을 가공하여 처리해주세요.");
   }
 
   get(obj) {
@@ -90,6 +91,8 @@ class jasync {
       data: obj.data,
       cache: false,
       async: obj.async,
+      contentType: false,
+      processData: false,
       xhrFields: {
         withCredentials: true
       },
