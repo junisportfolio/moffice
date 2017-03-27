@@ -13,7 +13,7 @@ class Pagination extends Component {
     let limit = this.props.limit; // 한 페이지당 몇 건?
     let totalPage = this.props.total_page; // 총 몇 페이지?
     let totalCount = this.props.total_count; // 총 몇 건?
-    let pageLimit = 9; // 페이지네이션 영역에 한번에 몇 페이지씩 보여줄건지?
+    let pageLimit = 3; // 페이지네이션 영역에 한번에 몇 페이지씩 보여줄건지?
     let page = this.props.list_page; // 현재 몇페이지를 보고 있는지?
     let currentPage = Math.ceil(page / pageLimit); // 현재 몇번째 페이지네이션 그룹을 보고 있는지?
 		

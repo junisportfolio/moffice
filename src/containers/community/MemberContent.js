@@ -10,7 +10,7 @@ class MemberContent extends Component {
 	render() {
 
 		const listView = (
-			<form className="form-horizontal">
+			<form className="form-horizontal" onSubmit={event => event.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">유저 등급:</label>
 					<div className="col-xs-8">
@@ -112,7 +112,7 @@ class MemberContent extends Component {
 		);
 
 		const editView = (
-			<form className="form-horizontal">
+			<form className="form-horizontal" onSubmit={event => event.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">유저 등급:</label>
 					<div className="col-xs-8">

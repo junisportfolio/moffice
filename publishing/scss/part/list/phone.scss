@@ -93,6 +93,13 @@
 
 .comment-list {
   li {
+    &.danger{
+      background-color: rgb(242, 222, 222);
+      border-top-color: #fff;
+      hr {
+        border-top-color: #ec9f9f;
+      }
+    }
     .writer {
       > span {
         /*
