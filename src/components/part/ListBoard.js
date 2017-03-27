@@ -24,6 +24,10 @@ class ListBoard extends Component {
 			)
 		}
 
+		if(list_content === "") {
+      list_content = "검색 결과가 없습니다.";
+		}
+
 		return (
 			<ul className="nav nav-stacked">
 				{list_content}
