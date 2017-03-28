@@ -10,7 +10,7 @@ class PromotionContent extends Component {
 	render() {
 
 		const listView = (
-			<form className="form-horizontal">
+			<form className="form-horizontal" onSubmit={event => event.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">프로모션 이름:</label>
 					<div className="col-xs-8">
@@ -44,6 +44,14 @@ class PromotionContent extends Component {
 					</div>
 				</div>
 				<div className="form-group">
+					<label className="control-label col-xs-4">코인 상태:</label>
+					<div className="col-xs-8">
+						<label className="control-label">
+              {this.props.data_promotion_coin_status}
+						</label>
+					</div>
+				</div>
+				<div className="form-group">
 					<label className="control-label col-xs-4">시작일:</label>
 					<div className="col-xs-8">
 						<label className="control-label">
@@ -56,14 +64,6 @@ class PromotionContent extends Component {
 					<div className="col-xs-8">
 						<label className="control-label">
 							{this.props.data_promotion_coin_end_date}
-						</label>
-					</div>
-				</div>
-				<div className="form-group">
-					<label className="control-label col-xs-4">코인 상태:</label>
-					<div className="col-xs-8">
-						<label className="control-label">
-							{this.props.data_promotion_coin_status}
 						</label>
 					</div>
 				</div>
@@ -120,9 +120,9 @@ class PromotionContent extends Component {
 
 						<input type="text"
 									 className="form-control"
-									 name="data_promotion_name"
+									 name="input_promotion_coin_name"
 									 onChange={this.props.handleChange}
-									 value={this.props.data_promotion_name}/>
+									 value={this.props.input_promotion_coin_name}/>
 
 
 					</div>
@@ -132,9 +132,9 @@ class PromotionContent extends Component {
 					<div className="col-xs-8">
 						<input type="text"
 									 className="form-control"
-									 name="data_promotion_coin_max"
+									 name="input_promotion_coin_max"
 									 onChange={this.props.handleChange}
-									 value={this.props.data_promotion_coin_max}/>
+									 value={this.props.input_promotion_coin_max}/>
 					</div>
 				</div>
 				<div className="form-group">
@@ -143,9 +143,9 @@ class PromotionContent extends Component {
 
 						<input type="text"
 									 className="form-control"
-									 name="data_promotion_coin"
+									 name="input_promotion_coin"
 									 onChange={this.props.handleChange}
-									 value={this.props.data_promotion_coin}/>
+									 value={this.props.input_promotion_coin}/>
 
 
 					</div>
@@ -153,15 +153,15 @@ class PromotionContent extends Component {
 				<div className="form-group">
 					<label className="control-label col-xs-4">코인 상태:</label>
 					<div className="col-xs-8">
-						<select name="data_promotion_coin_status"
-										value={this.props.data_promotion_coin_status}
+						<select name="input_promotion_coin_status"
+										value={this.props.input_promotion_coin_status}
 										onChange={this.props.handleChange}
 										className="form-control"
 
 						>
 							<option value="0">상태 0 </option>
-							<option value="1">상태 1</option>
-							<option value="2">상태 2</option>
+							<option value="1">적용</option>
+							<option value="2">대기</option>
 						</select>
 
 					</div>

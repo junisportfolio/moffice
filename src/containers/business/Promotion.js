@@ -25,6 +25,7 @@ class Promotion extends React.Component {
 			keyword_option: 'user_name',
 			search_keyword: '',
 			editMode: false,
+			isAddMode: false,
 
 			limit: 10,
 			list: '',
@@ -35,7 +36,15 @@ class Promotion extends React.Component {
 			data: '',
 			user_info: '',
 
+      data_promotion_name: "",
+      data_promotion_coin_max: "",
+      data_promotion_coin: "",
+      data_promotion_coin_status: "",
 
+      input_promotion_coin_name: "",
+      input_promotion_coin_max: "",
+      input_promotion_coin: "",
+      input_promotion_coin_status: ""
 		}
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -53,9 +62,22 @@ class Promotion extends React.Component {
 		this.setState(nextState);
 	}
 
+	toggleAdd() {
+		this.setState({
+			isAddMode: !this.state.isAddMode,
+      input_promotion_coin_name: "",
+      input_promotion_coin_max: "",
+      input_promotion_coin: ""
+		});
+	}
+
 	toggleEdit() {
 		this.setState({
-			editMode: !this.state.editMode
+			editMode: !this.state.editMode,
+      input_promotion_coin_name: this.state.data_promotion_name,
+      input_promotion_coin_max: this.state.data_promotion_coin_max,
+      input_promotion_coin: this.state.data_promotion_coin,
+      input_promotion_coin_status: this.state.data_promotion_coin_status
 		});
 	}
 
@@ -98,25 +120,27 @@ class Promotion extends React.Component {
 	}
 
 	editUserData() {
-		jasync.post({
-			url: "/private/v1/promotion/"+this.state.data_promotion_coin_idx+"/modify",
-			data: {
-				promotion_coin_idx: this.state.data_promotion_coin_idx,
-				promotion_coin_name: this.state.data_promotion_coin_name,
-				promotion_coin_max: this.state.data_promotion_coin_max,
-				promotion_coin: this.state.data_promotion_coin,
-				promotion_coin_status: 1,
-			},
-			success: data => {
-				alert('변경되었습니다');
-				this.setState({
-					editMode: false
-				}, () => {
-					this.getUserData(this.state.user_info);
-				});
-
-			}
-		});
+		if(confirm("수정하시겠습니까?")){
+      jasync.post({
+        url: "/private/v1/promotion/"+this.state.data_promotion_coin_idx+"/modify",
+        data: {
+          promotion_coin_name: this.state.input_promotion_coin_name,
+          promotion_coin_max: this.state.input_promotion_coin_max,
+          promotion_coin: this.state.input_promotion_coin,
+          promotion_coin_status: this.state.input_promotion_coin_status,
+        },
+        success: data => {
+        	if(data.result === "ok") {
+            alert(data.message);
+            this.setState({
+              editMode: false
+            }, () => {
+              this.getUserList();
+            });
+					}
+        }
+      });
+		}
 	}
 
 
@@ -181,6 +205,31 @@ class Promotion extends React.Component {
 		});
 	}
 
+  addPromotionData() {
+		console.log({
+      promotion_coin_name: this.state.input_promotion_coin_name,
+      promotion_coin_max: +this.state.input_promotion_coin_max,
+      promotion_coin: +this.state.input_promotion_coin
+    });
+		if(confirm("프로모션을 등록하시겠습니까?")) {
+      jasync.post({
+        url: "/private/v1/promotion",
+        data: {
+          promotion_coin_name: this.state.input_promotion_coin_name,
+          promotion_coin_max: +this.state.input_promotion_coin_max,
+          promotion_coin: +this.state.input_promotion_coin
+        },
+				success: sss => {
+        	if(sss.result === "ok")  {
+        		alert(sss.message);
+
+        		this.toggleAdd();
+        		this.getUserList();
+					}
+				}
+      });
+		}
+  }
 
 	render() {
 
@@ -205,19 +254,19 @@ class Promotion extends React.Component {
 										프로모션
 									</b>
 									리스트
-									<button type="button" className="btn btn-primary flr">프로모션 등록</button>
+									<button type="button" className={"btn btn-primary flr" + (this.state.isAddMode ? " hidden" : "")} onClick={this.toggleAdd.bind(this)}>프로모션 등록</button>
 								</h3>
 
 							</div>
-							<div className="box-body hidden">
+							<div className={"box-body" + (this.state.isAddMode ? "" : " hidden")}>
 
 								<div className="box-body border-style">
-									<form className="form-horizontal">
+									<form className="form-horizontal" onSubmit={event => event.preventDefault()}>
 										<div className="form-group">
 											<label className="control-label col-xs-4">프로모션 이름:</label>
 											<div className="col-xs-8">
 
-												<input type="text" className="form-control" name="" value=""/>
+												<input type="text" className="form-control" name="input_promotion_coin_name" value={this.state.input_promotion_coin_name} onChange={this.handleChange} />
 
 											</div>
 										</div>
@@ -225,7 +274,7 @@ class Promotion extends React.Component {
 											<label className="control-label col-xs-4">코인 최대치:</label>
 											<div className="col-xs-8">
 
-												<input type="number" className="form-control" name="" value=""/>
+												<input type="number" className="form-control" name="input_promotion_coin_max" value={this.state.input_promotion_coin_max} onChange={this.handleChange} />
 
 											</div>
 										</div>
@@ -233,7 +282,7 @@ class Promotion extends React.Component {
 											<label className="control-label col-xs-4">지급 코인:</label>
 											<div className="col-xs-8">
 
-												<input type="number" className="form-control" name="" value=""/>
+												<input type="number" className="form-control" name="input_promotion_coin" value={this.state.input_promotion_coin} onChange={this.handleChange} />
 
 											</div>
 										</div>
@@ -256,13 +305,13 @@ class Promotion extends React.Component {
 												<button
 													type="button"
 													className="btn btn-warning"
-													onClick={ this.props.toggleEdit }
+													onClick={ this.toggleAdd.bind(this) }
 												>취소
 												</button>
 												<button
 													type="button"
 													className="btn btn-success"
-													onClick={ this.props.editUserData}
+													onClick={ this.addPromotionData.bind(this) }
 												>완료
 												</button>
 											</div>
@@ -317,6 +366,11 @@ class Promotion extends React.Component {
 								data_promotion_coin_registration_date={this.state.data_promotion_coin_registration_date}
 								data_promotion_count={this.state.data_promotion_count}
 								data_promotion_status={this.state.data_promotion_status}
+
+								input_promotion_coin_name={this.state.input_promotion_coin_name}
+								input_promotion_coin_max={this.state.input_promotion_coin_max}
+								input_promotion_coin={this.state.input_promotion_coin}
+								input_promotion_coin_status={this.state.input_promotion_coin_status}
 
 								handleChange={ this.handleChange }
 								editMode={ this.state.editMode }
