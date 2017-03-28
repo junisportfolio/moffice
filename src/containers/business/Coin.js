@@ -56,6 +56,8 @@ class Coin extends React.Component {
 			data: '',
 			user_info: '',
 
+			input_coin: "",
+			input_free_coin: ""
 		}
 
 		this.handleListType = this.handleListType.bind(this);
@@ -205,6 +207,40 @@ class Coin extends React.Component {
 		});
 	}
 
+	handleGive() {
+		if(confirm("꿀을 지급하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/coin/gift/" + this.state.data_user_id,
+				data: {
+          coin: +this.state.input_coin,
+          free_coin: +this.state.input_free_coin
+        },
+				success: sss => {
+					alert("꿀 지급을 완료하였습니다.");
+
+          this.setState({
+            input_coin: 0,
+            input_free_coin: 0
+          }, () => this.getUserList());
+				},
+				error: err => {
+					if(err.status === 200) {
+            alert("꿀 지급을 완료하였습니다.");
+
+
+            this.setState({
+              input_coin: 0,
+              input_free_coin: 0
+            }, () => this.getUserList());
+					} else {
+						alert("문제가 있습니다.");
+						console.log(err);
+					}
+				}
+			});
+    }
+	}
+
 
 	render() {
 
@@ -274,11 +310,13 @@ class Coin extends React.Component {
 							data_user_coin={this.state.data_user_coin}
 							data_user_free_coin={this.state.data_user_free_coin}
 							data_user_total_coin={this.state.data_user_total_coin}
-
+							input_coin={this.state.input_coin}
+							input_free_coin={this.state.input_free_coin}
 							handleChange={ this.handleChange }
 							editMode={ this.state.editMode }
 							toggleEdit={ this.toggleEdit }
 							editUserData={ this.editUserData }
+							handleGive={this.handleGive.bind(this)}
 						/>
 
 					</div>
