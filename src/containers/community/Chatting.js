@@ -50,7 +50,7 @@ class Chatting extends Component {
 			list_Tcount: '',
 			list_Tpage: '',
 
-			virtual_count: "",
+			virtual_count_edit_mode: false,
 
 			user_list: "",
       user_limit: 10,
@@ -67,6 +67,7 @@ class Chatting extends Component {
       data_broadcast_chat_notice: "",
       data_broadcast_chat_registration_date: "",
       data_broadcast_chat_virtual_count: "",
+      input_broadcast_chat_virtual_count: "",
       data_user_id: "",
       data_user_nickname: "",
 		}
@@ -119,11 +120,32 @@ class Chatting extends Component {
 	}
 
 	handleVirtualCountChange(e) {
-		this.setState({virtual_count: e.target.value});
+		this.setState({input_broadcast_chat_virtual_count: e.target.value});
+
+		console.log(this.state.input_broadcast_chat_virtual_count);
 	}
 
-	handleVirtualCount(chat_id, count) {
-		// POST"/private/v1/chat/chat_virtualuser/{chat_id}/{count}"
+	handleVirtualCount() {
+		jasync.post({
+			url: "/private/v1/chat/chat_virtualuser/" + this.state.room_info + "/" + this.state.input_broadcast_chat_virtual_count,
+			success: sss => {
+				if(sss.result === "ok") {
+					alert("가상인원이 설정되었습니다.");
+
+					this.setState({
+            data_broadcast_chat_virtual_count: this.state.input_broadcast_chat_virtual_count
+					});
+					this.handleToggleEditState();
+				}
+			}
+		});
+	}
+
+	handleToggleEditState() {
+    this.setState({
+    	virtual_count_edit_mode: !this.state.virtual_count_edit_mode,
+      input_broadcast_chat_virtual_count: this.state.virtual_count_edit_mode ? this.state.data_broadcast_chat_virtual_count : this.state.input_broadcast_chat_virtual_count
+    });
 	}
 
 	chatManager(chat_id, user_id) {
@@ -276,6 +298,7 @@ class Chatting extends Component {
             data_broadcast_chat_notice: data.rooms[0].broadcast_chat_notice,
             data_broadcast_chat_registration_date: data.rooms[0].broadcast_chat_registration_date,
             data_broadcast_chat_virtual_count: data.rooms[0].broadcast_chat_virtual_count,
+            input_broadcast_chat_virtual_count: data.rooms[0].broadcast_chat_virtual_count,
             data_user_id: data.rooms[0].user_id,
             data_user_nickname: data.rooms[0].user_nickname
           }, () => {
@@ -392,12 +415,17 @@ class Chatting extends Component {
 								data_broadcast_chat_notice={this.state.data_broadcast_chat_notice}
 								data_broadcast_chat_registration_date={this.state.data_broadcast_chat_registration_date}
 								data_broadcast_chat_virtual_count={this.state.data_broadcast_chat_virtual_count}
+								input_broadcast_chat_virtual_count={this.state.input_broadcast_chat_virtual_count}
 								data_user_id={this.state.data_user_id}
 								data_user_nickname={this.state.data_user_nickname}
 								data_join_managers={this.state.join_managers}
 								data_silence_users={this.state.silence_users}
-								handleVirtualCount={this.handleVirtualCount}
-								handleVirtualCountChange={this.handleVirtualCountChange}
+								virtual_count_edit_mode={this.state.virtual_count_edit_mode}
+								handleVirtualCount={this.handleVirtualCount.bind(this)}
+								handleVirtualCountChange={this.handleVirtualCountChange.bind(this)}
+								handleToggleEditState={this.handleToggleEditState.bind(this)}
+								handleUnmanager={this.chatUnmanager.bind(this)}
+								handleUnsilence={this.chatUnsilence.bind(this)}
 							/>
 						</div>
 						<div className="col-lg-6">
@@ -405,10 +433,10 @@ class Chatting extends Component {
 								list={this.state.join_users}
 								data_broadcast_idx={this.state.data_broadcast_idx}
 								handleManager={this.chatManager.bind(this)}
-								handleUnmanager={this.chatUnmanager.bind(this)}
 								handleSilence={this.chatSilence.bind(this)}
-								handleUnsilence={this.chatUnsilence.bind(this)}
 								handleOut={this.userOut.bind(this)}
+								handleUnmanager={this.chatUnmanager.bind(this)}
+								handleUnsilence={this.chatUnsilence.bind(this)}
 							/>
 						</div>
 					</div>

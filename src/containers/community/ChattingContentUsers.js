@@ -101,8 +101,6 @@ class ChannelContentUser extends React.Component {
 			<button type="button" className="btn btn-danger" onClick={() => this.props.handleOut(this.props.data_broadcast_idx, this.props.user_id)}>강퇴</button>
 		);
 
-		console.log(this.props.user_status);
-
 		return (
 			<li className="list-item-1 join-members">
 							<span className="title">
