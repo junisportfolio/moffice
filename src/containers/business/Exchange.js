@@ -54,7 +54,9 @@ class Exchange extends React.Component {
 			user_info: '',
 
 			input_exchange_fee: "",
-      input_user_coin: ""
+      input_user_coin: "",
+      input_user_exchange_status: "",
+      input_user_exchange_price: ""
 
 		}
 
@@ -91,9 +93,12 @@ class Exchange extends React.Component {
 
 	toggleEdit() {
 		this.setState({
-			editMode: !this.state.editMode
+			editMode: !this.state.editMode,
+      input_user_exchange_status: this.state.data2_user_exchange_status,
+      input_user_exchange_price: this.state.data2_user_exchange_price
 		});
 	}
+
 
 	handleSelect(user_id, user_nickname, user_email, user_name, user_registration_date, user_last_login_date, user_join_type, user_status, user_coin, user_free_coin, user_total_coin) {
 		this.setState({
@@ -150,6 +155,75 @@ class Exchange extends React.Component {
 			}
 
 		});
+	}
+
+  confirmEdit() {
+		if(confirm("수정을 완료하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/exchange/modify/" + this.state.data2_user_exchange_idx,
+				data: {
+          user_exchange_status: this.state.input_user_exchange_status,
+          user_exchange_price: this.state.input_user_exchange_price
+        },
+        success: sss => {
+          if(sss.result === "ok") {
+            alert(sss.message);
+
+            this.setState({
+              editMode: false
+            }, () => {
+              this.getExchangeList();
+            });
+          }
+        }
+			});
+		}
+	}
+
+	confirmExchange() {
+		if(confirm("출금 신청을 승인하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/exchange/confirm/" + this.state.data2_user_exchange_idx,
+        success: sss => {
+          if(sss.result === "ok") {
+            alert(sss.message);
+
+            this.setState({
+              editMode: false
+            }, () => {
+              this.getExchangeList();
+            });
+          }
+        }
+			});
+		}
+	}
+
+	cancelExchange() {
+		if(confirm("출금 신청을 취소하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/exchange/cancel/" + this.state.data2_user_exchange_idx,
+				success: sss => {
+					if(sss.result === "ok") {
+						alert(sss.message);
+
+						this.setState({
+							editMode: false
+						}, () => {
+              this.getExchangeList();
+						});
+					}
+				}
+			});
+		}
+	}
+
+	deleteExchange() {
+		if(confirm("출금 신청을 삭제하시겠습니까?")) {
+			jasync.delete({
+				url: "/private/v1/exchange/" + this.state.data2_user_exchange_idx
+			});
+		}
 	}
 
 
@@ -404,6 +478,22 @@ class Exchange extends React.Component {
 			</div>
 		);
 
+		let button = "";
+
+		if(this.state.editMode) {
+      button = [
+				<button key="confirm_btn" className="btn btn-primary" onClick={this.confirmEdit.bind(this)}>완료</button>,
+				<button key="cancel_btn" className="btn btn-warning" onClick={this.toggleEdit.bind(this)}>취소</button>
+      ];
+		} else {
+			button = [
+				<button key="modify_btn" className="btn btn-primary" onClick={this.toggleEdit.bind(this)}>수정</button>,
+        <button key="confirm_btn" className="btn btn-success" onClick={this.confirmExchange.bind(this)}>승인</button>,
+        <button key="cancel_btn" className="btn btn-warning" onClick={this.cancelExchange.bind(this)}>취소</button>,
+        <button key="delete_btn" className="btn btn-danger" onClick={this.deleteExchange.bind(this)}>삭제</button>
+			];
+		}
+
 		const userExchangeList = (
 			<div className="row">
 
@@ -448,7 +538,9 @@ class Exchange extends React.Component {
 							<h3 className="box-title">
 								출금신청 리스트
 							</h3>
-
+							<div className="controller">
+								{button}
+							</div>
 						</div>
 
 						<ExchangeListContent
@@ -470,6 +562,10 @@ class Exchange extends React.Component {
 							data_user_last_login_date={this.state.data2_user_last_login_date}
 							data_user_bank_account={this.state.data2_user_bank_account}
 							data_user_identification={this.state.data2_user_identification}
+							input_user_exchange_status={this.state.input_user_exchange_status}
+							input_user_exchange_price={this.state.input_user_exchange_price}
+							handleChange={this.handleChange.bind(this)}
+							editMode={this.state.editMode}
 						/>
 
 

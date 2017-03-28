@@ -26,9 +26,23 @@ class ExchangeListContent extends Component {
 				break;
 		}
 
+		let user_exchange_status = "";
+		let user_exchange_price = "";
+
+		if(this.props.editMode) {
+      user_exchange_price = <input placeholder="신청 금액" className="form-control" name="input_user_exchange_price" value={this.props.input_user_exchange_price} onChange={this.props.handleChange} />;
+      user_exchange_status = <select className="form-control" name="input_user_exchange_status" value={this.props.input_user_exchange_status} onChange={this.props.handleChange}>
+				<option value="0">삭제</option>
+				<option value="1">승인</option>
+				<option value="2">대기</option>
+				<option value="3">취소</option>
+			</select>;
+		} else {
+      user_exchange_status = status;
+      user_exchange_price = this.props.data_user_exchange_price;
+		}
 
 		return (
-
 			<div className="box-body border-style">
 				<form className="form-horizontal">
 					<div className="form-group">
@@ -51,7 +65,7 @@ class ExchangeListContent extends Component {
 						<label className="control-label col-xs-4">신청 금액:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								{this.props.data_user_exchange_price}
+								{user_exchange_price}
 							</label>
 						</div>
 					</div>
@@ -67,7 +81,7 @@ class ExchangeListContent extends Component {
 						<label className="control-label col-xs-4">신청 상태:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								{ status }
+								{ user_exchange_status }
 							</label>
 						</div>
 					</div>
