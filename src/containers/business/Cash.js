@@ -180,6 +180,23 @@ class Cash extends React.Component {
 		});
 	}
 
+	handleCancel() {
+		if(confirm("결제를 취소하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/payment/" + this.state.data_payment_idx + "/cancel",
+				success: sss => {
+					if(sss.result === "ok") {
+						alert(sss.message);
+
+            this.getUserList();
+					} else if(sss.result === "err") {
+            alert(sss.message);
+					}
+				}
+			})
+    }
+	}
+
 	render() {
 
 		return (
@@ -225,7 +242,9 @@ class Cash extends React.Component {
 									mainTitle={this.state.data_user_name}
 									subTitle="님의 정보"
 								/>
-
+								<div className="controller">
+									<button key="cancel_btn" className="btn btn-warning" onClick={this.handleCancel.bind(this)}>결제 취소</button>
+								</div>
 							</div>
 							<CashContent
 
