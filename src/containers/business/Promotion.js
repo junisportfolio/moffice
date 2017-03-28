@@ -205,6 +205,21 @@ class Promotion extends React.Component {
 		});
 	}
 
+  deletePromotionData() {
+		if(confirm("해당 프로모션을 삭제하시겠습니까?")) {
+			jasync.delete({
+				url: "/private/v1/promotion/" + this.state.data_promotion_coin_idx,
+				success: sss => {
+					if(sss.result === "ok") {
+						alert(sss.message);
+
+						this.getUserData(this.state.data_promotion_coin_idx);
+					}
+				}
+			});
+		}
+  }
+
   addPromotionData() {
 		console.log({
       promotion_coin_name: this.state.input_promotion_coin_name,
@@ -376,6 +391,7 @@ class Promotion extends React.Component {
 								editMode={ this.state.editMode }
 								toggleEdit={ this.toggleEdit }
 								editUserData={ this.editUserData }
+								deletePromotionData={this.deletePromotionData.bind(this)}
 							/>
 
 						</div>

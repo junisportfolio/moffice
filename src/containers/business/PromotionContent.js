@@ -47,7 +47,14 @@ class PromotionContent extends Component {
 					<label className="control-label col-xs-4">코인 상태:</label>
 					<div className="col-xs-8">
 						<label className="control-label">
-              {this.props.data_promotion_coin_status}
+              {(() => {
+                switch (+this.props.data_promotion_coin_status) {
+                  case 0: return "삭제";
+                  case 1: return "적용";
+                  case 2: return "대기";
+                  default: return this.props.data_promotion_coin_status + ", 관리자에게 문의하세요.";
+                }
+              })()}
 						</label>
 					</div>
 				</div>
@@ -106,6 +113,11 @@ class PromotionContent extends Component {
 							onClick={ this.props.toggleEdit }
 						>수정
 						</button>
+						<button
+							className="btn btn-danger"
+							onClick={ this.props.deletePromotionData }
+						>삭제
+						</button>
 					</div>
 				</div>
 			</form>
@@ -159,7 +171,7 @@ class PromotionContent extends Component {
 										className="form-control"
 
 						>
-							<option value="0">상태 0 </option>
+							<option value="0">삭제</option>
 							<option value="1">적용</option>
 							<option value="2">대기</option>
 						</select>
