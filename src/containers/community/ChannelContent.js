@@ -54,6 +54,7 @@ class ChannelContent extends Component {
 						</div>
 
 					</div>
+
 					{/*<div className="form-group">
 						<label className="control-label col-xs-4" for="grade">Channel 상태:</label>
 						<div className="col-xs-8">
@@ -71,8 +72,8 @@ class ChannelContent extends Component {
 											</span>
 							</div>
 						</div>
-
 					</div>*/}
+
 					<div className="form-group">
 						<label className="control-label col-xs-4" for="grade">Channel 레벨:</label>
 						<div className="col-xs-8">

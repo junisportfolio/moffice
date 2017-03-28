@@ -44,7 +44,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    &:after{
+    &:after {
       clear: both;
       display: block;
       content: '';
@@ -55,11 +55,11 @@
     -ms-transition: ease-in 0.3s;
     -o-transition: ease-in 0.3s;
     transition: ease-in 0.3s;
-    &:hover{
-      background-color: rgba(0,0,0,0.05);
-      span{
-        &.right{
-            opacity: 1;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      span {
+        &.right {
+          opacity: 1;
         }
       }
     }
@@ -69,7 +69,7 @@
       &.title {
 
       }
-      &.text{
+      &.text {
         padding: 0 10px;
       }
       &.right {
@@ -81,7 +81,7 @@
         text-align: left;
         line-height: 35px;
       }
-      button{
+      button {
         font-size: 10px;
         padding: 2px 3px;
         margin: 0 2px;
@@ -232,5 +232,59 @@
   background-repeat: no-repeat;
   .btn {
     cursor: default;
+  }
+}
+
+ul.products-list {
+  width: 100%;
+  padding: 10px;
+
+  li{
+    position: relative;
+    float: left;
+    width: 100%;
+  }
+
+  .product-item {
+    padding-top: 160px;
+    background-repeat: no-repeat;
+    background-position: 50% 10px;
+
+    &:after{
+      clear: both;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+    }
+    span {
+      display: block;
+      text-align: center;
+    }
+    .index {
+      position: absolute;
+      left: 20px;
+      top: 15px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .table{
+      th{
+        text-align: right;
+        vertical-align: top;
+      }
+      td{
+        vertical-align: middle;
+      }
+    }
+    .btn-group{
+      display: block;
+      width: 100%;
+      text-align: right;
+      .btn{
+
+      }
+    }
   }
 }

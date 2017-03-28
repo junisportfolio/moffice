@@ -61,6 +61,8 @@ class Channel extends React.Component {
       data_user_join_type: '',
       data_user_status: '',
 
+			asdasd: false,
+
 
 
     }
