@@ -11,7 +11,7 @@ class ExchangeContent extends Component {
 
 		return (
 			<div className="box-body border-style">
-				<form className="form-horizontal">
+				<form className="form-horizontal" onSubmit={e => e.preventDefault()}>
 					<div className="form-group">
 						<label className="control-label col-xs-4">이름:</label>
 						<div className="col-xs-8">
@@ -62,23 +62,49 @@ class ExchangeContent extends Component {
 					</div>
 
 					<div className="form-group">
-						<label className="control-label col-xs-4">코인 출금:</label>
+						<label className="control-label col-xs-4">코인 출금 환율:</label>
 						<div className="col-xs-8">
 							<div className="input-group">
-
 								<input
-									id="give_coin"
+									id="exchange_fee"
 									type="number"
-									name="give_coin"
-									placeholder="꿀 출금"
+									name="input_exchange_fee"
+									placeholder="꿀 출금 환율"
 									className="form-control"
-									value={this.props.take_coin}
+									value={this.props.input_exchange_fee}
+									onChange={this.props.handleChange}
 								/>
 
 								<span className="input-group-btn">
 									<button
 										className="btn btn-primary btn-flat"
-										onClick={this.props.handleTake}
+										onClick={this.props.handleFee}
+									>변경
+									</button>
+								</span>
+
+							</div>
+						</div>
+					</div>
+
+					<div className="form-group">
+						<label className="control-label col-xs-4">코인 출금:</label>
+						<div className="col-xs-8">
+							<div className="input-group">
+								<input
+									id="user_coin"
+									type="number"
+									name="input_user_coin"
+									placeholder="꿀 출금"
+									className="form-control"
+									value={this.props.input_user_coin}
+									onChange={this.props.handleChange}
+								/>
+
+								<span className="input-group-btn">
+									<button
+										className="btn btn-primary btn-flat"
+										onClick={this.props.handleExchange}
 									>출금
 									</button>
 								</span>

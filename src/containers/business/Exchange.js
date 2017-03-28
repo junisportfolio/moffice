@@ -53,6 +53,9 @@ class Exchange extends React.Component {
 			data: '',
 			user_info: '',
 
+			input_exchange_fee: "",
+      input_user_coin: ""
+
 		}
 
 		this.handleListType = this.handleListType.bind(this);
@@ -227,6 +230,8 @@ class Exchange extends React.Component {
 		});
 	}
 
+
+
 	// List viewer
 	getExchangeList() {
 		jasync.get({
@@ -272,6 +277,44 @@ class Exchange extends React.Component {
 		});
 	}
 
+  handleFee() {
+		if(confirm("해당 사용자의 코인 출금 환율을 변경하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/exchange/fee",
+				data: {
+          user_id: this.state.data_user_id,
+          exchange_fee: this.state.input_exchange_fee
+        },
+				success: sss => {
+					if(sss.result === "ok") {
+						alert(sss.message);
+
+						this.setState({input_exchange_fee: 0});
+					}
+				}
+      });
+		}
+	}
+  handleExchange() {
+		if(confirm("해당 사용자의 코인을 출금하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/exchange",
+				data: {
+          user_id: this.state.data_user_id,
+          user_coin: this.state.input_user_coin
+        },
+				success: sss => {
+					if(sss.result === "ok") {
+						alert(sss.message);
+
+            this.setState({input_user_coin: 0}, () => {
+              this.getUserData(this.state.data_user_id);
+						});
+          }
+				}
+			});
+		}
+	}
 
 	render() {
 
@@ -346,8 +389,11 @@ class Exchange extends React.Component {
 							data_user_coin={this.state.data_user_coin}
 							data_user_free_coin={this.state.data_user_free_coin}
 							data_user_total_coin={this.state.data_user_total_coin}
-
+							input_exchange_fee={this.state.input_exchange_fee}
+							input_user_coin={this.state.input_user_coin}
 							handleChange={ this.handleChange }
+							handleFee={this.handleFee.bind(this)}
+							handleExchange={this.handleExchange.bind(this)}
 							editMode={ this.state.editMode }
 							toggleEdit={ this.toggleEdit }
 							editUserData={ this.editUserData }
