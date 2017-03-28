@@ -10,7 +10,7 @@ class ChannelContentUsers extends Component {
 	}
 
 	render() {
-
+		console.log(this.props);
 
 
 		let list_content = "접속한 유저 정보가 없습니다.";
@@ -33,6 +33,7 @@ class ChannelContentUsers extends Component {
 						handleUnsilence={this.props.handleUnsilence}
 						handleOut={this.props.handleOut}
 						data_broadcast_idx={this.props.data_broadcast_idx}
+						data_broadcast_chat_id={this.props.data_broadcast_chat_id}
 					/>
 				)
 			}
@@ -77,17 +78,17 @@ class ChannelContentUser extends React.Component {
 		}
 
 		let manager_off = (
-			<button type="button" className="btn btn-success" onClick={() => this.props.handleUnmanager(this.props.data_broadcast_idx, this.props.user_id)}>매니저 <i className="fa fa-toggle-on" aria-hidden="true"></i></button>
+			<button type="button" className="btn btn-success" onClick={() => this.props.handleUnmanager(this.props.data_broadcast_chat_id, this.props.user_id)}>매니저 <i className="fa fa-toggle-on" aria-hidden="true"></i></button>
 		)
 		let manager_on = (
-			<button type="button" className="btn btn-default" onClick={() => this.props.handleManager(this.props.data_broadcast_idx, this.props.user_id)}>매니저 <i className="fa fa-toggle-off" aria-hidden="true"></i></button>
+			<button type="button" className="btn btn-default" onClick={() => this.props.handleManager(this.props.data_broadcast_chat_id, this.props.user_id)}>매니저 <i className="fa fa-toggle-off" aria-hidden="true"></i></button>
 		)
 
 		let silenced60_off = (
-			<button type="button" className="btn btn-warning" onClick={() => this.props.handleUnsilence(this.props.data_broadcast_idx, this.props.user_id)}>침묵 <i className="fa fa-toggle-on" aria-hidden="true"></i></button>
+			<button type="button" className="btn btn-warning" onClick={() => this.props.handleUnsilence(this.props.data_broadcast_chat_id, this.props.user_id)}>침묵 <i className="fa fa-toggle-on" aria-hidden="true"></i></button>
 		)
 		let silenced60_on = (
-			<button type="button" className="btn btn-default" onClick={() => this.props.handleSilence(this.props.data_broadcast_idx, this.props.user_id)}>침묵 <i className="fa fa-toggle-off" aria-hidden="true"></i></button>
+			<button type="button" className="btn btn-default" onClick={() => this.props.handleSilence(this.props.data_broadcast_chat_id, this.props.user_id)}>침묵 <i className="fa fa-toggle-off" aria-hidden="true"></i></button>
 		)
 
 		/*let silenced_off = (
@@ -98,7 +99,7 @@ class ChannelContentUser extends React.Component {
 		)
 		*/
 		let block = (
-			<button type="button" className="btn btn-danger" onClick={() => this.props.handleOut(this.props.data_broadcast_idx, this.props.user_id)}>강퇴</button>
+			<button type="button" className="btn btn-danger" onClick={() => this.props.handleOut(this.props.data_broadcast_chat_id, this.props.user_id)}>강퇴</button>
 		);
 
 		return (
@@ -111,7 +112,7 @@ class ChannelContentUser extends React.Component {
 							</span>
 				<span className="right">
 					{this.props.user_manager ? manager_off : manager_on}
-					{this.props.user_silenced60 ? silenced60_off : silenced60_on}
+					{this.props.user_silenced ? silenced60_off : silenced60_on}
 					{block}
 							</span>
 			</li>

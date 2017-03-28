@@ -18,7 +18,7 @@ class ChannelContent extends Component {
 
     if(this.props.data_join_managers) {
       managers = this.props.data_join_managers.map(manager =>
-        (<button className="btn btn-default" onClick={() => this.props.handleUnmanager(this.props.data_broadcast_idx, manager.user_id)}>{manager.user_nickname}<span className="badge">해제</span></button>)
+        (<button className="btn btn-default" onClick={() => this.props.handleUnmanager(this.props.data_broadcast_chat_id, manager.user_id)}>{manager.user_nickname}<span className="badge">해제</span></button>)
       );
     } else {
       managers = "등록된 매니져가 없습니다.";
@@ -30,7 +30,7 @@ class ChannelContent extends Component {
 
     if(this.props.data_silence_users) {
       silences = this.props.data_silence_users.map(silence =>
-        (<button className="btn btn-default" onClick={() => this.props.handleUnsilence(this.props.data_broadcast_idx, silence.user_id)}>{silence.user_nickname}<span className="badge">해제</span></button>)
+        (<button className="btn btn-default" onClick={() => this.props.handleUnsilence(this.props.data_broadcast_chat_id, silence.user_id)}>{silence.user_nickname}<span className="badge">해제</span></button>)
       );
     } else {
       silences = "침묵 사용자가 없습니다.";
@@ -78,7 +78,7 @@ class ChannelContent extends Component {
 							<label className="control-label col-xs-4" htmlFor="grade">채팅방 번호:</label>
 							<div className="col-xs-8">
 								<label className="control-label">
-									{this.props.data_broadcast_idx || ""}
+									{this.props.data_broadcast_idx || "오픈 채팅방입니다."}
 								</label>
 							</div>
 						</div>

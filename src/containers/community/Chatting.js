@@ -115,14 +115,10 @@ class Chatting extends Component {
 
 	handleSearchValue(e) {
 		this.setState({search_value: e.target.value});
-
-		console.log(this.state.search_value);
 	}
 
 	handleVirtualCountChange(e) {
 		this.setState({input_broadcast_chat_virtual_count: e.target.value});
-
-		console.log(this.state.input_broadcast_chat_virtual_count);
 	}
 
 	handleVirtualCount() {
@@ -153,10 +149,7 @@ class Chatting extends Component {
 			jasync.post({
 				url: "/private/v1/chat/chat_manager/" + chat_id + "/" + user_id,
 				success: data => {
-					this.setState({
-						community: data.community,
-						channel_id: data.community[0].community_id
-					}, () => this.getChattingData(this.state.room_info));
+          this.getChattingData(this.state.room_info);
 				}
 			});
 		}
@@ -167,10 +160,7 @@ class Chatting extends Component {
 			jasync.post({
 				url: "/private/v1/chat/chat_unmanager/" + chat_id + "/" + user_id,
 				success: data => {
-					this.setState({
-						community: data.community,
-						channel_id: data.community[0].community_id
-					}, () => this.getChattingData(this.state.room_info));
+          this.getChattingData(this.state.room_info);
 				}
 			});
 		}
@@ -182,10 +172,7 @@ class Chatting extends Component {
 			jasync.post({
 				url: "/private/v1/chat/chat_silence/" + chat_id + "/" + user_id,
 				success: data => {
-					this.setState({
-						community: data.community,
-						channel_id: data.community[0].community_id
-					}, () => this.getChattingData(this.state.room_info));
+          this.getChattingData(this.state.room_info);
 				}
 			});
 		}
@@ -196,10 +183,7 @@ class Chatting extends Component {
 			jasync.post({
 				url: "/private/v1/chat/chat_unsilence/" + chat_id + "/" + user_id,
 				success: data => {
-					this.setState({
-						community: data.community,
-						channel_id: data.community[0].community_id
-					}, () => this.getChattingData(this.state.room_info));
+          this.getChattingData(this.state.room_info);
 				}
 			});
 		}
@@ -210,10 +194,8 @@ class Chatting extends Component {
 			jasync.delete({
 				url: "/private/v1/chat/user_out/" + chat_id + "/" + user_id,
 				success: data => {
-					this.setState({
-						community: data.community,
-						channel_id: data.community[0].community_id
-					}, () => this.getChattingData(this.state.room_info));
+					alert(data.message);
+          this.getChattingData(this.state.room_info);
 				}
 			});
 		}
@@ -432,6 +414,7 @@ class Chatting extends Component {
 							<ChattingContentUsers
 								list={this.state.join_users}
 								data_broadcast_idx={this.state.data_broadcast_idx}
+								data_broadcast_chat_id={this.state.data_broadcast_chat_id}
 								handleManager={this.chatManager.bind(this)}
 								handleSilence={this.chatSilence.bind(this)}
 								handleOut={this.userOut.bind(this)}
