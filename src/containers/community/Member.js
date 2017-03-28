@@ -55,6 +55,11 @@ class Member extends React.Component {
 			data_user_coin: '',
 			data_user_point: '',
 
+      input_user_level: '',
+      input_user_nickname: '',
+      input_user_email: '',
+      input_user_status: "",
+
 		}
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -66,6 +71,22 @@ class Member extends React.Component {
 
 	}
 
+	handleLevel(e) {
+		this.setState({input_user_level: e.target.value});
+	}
+
+	handleNickname(e) {
+		this.setState({input_user_nickname: e.target.value});
+	}
+
+	handleEmail(e) {
+		this.setState({input_user_email: e.target.value});
+	}
+
+	handleStatus(e) {
+		this.setState({input_user_status: e.target.value});
+	}
+
 	handleChange(e) {
 		let nextState = {};
 		nextState[e.target.name] = e.target.value;
@@ -74,7 +95,11 @@ class Member extends React.Component {
 
 	toggleEdit() {
 		this.setState({
-			editMode: !this.state.editMode
+			editMode: !this.state.editMode,
+      input_user_level: this.state.data_user_level,
+      input_user_nickname: this.state.data_user_nickname,
+      input_user_email: this.state.data_user_email,
+      input_user_status: this.state.data_user_status
 		});
 	}
 
@@ -120,11 +145,11 @@ class Member extends React.Component {
 		jasync.put({
 			url: "/private/v1/users/" + this.state.data_user_id,
 			data: {
-				user_email: this.state.data_user_email,
-				user_nickname: this.state.data_user_nickname,
+				user_email: this.state.input_user_email,
+				user_nickname: this.state.input_user_nickname,
 				user_name: this.state.data_user_name,
 				// user_password: this.state.data_user_password,
-				user_level: this.state.data_user_level,
+				user_level: this.state.input_user_level,
 				user_gender: this.state.data_user_gender,
 				// user_bank_account: this.state.data_user_bank_account,
 				// user_identification: this.state.data_user_identification
@@ -313,6 +338,14 @@ class Member extends React.Component {
 								data_user_identification={ this.state.data_user_identification}
 								data_user_coin={ this.state.data_user_coin}
 								data_user_point={ this.state.data_user_point}
+								input_user_level={this.state.input_user_level}
+								input_user_nickname={this.state.input_user_nickname}
+								input_user_email={this.state.input_user_email}
+								input_user_status={this.state.input_user_status}
+								handleLevel={this.handleLevel.bind(this)}
+								handleNickname={this.handleNickname.bind(this)}
+								handleEmail={this.handleEmail.bind(this)}
+								handleStatus={this.handleStatus.bind(this)}
 								handleChange={ this.handleChange }
 								editMode={ this.state.editMode }
 								toggleEdit={ this.toggleEdit }

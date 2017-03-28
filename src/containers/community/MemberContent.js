@@ -119,8 +119,8 @@ class MemberContent extends Component {
 						<div className="form-group">
 							<select className="form-control"
 											name="data_user_level"
-											value={this.props.data_user_level}
-											onChange={this.props.handleChange}
+											value={this.props.input_user_level}
+											onChange={this.props.handleLevel}
 							>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -211,9 +211,9 @@ class MemberContent extends Component {
 						<input type="text"
 									 className="form-control"
 									 name="data_user_nickname"
-									 value={this.props.data_user_nickname}
+									 value={this.props.input_user_nickname}
 									 placeholder=""
-									 onChange={this.props.handleChange}
+									 onChange={this.props.handleNickname}
 						/>
 					</div>
 				</div>
@@ -224,8 +224,8 @@ class MemberContent extends Component {
 							type="text"
 							className="form-control"
 							name="data_user_email"
-							value={this.props.data_user_email}
-							onChange={this.props.handleChange}
+							value={this.props.input_user_email}
+							onChange={this.props.handleEmail}
 							placeholder=""
 						/>
 
@@ -237,8 +237,8 @@ class MemberContent extends Component {
 						<div className="from-group">
 							<select className="form-control"
 											name="data_user_status"
-											value={this.props.data_user_status}
-											onChange={this.props.handleChange}
+											value={this.props.input_user_status}
+											onChange={this.props.handleStatus}
 							>
 								<option value="0">삭제</option>
 								<option value="1">정상</option>

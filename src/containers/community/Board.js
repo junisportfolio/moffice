@@ -102,7 +102,6 @@ class Board extends React.Component {
       input_board_content: "",
       input_board_status: "",
       input_board_notice_type: ""
-
 		}
 	}
 
