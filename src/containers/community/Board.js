@@ -1,5 +1,6 @@
 import React from 'react';
 import PageHeader from '../../components/PageHeader';
+import jasync from '../../jasync';
 import {
 	BoxTitle,
 	Button, Label,
@@ -7,26 +8,219 @@ import {
 	ListDefault,
 	ListBoard,
 	ListComment,
-	Pagination
+	Pagination,
+	SearchSelect
 } from '../../components/part/';
 
 import BoardContent from './BoardContent';
 
 
 class Board extends React.Component {
-
 	constructor(props) {
 		super(props);
+
+		this.inc = {
+			number: 0
+		};
+
+    this.boards = [
+      {value: "game_free", text: "게임_자유게시판"},
+      {value: "game_humor", text: "게임_유머게시판"},
+      {value: "game_notice", text: "게임_공지사항"},
+      {value: "game_bjnotice", text: "게임_BJ공지사항"},
+      {value: "game_best", text: "게임_베스트"},
+      {value: "talk_free", text: "토크_자유게시판"},
+      {value: "talk_humor", text: "토크_유머게시판"},
+      {value: "talk_notice", text: "토크_공지사항"},
+      {value: "talk_bjnotice", text: "토크_BJ공지사항"},
+      {value: "talk_best", text: "토크_베스트"},
+      {value: "indimusic_free", text: "인디뮤직_자유게시판"},
+      {value: "indimusic_humor", text: "인디뮤직_유머게시판"},
+      {value: "indimusic_notice", text: "인디뮤직_공지사항"},
+      {value: "indimusic_bjnotice", text: "인디뮤직_BJ공지사항"},
+      {value: "indimusic_best", text: "인디뮤직_베스트"}
+    ];
+
+    this.searchKeys = [
+      {value: "board_subject", text: "제목"},
+      {value: "user_nickname", text: "닉네임"},
+      {value: "ip", text: "IP주소"}
+    ];
+
 		this.state = {
 			pageTitle: "게시판관리",
 			pageTitleName: "게시판",
-			pageTitleNameSmall: "관리"
+			pageTitleNameSmall: "관리",
+
+			searchBoardId: this.boards[0].value,
+			searchKey: this.searchKeys[0].value,
+			searchValue: "",
+
+      limit: 10,
+      list: '',
+      list_Tcount: '',
+      list_Tpage: '',
+      list_page: 1,
+
+      board_info: "",
+
+      data_board_idx: "",
+      data_user_id: "",
+      data_board_update_user_id: "",
+      data_board_id: "",
+      data_board_subject: "",
+      data_board_status: "",
+      data_board_notice_type: "",
+      data_board_content_data: "",
+      data_board_write_ip: "",
+      data_board_update_ip: "",
+      data_board_update_date: "",
+      data_board_view_count: "",
+      data_board_thumbnail: "",
+      data_board_image: "",
+      data_board_like: "",
+      data_board_registration_date: "",
+      data_user_access_level: "",
+      data_user_nickname: "",
+      data_user_icon: "",
+      data_user_registration_date: "",
+      data_user_last_login_date: "",
+      data_board_content_idx: "",
+      data_board_content: "",
+
+      comment_list_page: 1,
+      comment_limit: 5,
+      comment_list: "",
+      comment_list_Tcount: "",
+      comment_list_Tpage: ""
 		}
 	}
 
+	handleSearch() {
+		this.getBoardList();
+	}
+
+	handleChangeBoard(e) {
+		this.setState({searchBoardId: e.target.value});
+	}
+
+	handleChangeKey(e) {
+    this.setState({searchKey: e.target.value});
+	}
+
+	handleChangeValue(e) {
+    this.setState({searchValue: e.target.value});
+	}
+
+  handlePagination(index) {
+    this.setState({
+      list_page: index
+    }, () => {
+      this.getBoardList(this.state.board_info);
+    });
+  }
+
+  handleCommentPagination(index) {
+    this.setState({
+      comment_list_page: index
+    }, () => {
+      this.getCommentList(this.state.board_info);
+    });
+  }
+
+  handleSelect(board_info) {
+		this.getBoardData(board_info);
+	}
+
+	handleSelectComment(board_info) {
+		this.getCommentList(board_info);
+	}
+
+  getBoardList() {
+		if(this.state.searchBoardId) {
+      jasync.get({
+        url: "/private/v1/board/" + this.state.searchBoardId,
+        data: {
+          page: this.state.list_page,
+          limit: this.state.limit,
+          search_type: this.state.searchKey,
+          search_value: this.state.searchValue
+        },
+        success: data => {
+          this.setState({
+            list: data.board,
+
+            list_Tcount: +data.total_count,
+            list_Tpage: +data.total_page,
+            list_page: +data.page,
+
+            board_info: data.board[0].board_idx
+          }, () => this.getBoardData(this.state.board_info));
+        }
+      });
+		}
+	}
+
+	getBoardData(board_info) {
+    jasync.get({
+      url: "/private/v1/board/" + this.state.searchBoardId + "/" + board_info,
+      success: data => {
+        this.setState({
+          comment_list_page: 1,
+          board_info: data.board.board_idx,
+          data_board_idx: data.board.board_idx,
+          data_user_id: data.board.user_id,
+          data_board_update_user_id: data.board.board_update_user_id,
+          data_board_id: data.board.board_id,
+          data_board_subject: data.board.board_subject,
+          data_board_status: data.board.board_status,
+          data_board_notice_type: data.board.board_notice_type,
+          data_board_content_data: data.board.board_content_data,
+          data_board_write_ip: data.board.board_write_ip,
+          data_board_update_ip: data.board.board_update_ip,
+          data_board_update_date: data.board.board_update_date,
+          data_board_view_count: data.board.board_view_count,
+          data_board_thumbnail: data.board.board_thumbnail,
+          data_board_image: data.board.board_image,
+          data_board_like: data.board.board_like,
+          data_board_registration_date: data.board.board_registration_date,
+          data_user_access_level: data.board.user_access_level,
+          data_user_nickname: data.board.user_nickname,
+          data_user_icon: data.board.user_icon,
+          data_user_registration_date: data.board.user_registration_date,
+          data_user_last_login_date: data.board.user_last_login_date,
+          data_board_content_idx: data.board_content.board_content_idx,
+          data_board_content: {__html: data.board_content.board_content}
+        }, () => this.getCommentList(data.board.board_idx));
+      }
+    });
+	}
+
+  getCommentList(board_info) {
+    if(this.state.searchBoardId) {
+      jasync.get({
+        url: "/private/v1/board/" + this.state.searchBoardId + "/" + board_info + "/comment",
+        data: {
+          page: this.state.comment_list_page,
+          limit: this.state.comment_limit
+        },
+        success: data => {
+          this.setState({
+            comment_list: data.comment,
+
+            comment_list_Tcount: +data.comment_count,
+            comment_list_Tpage: +data.comment_total_page,
+          });
+        }
+      });
+    }
+  }
+
+	componentDidMount() {
+    this.getBoardList();
+	}
 
 	render() {
-
 		return (
 			<section className="content">
 				<PageHeader
@@ -47,16 +241,40 @@ class Board extends React.Component {
 
 							</div>
 							<div className="box-body">
-
+								<SearchSelect widthRatio="8" options={this.boards} selectedOption={this.state.searchBoardId} handleChange={this.handleChangeBoard.bind(this)} />
+								<SearchSelect widthRatio="4" options={this.searchKeys} selectedOption={this.state.searchKey} handleChange={this.handleChangeKey.bind(this)} />
+								<div className="input-group input-group-sm col-xs-12 col-sm-12 col-lg-12">
+									<input
+										type="text"
+										name="keyword"
+										className="form-control"
+										value={this.state.searchValue}
+										onChange={this.handleChangeValue.bind(this)}
+									/>
+									<InputGroupBtn>
+										<Button
+											type="button"
+											className="btn btn-success btn-flat"
+											name="검색"
+											handleSearch={this.handleSearch.bind(this)}
+										/>
+									</InputGroupBtn>
+								</div>
 								<ListBoard
+									inc={this.inc}
 									list={this.state.list}
+									handleSelect={this.handleSelect.bind(this)}
 								/>
 
 							</div>
 							<div className="box-footer">
 
 								<Pagination
-									pagination=""
+									limit={this.state.limit}
+									total_page={this.state.list_Tpage}
+									total_count={this.state.list_Tcount}
+									list_page={this.state.list_page}
+									handlePagination = {this.handlePagination.bind(this)}
 								/>
 
 							</div>
@@ -77,7 +295,29 @@ class Board extends React.Component {
 								<div className="box-body">
 
 									<BoardContent
-
+										data_board_idx={this.state.data_board_idx}
+										data_user_id={this.state.data_user_id}
+										data_board_update_user_id={this.state.data_board_update_user_id}
+										data_board_id={this.state.data_board_id}
+										data_board_subject={this.state.data_board_subject}
+										data_board_status={this.state.data_board_status}
+										data_board_notice_type={this.state.data_board_notice_type}
+										data_board_content_data={this.state.data_board_content_data}
+										data_board_write_ip={this.state.data_board_write_ip}
+										data_board_update_ip={this.state.data_board_update_ip}
+										data_board_update_date={this.state.data_board_update_date}
+										data_board_view_count={this.state.data_board_view_count}
+										data_board_thumbnail={this.state.data_board_thumbnail}
+										data_board_image={this.state.data_board_image}
+										data_board_like={this.state.data_board_like}
+										data_board_registration_date={this.state.data_board_registration_date}
+										data_user_access_level={this.state.data_user_access_level}
+										data_user_nickname={this.state.data_user_nickname}
+										data_user_icon={this.state.data_user_icon}
+										data_user_registration_date={this.state.data_user_registration_date}
+										data_user_last_login_date={this.state.data_user_last_login_date}
+										data_board_content_idx={this.state.data_board_content_idx}
+										data_board_content={this.state.data_board_content}
 									/>
 
 								</div>
@@ -92,14 +332,22 @@ class Board extends React.Component {
 										mainTitle="댓글"
 										subTitle="리스트"
 									/>
-
 								</div>
 								<div className="box-body">
-
 									<ListComment
-										list={this.state.commentlist}
+										inc={this.inc}
+										list={this.state.comment_list}
+										board_id={this.state.data_board_id}
+										board_idx={this.state.board_info}
+										handleSelectComment={this.handleSelectComment.bind(this)}
 									/>
-
+									<Pagination
+										limit={this.state.comment_limit}
+										total_page={this.state.comment_list_Tpage}
+										total_count={this.state.comment_list_Tcount}
+										list_page={this.state.comment_list_page}
+										handlePagination = {this.handleCommentPagination.bind(this)}
+									/>
 								</div>
 							</div>
 						</div>

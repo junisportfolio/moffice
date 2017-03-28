@@ -9,7 +9,6 @@ class BoardContent extends Component {
 	}
 
 	render() {
-
 		return (
 			<table className="table-board">
 				<colgroup>
@@ -21,31 +20,27 @@ class BoardContent extends Component {
 				<thead>
 				<tr>
 					<th>게시글 제목</th>
-					<td colSpan="3" className="text-left">adkjwkf lwkdlkwldk l wl dklwkdl kawl kd lawkd lkaw ldk awk
-						dlkalwkd lawk dlk awlkd lakw dlkaw ldk lakwfadkjwkf lwkdlkwldk l wl dklwkdl kawl kd lawkd lkaw
-						ldk awk dlkalwkd lawk dlk awlkd lakw dlkaw ldk lakwf
-					</td>
+					<td colSpan="3" className="text-left">{this.props.data_board_subject}</td>
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td>홍길동</td>
+					<td>{this.props.data_user_nickname}</td>
 					<th>등록일</th>
-					<td>2017.02.15</td>
+					<td>{this.props.data_board_registration_date}</td>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<td>test4</td>
+					<td>{this.props.data_board_view_count}</td>
 					<th>추천</th>
-					<td>232</td>
+					<td>{this.props.data_board_like}</td>
 				</tr>
 				</thead>
 				<tbody>
 				<tr>
 					<td colSpan="4" className="content-area">
-						<p>asdmnasbdmjnsajn</p>
-						<p>asdmnasbdmjnsajn</p>
-						<img src="http://placehold.it/350x150" alt=""/>
-						<p>asdmnasbdmjnsajn</p>
+						<div className="embed-responsive embed-responsive-4by3">
+							{this.props.data_board_content ? (<div className="embed-responsive-item" dangerouslySetInnerHTML={this.props.data_board_content}  />) : ""}
+						</div>
 					</td>
 				</tr>
 				</tbody>

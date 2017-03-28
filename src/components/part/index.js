@@ -18,7 +18,7 @@ import ListPromotion from './ListPromotion';
 import ListBoard from './ListBoard';
 import ListComment from './ListComment';
 import Pagination from './Pagination';
-
+import SearchSelect from './SearchSelect';
 
 export {
 	BoxTitle,
@@ -36,5 +36,6 @@ export {
 	ListBoard,
 	ListProduct,
 	ListComment,
-	Pagination
+	Pagination,
+	SearchSelect
 };

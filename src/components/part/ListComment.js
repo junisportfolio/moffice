@@ -10,91 +10,37 @@ class ListComment extends Component {
 	}
 
 	render() {
-
 		let list_content = "";
-		if (typeof this.props.commentlist === "object") {
-			list_content = this.props.commentlist.map(
+		if (typeof this.props.list === "object") {
+			list_content = this.props.list.map(
 				(list) => <ListCommentItem
-					community_id={list.community_id}
+					key={this.props.inc.number++}
+					board_id={this.props.board_id}
+					board_idx={this.props.board_idx}
+					comment_content={{__html: list.comment_content}}
+					comment_depth={list.comment_depth}
+					comment_group={list.comment_group}
+					comment_idx={list.comment_idx}
+					comment_ip={list.comment_ip}
+					comment_is_mine={list.comment_is_mine}
+					comment_order_num={list.comment_order_num}
+					comment_registration_date={list.comment_registration_date}
+					comment_status={list.comment_status}
+					user_icon={list.user_icon}
 					user_id={list.user_id}
+					user_level={list.user_level}
 					user_nickname={list.user_nickname}
-					user_name={list.user_name}
-					user_email={list.user_email}
-					community_user_level={list.user_email}
-					user_status={list.user_status}
-					user_registration_date={this.state.data.user_registration_date}
-					handleSelect={() => this.handleSelect(list.user_id)}
 				/>
-			)
+			);
+		}
+
+		if(list_content === "") {
+      list_content = "등록된 댓글이 없습니다.";
 		}
 
 		return (
 			<ul className="list-group comment-list">
-
 				{list_content}
-
-
-				<li className="list-group-item">
-
-					<div className="writer">
-							<span className="icon">
-								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
-							</span>
-						<span className="name">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
-							</span>
-						<span className="date">
-								등록일 :
-								<span className="data">2017-02-01</span>
-							</span>
-						<span className="location">
-								등록IP :
-								<span className="data">59.10.126.8</span>
-							</span>
-					</div>
-					<div className="controler">
-						<button className="btn btn-warning">R</button>
-						<button className="btn btn-danger">D</button>
-
-					</div>
-					<hr/>
-					<textarea name="" id="" rows="5" className="comment-area"
-										value={'Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab, accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/> nulla officiis omnis ratione sed similique.'}>
-
-						</textarea>
-				</li>
-				<li className="list-group-item">
-
-					<div className="writer">
-							<span className="icon">
-								<img src="http://office.beta-mocobee.com//data/image/avatar/ava_03.png"/>
-							</span>
-						<span className="name">
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, voluptatum!
-							</span>
-						<span className="date">
-								등록일 :
-								<span className="data">2017-02-01</span>
-							</span>
-						<span className="location">
-								등록IP :
-								<span className="data">59.10.126.8</span>
-							</span>
-					</div>
-					<div className="controler">
-						<button className="btn btn-warning">R</button>
-						<button className="btn btn-danger">D</button>
-
-					</div>
-					<hr/>
-					<div className="comment-area">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br/>Accusantium aperiam, aspernatur
-						dolorem <br/>doloremque, dolores fugit libero placeat quia, quis quos rem soluta velit. Ab,
-						accusantium,<br/> animi atque doloremque ducimus eaque esse exercitationem harum neque,<br/>
-						nulla officiis omnis ratione sed similique.
-					</div>
-
-				</li>
 			</ul>
 		);
 	}

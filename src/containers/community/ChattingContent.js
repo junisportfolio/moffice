@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import EditableInputGroup from '../../components/part/EditableInputGroup';
 
 
 class ChannelContent extends Component {
@@ -12,6 +13,32 @@ class ChannelContent extends Component {
 	}
 
 	render() {
+		let managers = "";
+		let silences = "";
+
+    if(this.props.data_join_managers) {
+      managers = this.props.data_join_managers.map(manager =>
+        (<button className="btn btn-default">홍길동 <span className="badge">해제</span></button>)
+      );
+    } else {
+      managers = "등록된 매니져가 없습니다.";
+    }
+
+    if(managers.length === 0) {
+      managers = "등록된 매니져가 없습니다.";
+		}
+
+    if(this.props.data_silence_users) {
+      silences = this.props.data_silence_users.map(silence =>
+        (<button className="btn btn-default">홍길동 <span className="badge">해제</span></button>)
+      );
+    } else {
+      silences = "침묵 사용자가 없습니다.";
+    }
+
+    if(silences.length === 0) {
+      silences = "침묵 사용자가 없습니다.";
+    }
 
 		return (
 
@@ -37,9 +64,9 @@ class ChannelContent extends Component {
 									<label className="control-label">
 										{this.props.data_broadcast_chat_name || ""}
 									</label>
-									<span className="input-group-btn">
+									{/*<span className="input-group-btn">
 													<button type="button" className="btn btn-warning btn-flat">수정</button>
-											</span>
+											</span>*/}
 								</div>
 							</div>
 
@@ -60,21 +87,11 @@ class ChannelContent extends Component {
 								</label>
 							</div>
 						</div>
-						<div className="form-group">
-							<label className="control-label col-xs-4" for="id">채팅방 가상인원:</label>
-							<div className="col-xs-8">
-
-								<div className="input-group input-group-sm">
-									<label className="control-label">
-										{this.props.data_broadcast_virtual_count || ""}
-									</label>
-									<span className="input-group-btn">
-													<button type="button" className="btn btn-warning btn-flat">수정</button>
-												</span>
-								</div>
-
-							</div>
-						</div>
+						<EditableInputGroup field_name="채팅방 가상인원:" func={this.props.handleVirtualCountChange}>
+							<label className="control-label">
+                {this.props.data_broadcast_virtual_count || ""}
+							</label>
+						</EditableInputGroup>
 						<div className="form-group">
 							<label className="control-label col-xs-4" for="name">채팅방 공지:</label>
 							<div className="col-xs-8">
@@ -102,40 +119,32 @@ class ChannelContent extends Component {
 						<div className="form-group">
 							<label className="control-label col-xs-4" for="email">채팅방 매니져:</label>
 							<div className="col-xs-8">
-
-								<button className="btn btn-default">홍길동 <span className="badge">해제</span></button>
+								{managers}
 							</div>
 						</div>
-						<div className="form-group">
+						{/*<div className="form-group">
 							<label className="control-label col-xs-4" for="email">채팅방 차단:</label>
 							<div className="col-xs-8">
 
 								<button className="btn btn-default">홍길동 <span className="badge">해제</span></button>
 							</div>
-						</div>
+						</div>*/}
 						<div className="form-group">
 							<label className="control-label col-xs-4" for="nick">채팅방 침묵:</label>
 							<div className="col-xs-8">
-
-								<button className="btn btn-default">홍길동 <span className="badge">해제</span></button>
+								{silences}
 							</div>
 						</div>
-						<hr/>
+						{/*<hr/>
 						<div className="form-group">
 							<label className="control-label col-xs-4" for="nick">사용자 전체 강퇴:</label>
 							<div className="col-xs-8">
 								<button className="btn btn-danger">전체 강퇴</button>
 							</div>
-						</div>
+						</div>*/}
 					</form>
-
 				</div>
-
 			</div>
-
-
-
-
 		);
 	}
 
