@@ -1,6 +1,6 @@
 import {
   Member, Channel, Board, Chatting, Filter,
-  Board_tool, Board_code,
+	BroadTool, BroadCode,
   Cash, Coin, Exchange, Product, Promotion,
   Customer
 } from './containers';
@@ -54,16 +54,16 @@ class Sitemap {
         children: [
           {
             id: "broad_tool",
-            path: "/broadcast/broad_tool",
+            path: "/broadcast/broadtool",
             name: "방송 관리",
             icon: "",
-            content: Board_tool
+            content: BroadTool
           }, {
             id: "broad_code",
-            path: "/broadcast/broad_code",
+            path: "/broadcast/broadcode",
             name: "방송 코드 관리",
             icon: "",
-            content: Board_code
+            content: BroadCode
           }
         ]
       }, {
