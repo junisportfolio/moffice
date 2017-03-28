@@ -9,8 +9,8 @@ import Board from './community/Board';
 import Chatting from './community/Chatting';
 import Filter from './community/Filter';
 /* broadcast */
-import Board_tool from './broadcast/Broad_tool';
-import Board_code from './broadcast/Broad_code';
+import BroadTool from './broadcast/BroadTool';
+import BroadCode from './broadcast/BroadCode';
 /* business */
 import Cash from './business/Cash';
 import Coin from './business/Coin';
@@ -26,7 +26,7 @@ export {
 	Home,
 	Login,
 	Member, Channel, Board, Chatting, Filter,
-	Board_tool, Board_code,
+	BroadTool, BroadCode,
 	Cash, Coin, Exchange, Product, Promotion,
 	Customer,
 	NoMatch
