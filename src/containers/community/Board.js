@@ -24,6 +24,7 @@ class Board extends React.Component {
 		};
 
     this.boards = [
+      {value: "global_notice", text: "전체_공지사항"},
       {value: "game_free", text: "게임_자유게시판"},
       {value: "game_humor", text: "게임_유머게시판"},
       {value: "game_notice", text: "게임_공지사항"},
@@ -63,6 +64,7 @@ class Board extends React.Component {
       list_page: 1,
 
       board_info: "",
+			board_edit_mode: false,
 
       data_board_idx: "",
       data_user_id: "",
@@ -92,12 +94,96 @@ class Board extends React.Component {
       comment_limit: 5,
       comment_list: "",
       comment_list_Tcount: "",
-      comment_list_Tpage: ""
+      comment_list_Tpage: "",
+
+
+      input_board_id: "",
+      input_board_subject: "",
+      input_board_content: "",
+      input_board_status: "",
+      input_board_notice_type: ""
+
+		}
+	}
+
+	handleDelete() {
+		if(confirm("해당 게시글을 삭제하시겠습니까?")) {
+			jasync.delete({
+				url: "/private/v1/board/" + this.state.data_board_id + "/" + this.state.data_board_idx,
+        success: sss => {
+          if(sss.result === "ok") {
+            alert("삭제되었습니다.");
+
+            this.getBoardData(this.state.data_board_idx);
+          }
+        }
+			});
+		}
+	}
+
+	handleModify() {
+		if(confirm("수정하시겠습니까?")) {
+			jasync.put({
+				url: "/private/v1/board/" + this.state.data_board_id + "/" + this.state.data_board_idx,
+				data: {
+          board_id: this.state.input_board_id,
+          board_subject: this.state.input_board_subject,
+          board_content: this.state.input_board_content,
+          board_status: +this.state.input_board_status,
+          board_notice_type: +this.state.input_board_notice_type
+        },
+				success: sss => {
+					if(sss.result === "ok") {
+						alert("수정되었습니다.");
+
+						this.getBoardData(this.state.data_board_idx);
+					}
+				}
+			});
+		}
+	}
+
+	handleBoardId(e) {
+		this.setState({input_board_id: e.target.value});
+	}
+
+	handleBoardSubject(e) {
+		this.setState({input_board_subject: e.target.value});
+	}
+
+	handleBoardContent(e) {
+		this.setState({input_board_content: e.target.value});
+	}
+
+	handleBoardStatus(e) {
+		this.setState({input_board_status: e.target.value});
+	}
+
+	handleBoardNoticeType(e) {
+		this.setState({input_board_notice_type: e.target.value});
+	}
+
+	handleEdit() {
+		this.setState({
+			board_edit_mode: true,
+			input_board_id: this.state.data_board_id,
+      input_board_subject: this.state.data_board_subject,
+      input_board_content: this.state.data_board_content,
+      input_board_status: this.state.data_board_status,
+      input_board_notice_type: this.state.data_board_notice_type
+		});
+	}
+
+	handleView() {
+		if(confirm("현재 수정 내용이 사라집니다.\n취소하시겠습니까?")) {
+      this.setState({
+        board_edit_mode: false
+      });
 		}
 	}
 
 	handleSearch() {
-		this.getBoardList();
+		this.getBoardList(1);
 	}
 
 	handleChangeBoard(e) {
@@ -116,7 +202,7 @@ class Board extends React.Component {
     this.setState({
       list_page: index
     }, () => {
-      this.getBoardList(this.state.board_info);
+      this.getBoardList();
     });
   }
 
@@ -136,16 +222,21 @@ class Board extends React.Component {
 		this.getCommentList(board_info);
 	}
 
-  getBoardList() {
+  getBoardList(page) {
+    let data = this.state.search_value ? {
+        page: page || (isNaN(this.state.list_page) ? 1 : this.state.list_page),
+        limit: this.state.limit,
+        'search_type[]': this.state.searchKey,
+        'search_value[]': this.state.searchValue
+      } : {
+        page: page || (isNaN(this.state.list_page) ? 1 : this.state.list_page),
+        limit: this.state.limit,
+      };
+
 		if(this.state.searchBoardId) {
       jasync.get({
         url: "/private/v1/board/" + this.state.searchBoardId,
-        data: {
-          page: this.state.list_page,
-          limit: this.state.limit,
-          search_type: this.state.searchKey,
-          search_value: this.state.searchValue
-        },
+        data: data,
         success: data => {
           this.setState({
             list: data.board,
@@ -154,7 +245,7 @@ class Board extends React.Component {
             list_Tpage: +data.total_page,
             list_page: +data.page,
 
-            board_info: data.board[0].board_idx
+            board_info: data.board ? data.board[0].board_idx : this.state.board_info
           }, () => this.getBoardData(this.state.board_info));
         }
       });
@@ -167,6 +258,7 @@ class Board extends React.Component {
       success: data => {
         this.setState({
           comment_list_page: 1,
+					board_edit_mode: false,
           board_info: data.board.board_idx,
           data_board_idx: data.board.board_idx,
           data_user_id: data.board.user_id,
@@ -221,6 +313,20 @@ class Board extends React.Component {
 	}
 
 	render() {
+		let button = "";
+
+		if(this.state.board_edit_mode) {
+			button = [
+				<button key="modify_btn" className="btn btn-success" onClick={this.handleModify.bind(this)}>확인</button>,
+        <button key="delete_btn" className="btn btn-danger" onClick={this.handleView.bind(this)}>취소</button>
+			];
+		} else {
+      button = [
+				<button key="modify_btn" className="btn btn-warning" onClick={this.handleEdit.bind(this)}>수정</button>,
+				<button key="delete_btn" className="btn btn-danger" onClick={this.handleDelete.bind(this)}>삭제</button>
+      ];
+		}
+
 		return (
 			<section className="content">
 				<PageHeader
@@ -290,11 +396,15 @@ class Board extends React.Component {
 										mainTitle="Name"
 										subTitle="님의 게시글"
 									/>
-
+									<div className="controller">
+										{button}
+									</div>
 								</div>
 								<div className="box-body">
 
 									<BoardContent
+										board_edit_mode={this.state.board_edit_mode}
+										boards={this.boards}
 										data_board_idx={this.state.data_board_idx}
 										data_user_id={this.state.data_user_id}
 										data_board_update_user_id={this.state.data_board_update_user_id}
@@ -318,6 +428,16 @@ class Board extends React.Component {
 										data_user_last_login_date={this.state.data_user_last_login_date}
 										data_board_content_idx={this.state.data_board_content_idx}
 										data_board_content={this.state.data_board_content}
+										input_board_id={this.state.input_board_id}
+										input_board_subject={this.state.input_board_subject}
+										input_board_content={this.state.input_board_content}
+										input_board_status={this.state.input_board_status}
+										input_board_notice_type={this.state.input_board_notice_type}
+										handleBoardId={this.handleBoardId.bind(this)}
+										handleBoardSubject={this.handleBoardSubject.bind(this)}
+										handleBoardContent={this.handleBoardContent.bind(this)}
+										handleBoardStatus={this.handleBoardStatus.bind(this)}
+										handleBoardNoticeType={this.handleBoardNoticeType.bind(this)}
 									/>
 
 								</div>

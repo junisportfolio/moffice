@@ -76,4 +76,9 @@ $board-bg-th : #f8f8f8;
     }
   }
 
+  .form-control {
+    &.embed-responsive-item {
+      border: 1px solid #d9d9d9;
+    }
+  }
 }

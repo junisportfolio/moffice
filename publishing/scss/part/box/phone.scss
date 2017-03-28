@@ -1,4 +1,18 @@
 div.box{
+  .box-header {
+    div.controller {
+      position: absolute;
+      right: 10px;
+      top: 3px;
+
+      .btn {
+        height: 33px;
+        line-height: 20px;
+        padding: 0 10px;
+        margin: 0 3px;
+      }
+    }
+  }
 
   .box-title{
     &.type-block{
