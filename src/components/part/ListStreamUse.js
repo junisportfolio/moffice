@@ -18,7 +18,7 @@ class ListStreamUse extends Component {
 					community_id={list.community_id}
 					streamcode_url_rtmp={list.streamcode_url_rtmp}
 
-					handleSelect={() => this.props.handleSelect(list.streamcode_idx)}
+					// handleSelect={() => this.props.handleSelect(list.streamcode_idx)}
 
 				/>
 			)

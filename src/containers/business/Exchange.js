@@ -166,15 +166,13 @@ class Exchange extends React.Component {
           user_exchange_price: this.state.input_user_exchange_price
         },
         success: sss => {
-          if(sss.result === "ok") {
-            alert(sss.message);
+					alert(sss.message);
 
-            this.setState({
-              editMode: false
-            }, () => {
-              this.getExchangeList();
-            });
-          }
+					this.setState({
+						editMode: false
+					}, () => {
+						this.getExchangeList();
+					});
         }
 			});
 		}
@@ -185,16 +183,14 @@ class Exchange extends React.Component {
 			jasync.post({
 				url: "/private/v1/exchange/confirm/" + this.state.data2_user_exchange_idx,
         success: sss => {
-          if(sss.result === "ok") {
-            alert(sss.message);
+					alert(sss.message);
 
-            this.setState({
-              editMode: false
-            }, () => {
-              this.getExchangeList();
-            });
-          }
-        }
+					this.setState({
+						editMode: false
+					}, () => {
+						this.getExchangeList();
+					});
+				}
 			});
 		}
 	}
@@ -204,15 +200,13 @@ class Exchange extends React.Component {
 			jasync.post({
 				url: "/private/v1/exchange/cancel/" + this.state.data2_user_exchange_idx,
 				success: sss => {
-					if(sss.result === "ok") {
-						alert(sss.message);
+					alert(sss.message);
 
-						this.setState({
-							editMode: false
-						}, () => {
-              this.getExchangeList();
-						});
-					}
+					this.setState({
+						editMode: false
+					}, () => {
+						this.getExchangeList();
+					});
 				}
 			});
 		}
@@ -360,11 +354,9 @@ class Exchange extends React.Component {
           exchange_fee: this.state.input_exchange_fee
         },
 				success: sss => {
-					if(sss.result === "ok") {
-						alert(sss.message);
+					alert(sss.message);
 
-						this.setState({input_exchange_fee: 0});
-					}
+					this.setState({input_exchange_fee: 0});
 				}
       });
 		}
@@ -378,13 +370,11 @@ class Exchange extends React.Component {
           user_coin: this.state.input_user_coin
         },
 				success: sss => {
-					if(sss.result === "ok") {
-						alert(sss.message);
+					alert(sss.message);
 
-            this.setState({input_user_coin: 0}, () => {
-              this.getUserData(this.state.data_user_id);
-						});
-          }
+					this.setState({input_user_coin: 0}, () => {
+						this.getUserData(this.state.data_user_id);
+					});
 				}
 			});
 		}
