@@ -1,7 +1,7 @@
 var user = "";
 var env = "";
 
-process.argv.filter(arg => arg.indexOf('/mocobee/moffice') > 0).map((arg => arg.split('/').map((split, i) => {
+process.argv.filter(arg => arg.indexOf('/mocobee/office') > 0).map((arg => arg.split('/').map((split, i) => {
   if(i === 2) {
     user = split;
   }
