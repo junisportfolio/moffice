@@ -20,6 +20,7 @@ import ListExchange from './ListExchange';
 import ListPromotion from './ListPromotion';
 import ListBoard from './ListBoard';
 import ListComment from './ListComment';
+import ListCustomer from './ListCustomer';
 import Pagination from './Pagination';
 import SearchSelect from './SearchSelect';
 
@@ -42,6 +43,7 @@ export {
 	ListBoard,
 	ListProduct,
 	ListComment,
+	ListCustomer,
 	Pagination,
 	SearchSelect
 };

@@ -267,6 +267,7 @@ class BroadCode extends React.Component {
 													/>
 												</div>
 												<div className="box-footer">
+
 													<Pagination
 														limit={this.state.limit}
 														total_page={this.state.list_Tpage}
@@ -274,6 +275,7 @@ class BroadCode extends React.Component {
 														list_page={this.state.list_page}
 														handlePagination={this.handlePagination}
 													/>
+
 												</div>
 											</div>
 
