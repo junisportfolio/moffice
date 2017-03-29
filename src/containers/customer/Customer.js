@@ -80,21 +80,9 @@ class Customer extends React.Component {
 		}
 
 		this.handleSearch = this.handleSearch.bind(this);
-		this.handleChannel = this.handleChannel.bind(this);
 		this.handleType = this.handleType.bind(this);
 		this.handleSelect = this.handleSelect.bind(this);
 		this.handlePagination = this.handlePagination.bind(this);
-	}
-
-	handleChannel(index, id) {
-		this.setState({
-			channel_index: index,
-			channel_id: id,
-			list_type: 'users',
-			list_page: 1,
-		}, () => {
-			this.getUserList();
-		});
 	}
 
 	handleType(index, id) {
@@ -111,7 +99,7 @@ class Customer extends React.Component {
 		this.setState({
 			user_info: user_id
 		}, () => {
-			this.getUserData(this.state.user_info);
+			this.getUserData(this.state.page_type_id, this.state.user_info);
 		});
 	}
 
@@ -226,10 +214,10 @@ class Customer extends React.Component {
 
 	getUserData(list_type, list_index) {
 		jasync.get({
-			url: "/private/v1/customer/" + list_type + list_index,
+			url: "/private/v1/customer/" + list_type + "/" + list_index,
 			success: data => {
 
-				if(list_type == 'question') {
+				if(list_type === 'question') {
 
 					let info = data.question;
 					this.setState({
@@ -275,7 +263,7 @@ class Customer extends React.Component {
 
 					});
 
-				}else if(list_type == 'claim') {
+				}else if(list_type === 'claim') {
 
 					let info = data.claim;
 					this.setState({
@@ -316,7 +304,7 @@ class Customer extends React.Component {
 
 					});
 
-				}else if(list_type == 'alliance') {
+				}else if(list_type === 'alliance') {
 
 					let info = data.alliance;
 					this.setState({
@@ -461,6 +449,7 @@ class Customer extends React.Component {
 							<div className="box-body">
 
 								<ListCustomer
+									current_idx={this.state.user_info}
 									list={this.state.list}
 									handleSelect={this.handleSelect}
 								/>
@@ -493,14 +482,61 @@ class Customer extends React.Component {
 
 							{this.state.page_type_id == 'question' ?
 								<CustomerContentQuestion
-
+									data_customer_question_idx={this.state.data_customer_question_idx}
+									data_user_id={this.state.data_user_id}
+									data_user_name={this.state.data_user_name}
+									data_user_nickname={this.state.data_user_nickname}
+									data_user_phone={this.state.data_user_phone}
+									data_user_email={this.state.data_user_email}
+									data_customer_read_status={this.state.data_customer_read_status}
+									data_customer_question_type={this.state.data_customer_question_type}
+									data_customer_question_subject={this.state.data_customer_question_subject}
+									data_customer_question_contents={this.state.data_customer_question_contents}
+									data_customer_question_action={this.state.data_customer_question_action}
+									data_customer_question_status={this.state.data_customer_question_status}
+									data_customer_question_read_status={this.state.data_customer_question_read_status}
+									data_customer_question_reply={this.state.data_customer_question_reply}
+									data_customer_question_ip={this.state.data_customer_question_ip}
+									data_customer_question_reply_date={this.state.data_customer_question_reply_date}
+									data_customer_question_registration_date={this.state.data_customer_question_registration_date}
 								/> : this.state.page_type_id == 'claim' ?
 									<CustomerContentClaim
-
-									/> : this.state.page_type_id == 'alliance' ?
+										data_customer_claim_idx={this.state.data_customer_claim_idx}
+										data_user_id={this.state.data_user_id}
+										data_user_nickname={this.state.data_user_nickname}
+										data_user_email={this.state.data_user_email}
+										data_customer_read_status={this.state.data_customer_read_status}
+										data_customer_claim_type={this.state.data_customer_claim_type}
+										data_customer_claim_subject={this.state.data_customer_claim_subject}
+										data_customer_claim_contents={this.state.data_customer_claim_contents}
+										data_customer_claim_status={this.state.data_customer_claim_status}
+										data_customer_claim_reply={this.state.data_customer_claim_reply}
+										data_customer_claim_image={this.state.data_customer_claim_image}
+										data_customer_claim_read_status={this.state.data_customer_claim_read_status}
+										data_customer_claim_ip={this.state.data_customer_claim_ip}
+										data_customer_claim_reply_date={this.state.data_customer_claim_reply_date}
+										data_customer_claim_registration_date={this.state.data_customer_claim_registration_date}
+									/> : this.state.page_type_id === 'alliance' ?
 										<CustomerContentAlliance
-
-										/>: ''
+											data_customer_alliance_idx={this.state.data_customer_alliance_idx}
+											data_user_id={this.state.data_user_id}
+											data_user_charge_name={this.state.data_user_charge_name}
+											data_user_phone={this.state.data_user_phone}
+											data_user_email={this.state.data_user_email}
+											data_user_id_reply={this.state.data_user_id_reply}
+											data_customer_read_status={this.state.data_customer_read_status}
+											data_customer_alliance_company_name={this.state.data_customer_alliance_company_name}
+											data_customer_alliance_type={this.state.data_customer_alliance_type}
+											data_customer_alliance_subject={this.state.data_customer_alliance_subject}
+											data_customer_alliance_contents={this.state.data_customer_alliance_contents}
+											data_customer_alliance_action={this.state.data_customer_alliance_action}
+											data_customer_alliance_status={this.state.data_customer_alliance_status}
+											data_customer_alliance_attachfile={this.state.data_customer_alliance_attachfile}
+											data_customer_alliance_reply={this.state.data_customer_alliance_reply}
+											data_customer_alliance_ip={this.state.data_customer_alliance_ip}
+											data_customer_alliance_reply_date={this.state.data_customer_alliance_reply_date}
+											data_customer_alliance_registration_date={this.state.data_customer_alliance_registration_date}
+										/> : ''
 							}
 							<CustomerContent
 								data_community_id={this.state.data_community_id}
