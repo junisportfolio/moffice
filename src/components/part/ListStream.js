@@ -26,7 +26,7 @@ class ListStream extends Component {
 					streamcode_status={list.streamcode_status}
 					streamcode_registration_date={list.streamcode_registration_date}
 
-					handleSelect={() => this.props.handleSelect(list.streamcode_idx)}
+					handleSelect={() => this.props.handleSelect(list.streamcode_idx, list.user_id)}
 
 				/>
 			)

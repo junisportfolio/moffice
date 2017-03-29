@@ -25,6 +25,7 @@ class BroadCode extends React.Component {
 			keyword_option: 'user_name',
 			search_keyword: '',
 			editMode: false,
+			editNew: false,
 
 			limit: 10,
 			list: '',
@@ -35,8 +36,14 @@ class BroadCode extends React.Component {
 			data: '',
 			user_info: '',
 
+      input_streamcode_id: "",
+      input_streamcode_status: "",
+      input_streamcode_url: "",
+      input_streamcode_key: "",
+      input_streamcode_password: ""
 
-		}
+
+    }
 
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -51,19 +58,53 @@ class BroadCode extends React.Component {
 		let nextState = {};
 		nextState[e.target.name] = e.target.value;
 		this.setState(nextState);
+
+		console.log(this.state[e.target.name]);
 	}
 
 	toggleEdit() {
 		this.setState({
-			editMode: !this.state.editMode
+			editMode: !this.state.editMode,
+      input_streamcode_id: this.state.data_streamcode_id,
+      input_streamcode_status: this.state.data_streamcode_status,
+      input_streamcode_url: this.state.data_streamcode_url,
+      input_streamcode_key: this.state.data_streamcode_key,
+      input_streamcode_password: this.state.data_streamcode_password
 		});
 	}
 
-	handleSelect(user_id) {
+  confirmEdit() {
+		if(this.state.editNew) {
+			this.enrollmentNewStreamcode();
+		} else {
+			this.modifyStreamcode();
+		}
+	}
+
+	cancelEdit() {
+    this.setState({
+      editMode: false,
+      editNew: false
+    });
+	}
+
+	toggleNew() {
+		this.setState({
+      editMode: !this.state.editMode,
+      editNew: !this.state.editNew,
+      input_streamcode_id: "",
+      input_streamcode_status: "",
+      input_streamcode_url: "",
+      input_streamcode_key: "",
+      input_streamcode_password: ""
+		});
+	}
+
+	handleSelect(user_id, user) {
 		this.setState({
 			user_info: user_id
 		}, () => {
-			this.getUserData(this.state.user_info);
+			this.getUserData(this.state.user_info, user);
 		});
 	}
 
@@ -169,7 +210,7 @@ class BroadCode extends React.Component {
 	}
 
 	// Content viewer
-	getUserData(streamcode_idx) {
+	getUserData(streamcode_idx, user_id) {
 		jasync.get({
 			url: "/private/v1/streamcode/" + streamcode_idx,
 			success: data => {
@@ -187,13 +228,86 @@ class BroadCode extends React.Component {
 					data_streamcode_use_idx: use.streamcode_use_idx,
 					data_broadcast_idx: use.broadcast_idx,
 					data_streamcode_use_registration_date: use.streamcode_use_registration_date,
-
+					data_user_id: user_id
 				});
 			}
 		});
 	}
 
-	render() {
+	enrollmentNewStreamcode() {
+		if(confirm("새로운 방송코드로 등록하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/streamcode/",
+				data: {
+          streamcode_id: this.state.input_streamcode_id,
+          streamcode_status: this.state.input_streamcode_status,
+          streamcode_url: this.state.input_streamcode_url,
+          streamcode_key: this.state.input_streamcode_key,
+          streamcode_password: this.state.input_streamcode_password
+        },
+				success: sss => {
+					alert(sss.message);
+
+          this.setState({
+            editMode: false,
+            editNew: false
+          }, () => this.getUserList());
+				}
+			});
+		}
+	}
+
+  deleteStreamcode() {
+    if(confirm("방송코드를 삭제하시겠습니까?")) {
+    	jasync.delete({
+    		url: "/private/v1/streamcode/" + this.state.user_info,
+				success: sss => {
+    			alert(sss.message);
+
+    			this.getUserList();
+        }
+			});
+    }
+  }
+
+  modifyStreamcode() {
+    if(confirm("방송코드를 수정하시겠습니까?")) {
+    	jasync.post({
+    		url: "/private/v1/streamcode/" + this.state.user_info + "/modify",
+				data: {
+          streamcode_id: this.state.input_streamcode_id,
+          streamcode_status: this.state.input_streamcode_status,
+          streamcode_url: this.state.input_streamcode_url,
+          streamcode_key: this.state.input_streamcode_key,
+          streamcode_password: this.state.input_streamcode_password
+        },
+				success: sss => {
+    			alert(sss.message);
+
+    			this.setState({
+    				editMode: false,
+						editNew: false
+					}, () => this.getUserList());
+				}
+			});
+    }
+  }
+
+  releaseStreamcode(user_id) {
+    if(confirm("사용자에게 방송코드 고정을 해제하시겠습니까?")) {
+      jasync.post({
+        url: "/private/v1/streamcode/" + user_id + "/fix_release",
+        success: sss => {
+        	alert(sss.message);
+
+          this.getUserList();
+        }
+      });
+    }
+  }
+
+
+  render() {
 		const Onair = (
 			<div className="video-area">
 				<div className="video"></div>
@@ -221,6 +335,16 @@ class BroadCode extends React.Component {
 									</b>
 									정보
 								</h3>
+								{
+									this.state.editMode ?
+										"" : (
+											<button type="button"
+															className="btn btn-success"
+															onClick={ this.toggleNew.bind(this) }
+											>추가
+											</button>
+										)
+								}
 							</div>
 							<div className="box-body">
 
@@ -297,10 +421,25 @@ class BroadCode extends React.Component {
 														data_streamcode_use_idx={this.state.data_streamcode_use_idx}
 														data_broadcast_idx={this.state.data_broadcast_idx}
 														data_streamcode_use_registration_date={this.state.data_streamcode_use_registration_date}
+														data_user_id={this.state.data_user_id}
+
+														input_streamcode_id={this.state.input_streamcode_id}
+														input_streamcode_status={this.state.input_streamcode_status}
+														input_streamcode_url={this.state.input_streamcode_url}
+														input_streamcode_key={this.state.input_streamcode_key}
+														input_streamcode_password={this.state.input_streamcode_password}
+
+														enrollmentNewStreamcode={this.enrollmentNewStreamcode.bind(this)}
+														deleteStreamcode={this.deleteStreamcode.bind(this)}
+														modifyStreamcode={this.modifyStreamcode.bind(this)}
+														releaseStreamcode={this.releaseStreamcode.bind(this)}
 
 														handleChange={ this.handleChange }
 														editMode={ this.state.editMode }
+														editNew={ this.state.editNew }
 														toggleEdit={ this.toggleEdit }
+														confirmEdit={this.confirmEdit.bind(this)}
+														cancelEdit={this.cancelEdit.bind(this)}
 														editUserData={ this.editUserData }
 													/>
 
