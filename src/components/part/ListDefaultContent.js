@@ -28,7 +28,7 @@ export default class ListDefaultContent extends React.Component {
 
 
 		return (
-			<li className="list-item-1 has-right" onClick={this.props.handleSelect}>
+			<li className={"list-item-1 has-right" + (this.props.current_idx === this.props.user_id ? " active" : "")} onClick={this.props.handleSelect}>
 				<a>
 					<span className="title">
 						{this.props.user_name}

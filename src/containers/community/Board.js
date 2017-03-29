@@ -368,6 +368,7 @@ class Board extends React.Component {
 								<ListBoard
 									inc={this.inc}
 									list={this.state.list}
+									current_idx={this.state.data_board_idx}
 									handleSelect={this.handleSelect.bind(this)}
 								/>
 

@@ -214,6 +214,7 @@ class Cash extends React.Component {
 
 								<ListCash
 									list={this.state.list}
+									current_idx={this.state.data_payment_idx}
 									handleSelect={this.handleSelect}
 								/>
 

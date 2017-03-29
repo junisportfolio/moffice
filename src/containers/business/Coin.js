@@ -268,6 +268,7 @@ class Coin extends React.Component {
 
 							<ListCoin
 								list={this.state.list}
+								current_idx={this.state.user_info}
 								handleSelect={this.handleSelect}
 							/>
 

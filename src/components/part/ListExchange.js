@@ -13,7 +13,7 @@ class ListExchange extends Component {
 			list_content = this.props.list.map(
 				(list, i) => <ListExchangeContent
 					list_index = {i}
-
+					current_idx={this.props.current_idx}
 					handleSelect={() => this.props.handleSelect(
 						list.user_exchange_idx,
 						list.user_coin,

@@ -43,7 +43,7 @@ export default class ListBroadContent extends React.Component {
 
 
 		return (
-			<li className="list-item-1 has-right" onClick={this.props.handleSelect}>
+			<li className={"list-item-1 has-right" + (this.props.current_idx === this.props.broadcast_idx ? " active" : "")} onClick={this.props.handleSelect}>
 				<a>
 
 					<span className="text">

@@ -33,40 +33,113 @@ class CustomerContent extends Component {
 				<form className="form-horizontal">
 
 					<div className="form-group">
-						<label className="control-label col-xs-4" for="grade">:</label>
+						<label className="control-label col-xs-4" for="grade">문의 순번:</label>
 						<div className="col-xs-8">
 							<label className="control-label">
-								{}
-
-								data_customer_question_idx
-								data_user_id
-								data_user_name
-								data_user_nickname
-								data_user_phone
-								data_user_email
-								data_customer_read_status
-								data_customer_question_type
-								data_customer_question_subject
-								data_customer_question_contents
-								data_customer_question_action
-								data_customer_question_status
-								data_customer_question_read_status
-								data_customer_question_reply
-								data_customer_question_ip
-								data_customer_question_reply_date
-								data_customer_question_registration_date
-
+								{this.props.data_customer_question_idx}
+							</label>
+						</div>
+						{/*<label className="control-label col-xs-4" for="grade">:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_user_id}
+							</label>
+						</div>*/}
+						<label className="control-label col-xs-4" for="grade">문의자 이름:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_user_name}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의자 닉네임:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_user_nickname}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의자 연락처:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_user_phone}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의자 이메일:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_user_email}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">조회상태:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_read_status}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 유형:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_type}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 제목:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_subject}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 내용:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_contents}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">question_action:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_action}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 상태:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_status}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 조회 상태:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_read_status}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 답변:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_reply}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 IP:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_ip}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 답변일자:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_reply_date}
+							</label>
+						</div>
+						<label className="control-label col-xs-4" for="grade">문의 등록 일자:</label>
+						<div className="col-xs-8">
+							<label className="control-label">
+								{this.props.data_customer_question_registration_date}
 							</label>
 						</div>
 					</div>
-
-
-
 				</form>
 			</div>
 		);
 	}
-
 }
 
 export default CustomerContent;

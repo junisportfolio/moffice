@@ -356,6 +356,7 @@ class BroadCode extends React.Component {
 
 													<ListStream
 														list={this.state.list}
+														current_idx={this.state.data_streamcode_idx}
 														handleSelect={this.handleSelect}
 													/>
 

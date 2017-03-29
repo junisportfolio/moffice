@@ -441,6 +441,7 @@ class BroadTool extends React.Component {
 
 													<ListBroad
 														list={this.state.list}
+														current_idx={this.state.data_broadcast_idx}
 														handleSelect={this.handleSelect}
 													/>
 

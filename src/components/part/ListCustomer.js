@@ -174,6 +174,9 @@ class ListCustomer extends Component {
 
 					return <ListCustomerContent
 
+						current_idx={this.props.current_idx}
+						customer_idx={list.customer_question_idx || list.customer_claim_idx || list.customer_alliance_idx}
+
 						list_index={i}
 
 						list_info = {dataInfo}
