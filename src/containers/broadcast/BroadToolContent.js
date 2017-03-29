@@ -237,7 +237,7 @@ class BroadToolContent extends Component {
 
 
 		const listView = (
-			<form className="form-horizontal">
+			<form className="form-horizontal" onSubmit={e => e.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송 번호:</label>
 					<div className="col-xs-8">
@@ -261,7 +261,16 @@ class BroadToolContent extends Component {
 					<div className="col-xs-8">
 						<label className="control-label">
 							{ this.props.data_user_nickname }
-
+							<button type="button"
+								className="btn btn-success"
+								onClick={ this.props.fixStreamcode }
+							>고정
+							</button>
+							<button type="button"
+								className="btn btn-warning"
+								onClick={ this.props.releaseStreamcode }
+							>고정해제
+							</button>
 						</label>
 					</div>
 				</div>
@@ -297,7 +306,21 @@ class BroadToolContent extends Component {
 					<div className="col-xs-8">
 						<label className="control-label">
 							{ broadcast_status }
-
+							<button type="button"
+											className="btn btn-success"
+											onClick={ this.props.startBroadcast }
+							>시작
+							</button>
+							<button type="button"
+											className="btn btn-warning"
+											onClick={ this.props.stopBroadcast }
+							>종료
+							</button>
+							<button type="button"
+											className="btn btn-primary"
+											onClick={ this.props.recoverBroadcast }
+							>복구
+							</button>
 						</label>
 					</div>
 				</div>
@@ -404,8 +427,7 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송국 이미지:</label>
 					<div className="col-xs-8">
 						<label className="control-label">
-							{ this.props.data_broadcast_image }
-
+							<img className="img-responsive" src={process.env.img + this.props.data_broadcast_image} />
 						</label>
 					</div>
 				</div>
@@ -497,12 +519,27 @@ class BroadToolContent extends Component {
 				{ this.props.data_broadcast_type == 1 ? Mocobee : this.props.data_broadcast_type == 2 ? Youtube : this.props.data_broadcast_type == 3 ? Twich : '잘못된 정보입니다.'}
 
 				<div className="form-group">
-					<div className="col-sm-offset-4 col-xs-8">
+					<div className="col-xs-12">
+						<button type="button"
+										className="btn btn-primary"
+										onClick={ this.props.previewBroadcast }
+						>미리보기
+						</button>
+						<button type="button"
+										className="btn btn-success"
+										onClick={ this.props.publishStreamcode }
+						>방송코드 발급
+						</button>
 						<button type="button"
 										className="btn btn-warning"
 										onClick={ this.props.toggleEdit }
 						>수정
 						</button>
+						<button type="button"
+														 className="btn btn-danger"
+														 onClick={ this.props.deleteBroadcast }
+					>삭제
+					</button>
 					</div>
 				</div>
 			</form>
@@ -510,7 +547,7 @@ class BroadToolContent extends Component {
 
 		const editView = (
 
-			<form className="form-horizontal">
+			<form className="form-horizontal"onSubmit={e => e.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송 번호:</label>
 					<div className="col-xs-8">
@@ -542,9 +579,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송 제목:</label>
 					<div className="col-xs-8">
 						<input type="text"
-									 name="data_broadcast_subject"
+									 name="input_broadcast_subject"
 									 className="form-control"
-									 value={ this.props.data_broadcast_subject }
+									 value={ this.props.input_broadcast_subject}
+									 onChange={this.props.handleChange}
 						/>
 
 					</div>
@@ -553,9 +591,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송 설명:</label>
 					<div className="col-xs-8">
 						<input type="text"
-									 name="data_broadcast_summary"
+									 name="input_broadcast_summary"
 									 className="form-control"
-									 value={ this.props.data_broadcast_summary }
+									 value={ this.props.input_broadcast_summary }
+									 onChange={this.props.handleChange}
 						/>
 					</div>
 				</div>
@@ -563,9 +602,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송 메모:</label>
 					<div className="col-xs-8">
 						<input type="text"
-									 name="data_broadcast_memo"
+									 name="input_broadcast_memo"
 									 className="form-control"
-									 value={ this.props.data_broadcast_memo }
+									 value={ this.props.input_broadcast_memo }
+									 onChange={this.props.handleChange}
 						/>
 					</div>
 				</div>
@@ -608,9 +648,10 @@ class BroadToolContent extends Component {
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송 노출 여부:</label>
 					<div className="col-xs-8">
-						<select name=""
+						<select name="input_broadcast_view_flag"
 										className="form-control"
-										value={ this.props.data_broadcast_view_flag }
+										value={ this.props.input_broadcast_view_flag }
+										onChange={this.props.handleChange}
 						>
 							<option value="0">비노출</option>
 							<option value="1">노출</option>
@@ -621,9 +662,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송 URL:</label>
 					<div className="col-xs-8">
 						<input type="text"
-									 name="data_broadcast_url"
+									 name="input_broadcast_url"
 									 className="form-control"
-									 value={ this.props.data_broadcast_url }
+									 value={ this.props.input_broadcast_url }
+									 onChange={this.props.handleChange}
 						/>
 					</div>
 				</div>
@@ -631,9 +673,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송 유형:</label>
 					<div className="col-xs-8">
 
-						<select name="data_broadcast_type"
+						<select name="input_broadcast_type"
 										className="form-control"
-										value={ this.props.data_broadcast_type }
+										value={ this.props.input_broadcast_type }
+										onChange={this.props.handleChange}
 						>
 							<option value="1">Mocobee</option>
 							<option value="2">Youtube</option>
@@ -646,9 +689,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">생방송 여부:</label>
 					<div className="col-xs-8">
 
-						<select name="data_broadcast_live"
+						<select name="input_broadcast_live"
 										className="form-control"
-										value={ this.props.data_broadcast_live }
+										value={ this.props.input_broadcast_live }
+										onChange={this.props.handleChange}
 						>
 							<option value="1">생방송</option>
 							<option value="2">녹화방송</option>
@@ -660,9 +704,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">유료 방송 여부:</label>
 					<div className="col-xs-8">
 
-						<select name="data_broadcast_pay_flag"
+						<select name="input_broadcast_pay_flag"
 										className="form-control"
-										value={ this.props.data_broadcast_pay_flag }
+										value={ this.props.input_broadcast_pay_flag }
+										onChange={this.props.handleChange}
 						>
 							<option value="1">무료방송</option>
 							<option value="2">유료방송</option>
@@ -676,8 +721,9 @@ class BroadToolContent extends Component {
 
 						<input type="number"
 									 className="form-control"
-									 name="data_broadcast_pay_price"
-									 value={ this.props.data_broadcast_pay_price }
+									 name="input_broadcast_pay_price"
+									 value={ this.props.input_broadcast_pay_price }
+									 onChange={this.props.handleChange}
 						/>
 
 					</div>
@@ -686,9 +732,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">성인 여부:</label>
 					<div className="col-xs-8">
 
-						<select name="data_broadcast_is_adult"
+						<select name="input_broadcast_is_adult"
 										className="form-control"
-										value={ this.props.data_broadcast_is_adult }
+										value={ this.props.input_broadcast_is_adult }
+										onChange={this.props.handleChange}
 						>
 							<option value="0">미성년자 관람가능</option>
 							<option value="1">미성년자 관람불가</option>
@@ -700,9 +747,10 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송코인 선물기능 사용여부:</label>
 					<div className="col-xs-8">
 
-						<select name="data_broadcast_use_coin"
+						<select name="input_broadcast_use_coin"
 										className="form-control"
-										value={ this.props.data_broadcast_use_coin }
+										value={ this.props.input_broadcast_use_coin }
+										onChange={this.props.handleChange}
 						>
 							<option value="0">불가</option>
 							<option value="1">가능</option>
@@ -716,8 +764,10 @@ class BroadToolContent extends Component {
 						
 						<input type="file"
 									 className="form-control"
-									 name="data_broadcast_image"
-									 value={ this.props.data_broadcast_image }
+									 id="input_broadcast_image"
+									 name="input_broadcast_image"
+									 value={ this.props.input_broadcast_image }
+									 onChange={this.props.handleChange}
 						/>
 
 					</div>
@@ -812,15 +862,19 @@ class BroadToolContent extends Component {
 				<div className="form-group">
 					<div className="col-sm-offset-4 col-xs-8">
 						<button type="button"
-										className="btn btn-warning"
+										className="btn btn-primary"
+										onClick={ this.props.modifyBroadcast }
+						>확인
+						</button>
+						<button type="button"
+										className="btn btn-danger"
 										onClick={ this.props.toggleEdit }
-						>수정
+						>취소
 						</button>
 					</div>
 				</div>
 			</form>
 		);
-
 
 		return (
 			<div className="box-body border-style">

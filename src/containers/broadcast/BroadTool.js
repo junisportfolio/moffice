@@ -35,6 +35,22 @@ class BroadTool extends React.Component {
 			data: '',
 			user_info: '',
 
+      input_community_id: "",
+      input_user_id: "",
+      input_broadcast_summary: "",
+      input_broadcast_subject: "",
+      input_broadcast_memo: "",
+      input_broadcast_start_date: "",
+      input_broadcast_view_flag: "",
+      input_broadcast_url: "",
+      input_broadcast_type: "",
+      input_broadcast_pay_flag: "",
+      input_broadcast_pay_price: "",
+      input_broadcast_is_adult: "",
+      input_broadcast_live: "",
+      input_broadcast_sequence: "",
+      input_broadcast_image: "",
+      input_broadcast_use_coin: ""
 
 		}
 
@@ -55,7 +71,21 @@ class BroadTool extends React.Component {
 
 	toggleEdit() {
 		this.setState({
-			editMode: !this.state.editMode
+			editMode: !this.state.editMode,
+      input_broadcast_summary: this.state.data_broadcast_summary,
+      input_broadcast_subject: this.state.data_broadcast_subject,
+      input_broadcast_memo: this.state.data_broadcast_memo,
+      input_broadcast_start_date: this.state.data_broadcast_start_date,
+      input_broadcast_view_flag: this.state.data_broadcast_view_flag,
+      input_broadcast_url: this.state.data_broadcast_url,
+      input_broadcast_type: this.state.data_broadcast_type,
+      input_broadcast_pay_flag: this.state.data_broadcast_pay_flag,
+      input_broadcast_pay_price: this.state.data_broadcast_pay_price,
+      input_broadcast_is_adult: this.state.data_broadcast_is_adult,
+      input_broadcast_live: this.state.data_broadcast_live,
+      input_broadcast_sequence: this.state.data_broadcast_sequence,
+      input_broadcast_image: this.state.data_broadcast_image,
+      input_broadcast_use_coin: this.state.data_broadcast_use_coin
 		});
 	}
 
@@ -118,6 +148,7 @@ class BroadTool extends React.Component {
 			}
 		});
 	}
+
 
 
 	componentDidMount() {
@@ -202,12 +233,161 @@ class BroadTool extends React.Component {
 					data_twitch_play_url: info.twitch_play_url,
 					data_youtube_id: info.youtube_id,
 					data_youtube_play_url: info.youtube_play_url
-
-
 				});
 			}
 		});
 	}
+
+	enrollmentBroadcast() {
+		if(confirm("방송을 등록하시겠습니까?")) {
+			console.log("POST::/private/v1/broadcast/", {
+        community_id: this.state.input_community_id,
+        user_id: this.state.input_user_id,
+        broadcast_summary: this.state.input_broadcast_summary,
+        broadcast_subject: this.state.input_broadcast_subject,
+        broadcast_memo: this.state.input_broadcast_memo,
+        broadcast_start_date: this.state.input_broadcast_start_date,
+        broadcast_view_flag: this.state.input_broadcast_view_flag,
+        broadcast_url: this.state.input_broadcast_url,
+        broadcast_type: this.state.input_broadcast_type,
+        broadcast_pay_flag: this.state.input_broadcast_pay_flag,
+        broadcast_pay_price: this.state.input_broadcast_pay_price,
+        broadcast_is_adult: this.state.input_broadcast_is_adult,
+        broadcast_live: this.state.input_broadcast_live,
+        broadcast_sequence: this.state.input_broadcast_sequence,
+        broadcast_image: this.state.input_broadcast_image
+      });
+		}
+	}
+
+	deleteBroadcast() {
+		if(confirm("방송을 삭제하시겠습니까?")) {
+			jasync.delete({
+				url: "/private/v1/broadcast/" + this.state.user_info,
+				success: sss => {
+					alert(sss.message);
+
+          this.getUserData(this.state.user_info);
+				}
+			});
+		}
+	}
+
+  modifyBroadcast() {
+    if(confirm("방송을 수정하시겠습니까?")) {
+    	let formData = new FormData();
+
+      formData.append("broadcast_summary", this.state.input_broadcast_summary);
+      formData.append("broadcast_subject", this.state.input_broadcast_subject);
+      formData.append("broadcast_memo", this.state.input_broadcast_memo);
+      formData.append("broadcast_start_date", this.state.input_broadcast_start_date);
+      formData.append("broadcast_view_flag", this.state.input_broadcast_view_flag);
+      formData.append("broadcast_live", this.state.input_broadcast_live);
+      formData.append("broadcast_url", this.state.input_broadcast_url);
+      formData.append("broadcast_type", this.state.input_broadcast_type);
+      formData.append("broadcast_pay_flag", this.state.input_broadcast_pay_flag);
+      formData.append("broadcast_pay_price", this.state.input_broadcast_pay_price);
+      formData.append("broadcast_sequence", this.state.input_broadcast_sequence);
+      formData.append("broadcast_is_adult", this.state.input_broadcast_is_adult);
+      formData.append("broadcast_image", document.getElementById("input_broadcast_image").files[0]);
+
+      jasync.multipart.post({
+      	url: "/private/v1/broadcast/" + this.state.user_info,
+				data: formData,
+				success: sss => {
+      		alert(sss.message);
+
+      		this.setState({
+      			editMode: false
+					}, () => this.getUserData(this.state.user_info));
+				}
+			});
+    }
+  }
+
+  modifyPartBroadcast() {
+    if(confirm("방송을 수정하시겠습니까?")) {
+      console.log("POST::/private/v1/broadcast/" + this.state.user_info + "/modify_individual", {
+        broadcast_summary: this.state.input_broadcast_summary,
+        broadcast_subject: this.state.input_broadcast_subject,
+        broadcast_memo: this.state.input_broadcast_memo,
+        broadcast_start_date: this.state.input_broadcast_start_date,
+        broadcast_view_flag: this.state.input_broadcast_view_flag,
+        broadcast_live: this.state.input_broadcast_live,
+        broadcast_url: this.state.input_broadcast_url,
+        broadcast_type: this.state.input_broadcast_type,
+        broadcast_pay_flag: this.state.input_broadcast_pay_flag,
+        broadcast_pay_price: this.state.input_broadcast_pay_price,
+        broadcast_is_adult: this.state.input_broadcast_is_adult,
+        broadcast_image: this.state.input_broadcast_image,
+        broadcast_use_coin: this.state.input_broadcast_use_coin
+      });
+    }
+  }
+
+  previewBroadcast() {
+    if(confirm("방송을 미리보기하시겠습니까?")) {
+      jasync.get({
+      	url: "/private/v1/broadcast/" + this.state.user_info + "/preview"
+      });
+    }
+	}
+
+	fixStreamcode() {
+    if(confirm("사용자에게 방송코드를 고정하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/streamcode/" + this.state.data_user_id + "/fix",
+				success: sss => alert(sss.message)
+      });
+    }
+	}
+
+	releaseStreamcode() {
+    if(confirm("사용자에게 방송코드 고정을 해제하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/streamcode/" + this.state.data_user_id + "/fix_release",
+				success: sss => alert(sss.message)
+      });
+    }
+	}
+
+  publishStreamcode() {
+    if(confirm("방송코드를 발급하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/broadcast/" + this.state.user_info + "/publish_code",
+				success: sss => alert(sss.message)
+      });
+    }
+  }
+
+  startBroadcast() {
+    if(confirm("방송을 시작하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/broadcast/" + this.state.user_info + "/start",
+				success: sss => alert(sss.message)
+      });
+    }
+  }
+
+  stopBroadcast() {
+    if(confirm("방송을 종료하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/broadcast/" + this.state.user_info + "/stop",
+				success: sss => alert(sss.message)
+      });
+    }
+  }
+
+  recoverBroadcast() {
+    if(confirm("방송을 복구하시겠습니까?")) {
+      jasync.post({
+      	url: "/private/v1/broadcast/" + this.state.user_info + "/recover",
+				success: sss => alert(sss.message)
+      });
+    }
+  }
+
+
 
 
 	render() {
@@ -285,7 +465,6 @@ class BroadTool extends React.Component {
 												<div className="box-body">
 
 													<BroadToolContent
-
 														data_broadcast_idx={this.state.data_broadcast_idx}
 														data_community_id={this.state.data_community_id}
 														data_user_id={this.state.data_user_id}
@@ -327,11 +506,40 @@ class BroadTool extends React.Component {
 														data_youtube_id={this.state.data_youtube_id}
 														data_youtube_play_url={this.state.data_youtube_play_url}
 
-
 														handleChange={ this.handleChange }
 														editMode={ this.state.editMode }
 														toggleEdit={ this.toggleEdit }
 														editUserData={ this.editUserData }
+
+														enrollmentBroadcast={this.enrollmentBroadcast.bind(this)}
+														deleteBroadcast={this.deleteBroadcast.bind(this)}
+														modifyBroadcast={this.modifyBroadcast.bind(this)}
+														modifyPartBroadcast={this.modifyPartBroadcast.bind(this)}
+														previewBroadcast={this.previewBroadcast.bind(this)}
+														fixStreamcode={this.fixStreamcode.bind(this)}
+														releaseStreamcode={this.releaseStreamcode.bind(this)}
+														publishStreamcode={this.publishStreamcode.bind(this)}
+														startBroadcast={this.startBroadcast.bind(this)}
+														stopBroadcast={this.stopBroadcast.bind(this)}
+														recoverBroadcast={this.recoverBroadcast.bind(this)}
+
+
+														input_community_id={this.state.input_community_id}
+														input_user_id={this.state.input_user_id}
+														input_broadcast_summary={this.state.input_broadcast_summary}
+														input_broadcast_subject={this.state.input_broadcast_subject}
+														input_broadcast_memo={this.state.input_broadcast_memo}
+														input_broadcast_start_date={this.state.input_broadcast_start_date}
+														input_broadcast_view_flag={this.state.input_broadcast_view_flag}
+														input_broadcast_url={this.state.input_broadcast_url}
+														input_broadcast_type={this.state.input_broadcast_type}
+														input_broadcast_pay_flag={this.state.input_broadcast_pay_flag}
+														input_broadcast_pay_price={this.state.input_broadcast_pay_price}
+														input_broadcast_is_adult={this.state.input_broadcast_is_adult}
+														input_broadcast_live={this.state.input_broadcast_live}
+														input_broadcast_sequence={this.state.input_broadcast_sequence}
+														input_broadcast_image={this.state.input_broadcast_image}
+														input_broadcast_use_coin={this.state.input_broadcast_use_coin}
 													/>
 
 												</div>
