@@ -19,7 +19,7 @@ class ListDefault extends Component {
 					user_name={list.user_name}
 					user_email={list.user_email}
 					user_status={list.user_status}
-
+					current_idx={this.props.current_idx}
 
 
 					handleSelect={() => this.props.handleSelect(list.user_id)}

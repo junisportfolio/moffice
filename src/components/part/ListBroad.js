@@ -13,7 +13,7 @@ class ListBroad extends Component {
 			list_content = this.props.list.map(
 				(list, i) => <ListBroadContent
 					list_index = {i}
-
+					current_idx={this.props.current_idx}
 					broadcast_idx={list.broadcast_idx}
 					community_id={list.community_id}
 					user_id={list.user_id}

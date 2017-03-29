@@ -24,7 +24,7 @@ export default class ListCashContent extends React.Component {
 		}
 
 		return (
-			<li className="list-item-1 has-right" onClick={this.props.handleSelect}>
+			<li className={"list-item-1 has-right" + (this.props.current_idx === this.props.payment_idx ? " active" : "")} onClick={this.props.handleSelect}>
 				<a>
 					<span className="title">
 						{this.props.payment_price} 원

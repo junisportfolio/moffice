@@ -28,6 +28,8 @@ class ListCoin extends Component {
 						list.user_total_coin
 					)}
 
+					current_idx={this.props.current_idx}
+
 					user_id={list.user_id}
 					user_nickname={list.user_nickname}
 					user_email={list.user_email}

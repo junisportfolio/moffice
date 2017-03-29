@@ -16,7 +16,7 @@ class ListStream extends Component {
 				})
 				.map( (list, i) => <ListStreamContent
 					list_index = {i}
-
+					current_idx={this.props.current_idx}
 					streamcode_idx={list.streamcode_idx}
 					user_id={list.user_id}
 					streamcode_id={list.streamcode_id}

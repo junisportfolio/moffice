@@ -336,6 +336,7 @@ class Channel extends React.Component {
 
 
 								<ListDefault
+                  current_idx={this.state.user_info}
 									list={this.state.list}
 									handleSelect={this.handleSelect}
 								/>

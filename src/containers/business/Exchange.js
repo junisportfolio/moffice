@@ -410,6 +410,7 @@ class Exchange extends React.Component {
 
 							<ListCoin
 								list={this.state.list}
+								current_idx={this.state.user_info}
 								handleSelect={this.handleSelect}
 							/>
 
@@ -502,6 +503,7 @@ class Exchange extends React.Component {
 
 							<ListExchange
 								list={this.state.data2}
+								current_idx={this.state.data2_user_exchange_idx}
 								handleSelect={this.handleSelectData2}
 							/>
 

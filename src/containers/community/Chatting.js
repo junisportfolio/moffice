@@ -372,6 +372,7 @@ class Chatting extends Component {
 								<ListBoard
 									inc={this.inc}
 									list={this.state.list}
+									current_idx={this.state.data_broadcast_idx}
 									handleSelect={this.handleSelect}
 								/>
 							</div>

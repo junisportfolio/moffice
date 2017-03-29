@@ -13,7 +13,7 @@ class ListCash extends Component {
 			list_content = this.props.list.map(
 				(list, i) => <ListCashContent
 					list_index = {i}
-
+					current_idx={this.props.current_idx}
 					handleSelect={() => this.props.handleSelect(
 						list.payment_idx,
 						list.payment_order_id,

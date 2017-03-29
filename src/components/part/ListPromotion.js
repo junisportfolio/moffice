@@ -13,7 +13,7 @@ class ListPromotion extends Component {
 			list_content = this.props.list.map(
 				(list, i) => <ListPromotionContent
 					list_index = {i}
-
+					current_idx={this.props.current_idx}
 					promotion_coin_idx={list.promotion_coin_idx}
 					promotion_name={list.promotion_name}
 					promotion_coin_id={list.promotion_coin_id}

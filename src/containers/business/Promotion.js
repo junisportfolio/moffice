@@ -346,6 +346,7 @@ class Promotion extends React.Component {
 
 								<ListPromotion
 									list={this.state.list}
+									current_idx={this.state.data_promotion_coin_idx}
 									handleSelect={this.handleSelect}
 								/>
 
