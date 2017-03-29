@@ -28,6 +28,15 @@ class ChannelContent extends Component {
 
 	render() {
 
+		const profileImageTrue = (
+			<img src={process.env.img + this.props.data_community_user_profile_image} alt='프로필 이미지' width={'50%'} />
+		);
+		const profileImageFalse = (
+			<label>
+				이미지가 없습니다
+			</label>
+		);
+
 		return (
 			<div className="box-body border-style">
 				<form className="form-horizontal">
@@ -98,7 +107,7 @@ class ChannelContent extends Component {
 						func={this.props.func_change_profile}
 						owner={this.props.owner}
 					>
-						<img src={process.env.img + this.props.data_community_user_profile_image} alt="" width={50} height={50}/>
+						{this.props.data_community_user_profile_image != false ? profileImageTrue : profileImageFalse}
 					</EditableInputGroup>
 					<div className="form-group">
 						<label className="control-label col-xs-4" for="name">닉네임:</label>

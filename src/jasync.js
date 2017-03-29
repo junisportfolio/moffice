@@ -39,7 +39,7 @@ class jasync {
         "  error: callbackMethod // 모든 요청에 대해 모든 에러 요청의 callback method를 지정해줍니다. (기본값은 errorData 콘솔 출력)\n" +
         "}\n" +
         "%c이 메세지가 보인 화면에서는 웹브라우져를 통해 jasync 객체에 접근할 수 있습니다. 이 메세지가 라이브 환경에서 보여선 안됩니다.";
-      console.log(message, "background: red; color: white");
+      // console.log(message, "background: red; color: white");
     }
   }
 
@@ -49,14 +49,19 @@ class jasync {
 
   error(errorObject) {
     if(errorObject.status === 401) {
-      alert(errorObject.responseJSON.message || errorObject.responseTEXT.message);
-      window.location.href = "/";
+      if(location.pathname == '/') {
+
+      }else{
+				alert(errorObject.responseJSON.message || errorObject.responseTEXT.message);
+				window.location.href = "/";
+      }
+
     } else if(errorObject.status >= 500) {
       alert(errorObject.status + "에러가 발생했습니다. 서버 관리자에게 문의해주세요.");
     }
 
-    console.log("%c" + errorObject.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", errorObject.statusText, errorObject.responseJSON || errorObject.responseText);
-    console.log("errorObject.responseJSON 또는 errorObject.responseText로부터 위의 값을 가공하여 처리해주세요.");
+    // console.log("%c" + errorObject.status + "%c%s\n", "border-radius: 50px; color: white; background: red; padding: 5px; line-height: 30px; margin-right: 5px", "color: red", errorObject.statusText, errorObject.responseJSON || errorObject.responseText);
+    // console.log("errorObject.responseJSON 또는 errorObject.responseText로부터 위의 값을 가공하여 처리해주세요.");
   }
 
   get(obj) {
