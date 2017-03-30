@@ -98,7 +98,6 @@ class CoinContent extends Component {
 						<div className="col-xs-8">
 
 							<input
-								id="give_coin"
 								type="number"
 								name="input_coin"
 								placeholder="꿀 부여"
@@ -107,7 +106,6 @@ class CoinContent extends Component {
 								onChange={this.props.handleChange}
 							/>
 							<input
-								id="give_coin_free"
 								type="number"
 								name="input_free_coin"
 								placeholder="무료 꿀 부여"

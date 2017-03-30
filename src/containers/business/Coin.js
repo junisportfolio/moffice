@@ -206,7 +206,6 @@ class Coin extends React.Component {
 					data1_user_coin_history_datetime: data.users[0].user_coin_history_datetime,
 					data1_user_coin_history_registration_date: data.users[0].user_coin_history_registration_date,
 
-
 				});
 				// this.getUserData(this.state.user_info);
 			}
