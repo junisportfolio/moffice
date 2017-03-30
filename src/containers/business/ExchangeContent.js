@@ -61,7 +61,7 @@ class ExchangeContent extends Component {
 						</div>
 					</div>
 
-					<div className="form-group">
+					{/*<div className="form-group">
 						<label className="control-label col-xs-4">코인 출금 환율:</label>
 						<div className="col-xs-8">
 							<div className="input-group">
@@ -85,7 +85,7 @@ class ExchangeContent extends Component {
 
 							</div>
 						</div>
-					</div>
+					</div>*/}
 
 					<div className="form-group">
 						<label className="control-label col-xs-4">코인 출금:</label>
