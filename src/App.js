@@ -35,6 +35,7 @@ class App extends Component {
         auth.user = null;
       }
     });
+
 		jasync.sync.get({
 			url: "/private/v1/users/" + auth.user_id,
 			success: data => {
@@ -74,7 +75,9 @@ class App extends Component {
 					/>
 					<Sidebar />
 					<div className="content-wrapper">
-						<Dispatcher/>
+						<Dispatcher
+
+						/>
 					</div>
 				</div>
       );

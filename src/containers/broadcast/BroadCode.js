@@ -102,6 +102,7 @@ class BroadCode extends React.Component {
 
 	handleSelect(user_id, user) {
 		this.setState({
+			editMode: false,
 			user_info: user_id
 		}, () => {
 			this.getUserData(this.state.user_info, user);
@@ -308,13 +309,6 @@ class BroadCode extends React.Component {
 
 
   render() {
-		const Onair = (
-			<div className="video-area">
-				<div className="video"></div>
-				<div className="chatting"></div>
-			</div>
-		);
-
 		return (
 			<section className="content">
 				<PageHeader
@@ -324,8 +318,6 @@ class BroadCode extends React.Component {
 				/>
 
 				<div className="row">
-
-
 					<div className="col-md-12">
 						<div className="box box-warning">
 							<div className="box-header with-border">
@@ -378,10 +370,10 @@ class BroadCode extends React.Component {
 
 												<div className="box-header with-border">
 													<h3 className="box-title type-block">
+														Now
 														<b>
-															사용중인 방송
+															&nbsp;Active
 														</b>
-														리스트
 													</h3>
 												</div>
 

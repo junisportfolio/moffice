@@ -67,6 +67,10 @@ class Coin extends React.Component {
 		this.editUserData = this.editUserData.bind(this);
 		this.handlePagination = this.handlePagination.bind(this);
 
+		this.handleGive = this.handleGive.bind(this);
+		this.handleTake = this.handleTake.bind(this);
+
+
 	}
 
 	handleListType(index, type) {
@@ -212,33 +216,70 @@ class Coin extends React.Component {
 			jasync.post({
 				url: "/private/v1/coin/gift/" + this.state.data_user_id,
 				data: {
-          coin: +this.state.input_coin,
-          free_coin: +this.state.input_free_coin
-        },
+					coin: +this.state.input_coin,
+					free_coin: +this.state.input_free_coin
+				},
 				success: sss => {
 					alert("꿀 지급을 완료하였습니다.");
 
-          this.setState({
-            input_coin: 0,
-            input_free_coin: 0
-          }, () => this.getUserList());
+					this.setState({
+						input_coin: '',
+						input_free_coin: ''
+					}, () => this.getUserList());
 				},
 				error: err => {
 					if(err.status === 200) {
-            alert("꿀 지급을 완료하였습니다.");
+						alert("꿀 지급을 완료하였습니다.");
 
 
-            this.setState({
-              input_coin: 0,
-              input_free_coin: 0
-            }, () => this.getUserList());
+						this.setState({
+							input_coin: 0,
+							input_free_coin: 0
+						}, () => this.getUserList());
 					} else {
 						alert("문제가 있습니다.");
 						console.log(err);
 					}
 				}
 			});
-    }
+		}
+	}
+
+	handleTake() {
+		if(confirm("꿀을 차감하시겠습니까?")) {
+			jasync.post({
+				url: "/private/v1/coin/refund/" + this.state.data_user_id,
+				data: {
+					coin: +this.state.input_coin_take,
+					free_coin: +this.state.input_free_coin_take
+				},
+				success: sss => {
+
+					this.setState({
+						input_coin_take: '',
+						input_free_coin_take: ''
+					}, () => this.getUserList());
+
+					alert("꿀 차감을 완료하였습니다.");
+
+				},
+				error: err => {
+					if(err.status === 200) {
+
+						this.setState({
+							input_coin_take: 0,
+							input_free_coin_take: 0
+						}, () => this.getUserList());
+
+						alert("꿀 차감에 오류가 발생했습니다.");
+
+					} else {
+						alert("문제가 있습니다.");
+						console.log(err);
+					}
+				}
+			});
+		}
 	}
 
 
@@ -317,7 +358,8 @@ class Coin extends React.Component {
 							editMode={ this.state.editMode }
 							toggleEdit={ this.toggleEdit }
 							editUserData={ this.editUserData }
-							handleGive={this.handleGive.bind(this)}
+							handleGive={this.handleGive}
+							handleTake={this.handleTake}
 						/>
 
 					</div>

@@ -125,6 +125,39 @@ class CoinContent extends Component {
 					</div>
 
 
+					<div className="form-group">
+						<label className="control-label col-xs-4">코인 압류:</label>
+						<div className="col-xs-8">
+
+							<input
+								id="give_coin"
+								type="number"
+								name="input_coin_take"
+								placeholder="일반 꿀 차감"
+								className="form-control"
+								value={this.props.input_coin_take}
+								onChange={this.props.handleChange}
+							/>
+							<input
+								id="give_coin_free"
+								type="number"
+								name="input_free_coin_take"
+								placeholder="무료 꿀 차감"
+								className="form-control"
+								value={this.props.input_free_coin_take}
+								onChange={this.props.handleChange}
+							/>
+
+							<button
+								className="btn btn-primary"
+								onClick={this.props.handleTake}
+							>차감
+							</button>
+						</div>
+					</div>
+
+
+
 				</form>
 			</
 				div >

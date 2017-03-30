@@ -123,15 +123,34 @@ class BroadToolContent extends Component {
 		}
 
 
+		/* part */
 
+		const BroadcastStart = (
+			<button type="button"
+							className="btn btn-success"
+							onClick={ this.props.startBroadcast }
+			>시작
+			</button>
+		);
 
+		const BroadcastStop = (
+			<button type="button"
+							className="btn btn-warning"
+							onClick={ this.props.stopBroadcast }
+			>종료
+			</button>
+		);
 
-
-
-
+		const BroadcastRestore = (
+			<button type="button"
+							className="btn btn-primary"
+							onClick={ this.props.recoverBroadcast }
+			>복구
+			</button>
+		);
 
 		const Mocobee = (
-			<div className="mocobee form-group" style={{backgroundColor: 'rgba(245, 166, 35, 0.1)',textIndent: '10px'}}>
+			<div className="mocobee form-group" style={{backgroundColor: 'rgba(245, 166, 35, 0.1)', textIndent: '10px'}}>
 
 				<div className="form-group">
 					<label className="control-label col-xs-4">HLS key:</label>
@@ -235,6 +254,10 @@ class BroadToolContent extends Component {
 			</div>
 		);
 
+		/* //part */
+
+
+		/* //listView*/
 
 		const listView = (
 			<form className="form-horizontal" onSubmit={e => e.preventDefault()}>
@@ -259,18 +282,31 @@ class BroadToolContent extends Component {
 				<div className="form-group">
 					<label className="control-label col-xs-4">닉네임:</label>
 					<div className="col-xs-8">
+
+						<div className="form-group">
+							<div className="input-group input-group-sm">
+								<label className="control-label">
+									{ this.props.data_user_nickname }
+								</label>
+								<span className="input-group-btn">
+									<button type="button"
+													className="btn btn-success"
+													onClick={ this.props.fixStreamcode }
+									>고정 설정
+									</button>
+									<button type="button"
+													className="btn btn-warning"
+													onClick={ this.props.releaseStreamcode }
+									>고정 해제
+									</button>
+							</span>
+							</div>
+						</div>
+
+
 						<label className="control-label">
-							{ this.props.data_user_nickname }
-							<button type="button"
-								className="btn btn-success"
-								onClick={ this.props.fixStreamcode }
-							>고정
-							</button>
-							<button type="button"
-								className="btn btn-warning"
-								onClick={ this.props.releaseStreamcode }
-							>고정해제
-							</button>
+
+
 						</label>
 					</div>
 				</div>
@@ -304,24 +340,27 @@ class BroadToolContent extends Component {
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송 상태:</label>
 					<div className="col-xs-8">
-						<label className="control-label">
-							{ broadcast_status }
-							<button type="button"
-											className="btn btn-success"
-											onClick={ this.props.startBroadcast }
-							>시작
-							</button>
-							<button type="button"
-											className="btn btn-warning"
-											onClick={ this.props.stopBroadcast }
-							>종료
-							</button>
-							<button type="button"
-											className="btn btn-primary"
-											onClick={ this.props.recoverBroadcast }
-							>복구
-							</button>
-						</label>
+
+						<div className="form-group">
+							<div className="input-group input-group-sm">
+								<label className="control-label">
+									{ broadcast_status }
+								</label>
+								<span className="input-group-btn">
+									{
+										this.props.data_broadcast_status == 0 ?
+											BroadcastRestore :
+											this.props.data_broadcast_status == 1 ?
+												BroadcastStop :
+												this.props.data_broadcast_status == 2 ?
+													'' :
+													this.props.data_broadcast_status == 3 ?
+														'' : ''
+									}
+							</span>
+							</div>
+						</div>
+
 					</div>
 				</div>
 				<div className="form-group">
@@ -427,7 +466,7 @@ class BroadToolContent extends Component {
 					<label className="control-label col-xs-4">방송국 이미지:</label>
 					<div className="col-xs-8">
 						<label className="control-label">
-							<img className="img-responsive" src={process.env.img + this.props.data_broadcast_image} />
+							{ this.props.data_broadcast_image != false ? <img className="img-responsive" src={process.env.img + this.props.data_broadcast_image}/> : '설정된 이미지가 없습니다.' }
 						</label>
 					</div>
 				</div>
@@ -519,7 +558,8 @@ class BroadToolContent extends Component {
 				{ this.props.data_broadcast_type == 1 ? Mocobee : this.props.data_broadcast_type == 2 ? Youtube : this.props.data_broadcast_type == 3 ? Twich : '잘못된 정보입니다.'}
 
 				<div className="form-group">
-					<div className="col-xs-12">
+					<div className="col-sm-offset-4 col-xs-8">
+						{/*
 						<button type="button"
 										className="btn btn-primary"
 										onClick={ this.props.previewBroadcast }
@@ -530,24 +570,32 @@ class BroadToolContent extends Component {
 										onClick={ this.props.publishStreamcode }
 						>방송코드 발급
 						</button>
+						*/}
+
 						<button type="button"
 										className="btn btn-warning"
 										onClick={ this.props.toggleEdit }
 						>수정
 						</button>
 						<button type="button"
-														 className="btn btn-danger"
-														 onClick={ this.props.deleteBroadcast }
-					>삭제
-					</button>
+										className="btn btn-danger"
+										onClick={ this.props.deleteBroadcast }
+						>삭제
+						</button>
+
 					</div>
 				</div>
 			</form>
 		);
 
+		/* //listView*/
+
+
+		/* editView*/
+
 		const editView = (
 
-			<form className="form-horizontal"onSubmit={e => e.preventDefault()}>
+			<form className="form-horizontal" onSubmit={e => e.preventDefault()}>
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송 번호:</label>
 					<div className="col-xs-8">
@@ -761,7 +809,7 @@ class BroadToolContent extends Component {
 				<div className="form-group">
 					<label className="control-label col-xs-4">방송국 이미지:</label>
 					<div className="col-xs-8">
-						
+
 						<input type="file"
 									 className="form-control"
 									 id="input_broadcast_image"
@@ -876,12 +924,22 @@ class BroadToolContent extends Component {
 			</form>
 		);
 
+		/* //editView*/
+
+
+
+
+
 		return (
 			<div className="box-body border-style">
 				{ this.props.editMode ? editView : listView}
 			</div>
 
 		);
+
+
+
+
 	}
 
 }

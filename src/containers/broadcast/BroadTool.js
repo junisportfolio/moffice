@@ -91,6 +91,7 @@ class BroadTool extends React.Component {
 
 	handleSelect(user_id) {
 		this.setState({
+			editMode: false,
 			user_info: user_id
 		}, () => {
 			this.getUserData(this.state.user_info);
@@ -364,8 +365,11 @@ class BroadTool extends React.Component {
     if(confirm("방송을 시작하시겠습니까?")) {
       jasync.post({
       	url: "/private/v1/broadcast/" + this.state.user_info + "/start",
-				success: sss => alert(sss.message)
-      });
+				success: sss => {
+      		alert(sss.message);
+					this.getUserData(this.state.user_info);
+				}
+		});
     }
   }
 
@@ -373,7 +377,10 @@ class BroadTool extends React.Component {
     if(confirm("방송을 종료하시겠습니까?")) {
       jasync.post({
       	url: "/private/v1/broadcast/" + this.state.user_info + "/stop",
-				success: sss => alert(sss.message)
+				success: sss => {
+					alert(sss.message);
+					this.getUserData(this.state.user_info);
+				}
       });
     }
   }
@@ -382,7 +389,10 @@ class BroadTool extends React.Component {
     if(confirm("방송을 복구하시겠습니까?")) {
       jasync.post({
       	url: "/private/v1/broadcast/" + this.state.user_info + "/recover",
-				success: sss => alert(sss.message)
+				success: sss => {
+					alert(sss.message);
+					this.getUserData(this.state.user_info);
+				}
       });
     }
   }

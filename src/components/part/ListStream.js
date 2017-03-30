@@ -11,9 +11,6 @@ class ListStream extends Component {
 		let list_content = "";
 		if (typeof this.props.list === "object") {
 			list_content = this.props.list
-				.sort(function (a, b) {
-					return a.streamcode_idx < b.streamcode_idx ? -1 : a.streamcode_idx > b.streamcode_idx ? 1 : 0;
-				})
 				.map( (list, i) => <ListStreamContent
 					list_index = {i}
 					current_idx={this.props.current_idx}
