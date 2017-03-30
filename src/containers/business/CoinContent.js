@@ -11,7 +11,7 @@ class CoinContent extends Component {
 
 		return (
 			<div className="box-body border-style">
-				<form className="form-horizontal" onSubmit={e => e.preventDefault()}>
+				<form className="form-horizontal">
 					<div className="form-group">
 						<label className="control-label col-xs-4">이름:</label>
 						<div className="col-xs-8">
@@ -117,6 +117,7 @@ class CoinContent extends Component {
 							/>
 
 							<button
+								type="button"
 								className="btn btn-primary"
 								onClick={this.props.handleGive}
 							>지급
@@ -130,7 +131,6 @@ class CoinContent extends Component {
 						<div className="col-xs-8">
 
 							<input
-								id="give_coin"
 								type="number"
 								name="input_coin_take"
 								placeholder="일반 꿀 차감"
@@ -139,7 +139,6 @@ class CoinContent extends Component {
 								onChange={this.props.handleChange}
 							/>
 							<input
-								id="give_coin_free"
 								type="number"
 								name="input_free_coin_take"
 								placeholder="무료 꿀 차감"
@@ -149,6 +148,7 @@ class CoinContent extends Component {
 							/>
 
 							<button
+								type="button"
 								className="btn btn-primary"
 								onClick={this.props.handleTake}
 							>차감

@@ -67,7 +67,11 @@ class Exchange extends React.Component {
 		this.toggleEdit = this.toggleEdit.bind(this);
 		this.editUserData = this.editUserData.bind(this);
 		this.handlePagination = this.handlePagination.bind(this);
-
+    this.confirmExchange = this.confirmExchange.bind(this);
+    this.cancelExchange = this.cancelExchange.bind(this);
+    this.deleteExchange = this.deleteExchange.bind(this);
+    this.confirmEdit = this.confirmEdit.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
 	}
 
 	handleListType(index, type) {
@@ -471,19 +475,7 @@ class Exchange extends React.Component {
 
 		let button = "";
 
-		if(this.state.editMode) {
-      button = [
-				<button key="confirm_btn" className="btn btn-primary" onClick={this.confirmEdit.bind(this)}>완료</button>,
-				<button key="cancel_btn" className="btn btn-warning" onClick={this.toggleEdit.bind(this)}>취소</button>
-      ];
-		} else {
-			button = [
-				<button key="modify_btn" className="btn btn-primary" onClick={this.toggleEdit.bind(this)}>수정</button>,
-        <button key="confirm_btn" className="btn btn-success" onClick={this.confirmExchange.bind(this)}>승인</button>,
-        <button key="cancel_btn" className="btn btn-warning" onClick={this.cancelExchange.bind(this)}>취소</button>,
-        <button key="delete_btn" className="btn btn-danger" onClick={this.deleteExchange.bind(this)}>삭제</button>
-			];
-		}
+
 
 		const userExchangeList = (
 			<div className="row">
@@ -536,6 +528,10 @@ class Exchange extends React.Component {
 						</div>
 
 						<ExchangeListContent
+
+							confirmExchange={this.confirmExchange}
+							cancelExchange={this.cancelExchange}
+							deleteExchange={this.deleteExchange}
 							data_user_exchange_idx={this.state.data2_user_exchange_idx}
 							data_user_coin={this.state.data2_user_coin}
 							data_user_exchange_price={this.state.data2_user_exchange_price}
@@ -557,6 +553,8 @@ class Exchange extends React.Component {
 							input_user_exchange_status={this.state.input_user_exchange_status}
 							input_user_exchange_price={this.state.input_user_exchange_price}
 							handleChange={this.handleChange.bind(this)}
+							confirmEdit={this.confirmEdit}
+							toggleEdit={this.toggleEdit}
 							editMode={this.state.editMode}
 						/>
 
